@@ -168,7 +168,7 @@ if (campaignId) {
             document.getElementById("progressBar").style.width = `${progress}%`;
 
             // Set the donation link with the campaign ID
-            document.getElementById("donateButtonLink").href = `/pembayaran?id=${campaignId}`;
+            document.getElementById("donateButtonLink").href = `pembayaran?id=${campaignId}`;
         })
         .catch(error => console.error("Error fetching campaign data:", error));
 }
