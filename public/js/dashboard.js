@@ -94,7 +94,7 @@ function handleSearch(event) {
     if (event.key === "Enter") {
         const searchTerm = document.getElementById("searchInput").value;
         if (searchTerm.trim()) {
-            window.location.href = `/searchCampaign?query=${encodeURIComponent(
+            window.location.href = `searchCampaign?query=${encodeURIComponent(
                 searchTerm
             )}`;
         }
