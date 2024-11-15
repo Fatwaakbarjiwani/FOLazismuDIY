@@ -31,7 +31,7 @@
     </style>
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
-    <div class="w-1/2 bg-white shadow-lg">
+    <div class="w-[40%] bg-white shadow-lg">
         @include('components.header')
         <div class="bg-white p-4 mt-20">
             <h1 class="text-2xl font-bold text-gray-800 mb-4">DETAIL <span class="text-orange-600">CAMPAIGN</span></h1>
@@ -90,6 +90,9 @@
                         <button onclick="showDetail('donatur')" class="text-sm lg:text-lg items-center hover:-translate-y-1 duration-200 flex gap-2 border-2 border-primary px-3 rounded-lg font-semibold text-primary">
                             Donatur
                         </button>
+                        <button onclick="showDetail('laporan')" class="text-sm lg:text-lg items-center hover:-translate-y-1 duration-200 flex gap-2 border-2 border-primary px-3 rounded-lg font-semibold text-primary">
+                            Laporan Donasi
+                        </button>
                     </div>
                 
                 <!-- Campaign Details and Donors List -->
@@ -102,10 +105,18 @@
                 <div id="donorList" class="hidden w-full text-left mt-2">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Daftar Donatur</h3>
                     <ul id="donors" class="list-disc pl-5 text-gray-700">
-                        <li>Donor 1: Rp 100,000</li>
-                        <li>Donor 2: Rp 200,000</li>
+                        <li>Donatur 1: Rp 100,000</li>
+                        <li>Donatur 2: Rp 200,000</li>
                         <!-- Additional donors can be added here dynamically -->
                     </ul>
+                </div>
+                <div id="laporanDonasi" class="hidden w-full text-left mt-2">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Laporan Donasi</h3>
+                   <div class="bg-white rounded-xl p-2 flex shadow-md border border-gray-50 gap-4">
+                    <img src="image/dashboard.png" class="w-1/2 rounded-xl" alt="">
+                    <div class=""><p>Dana ini sudah disalurkan kepada korban bencana banjir</p>
+                    <p class="font-semibold text-orange-600">Rp 20.000</p></div>
+                   </div>
                 </div>
             </div>
         </div>
@@ -137,13 +148,21 @@
         function showDetail(section) {
             const campaignDetail = document.getElementById('campaignDetail');
             const donorList = document.getElementById('donorList');
+            const laporanList = document.getElementById('laporanDonasi');
 
             if (section === 'campaign') {
                 campaignDetail.classList.remove('hidden');
                 donorList.classList.add('hidden');
+                laporanList.classList.add('hidden');
             } else if (section === 'donatur') {
                 campaignDetail.classList.add('hidden');
                 donorList.classList.remove('hidden');
+                laporanList.classList.add('hidden');
+            } else if (section === 'laporan') {
+                laporanList.classList.remove('hidden');
+                donorList.classList.add('hidden')
+                campaignDetail.classList.add('hidden')
+                
             }
         }
 

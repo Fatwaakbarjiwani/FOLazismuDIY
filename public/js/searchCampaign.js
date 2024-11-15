@@ -36,9 +36,9 @@
             const campaignCard = `
                 <div class="bg-white flex flex-col justify-between rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 cursor-pointer"
                      onclick="window.location.href='detailCampaign.php?id=${campaign.id}'">
-                    <img alt="${campaign.campaign_name}" class="w-full h-48 object-cover" src="${campaign.campaign_thumbnail}" />
-                    <div class="p-4">
-                        <h2 class="text-lg font-bold text-gray-800">${campaign.campaign_name}</h2>
+                    <img alt="${campaign.campaign_name}" class="w-full h-32 object-cover" src="${campaign.campaign_thumbnail}" />
+                    <h2 class="text-base px-2 font-bold text-gray-800">${campaign.campaign_name}</h2>
+                    <div class="p-2">
                         <p class="text-orange-500 font-semibold mt-1 text-sm">Kategori ${campaign.category.campaign_category}</p>
                         <p class="text-gray-500 mt-1 text-sm"><i class="fas fa-map-marker-alt"></i> ${campaign.location}</p>
                         <div class="mt-4">
@@ -54,7 +54,7 @@
                                 <span class="font-medium">Rp ${campaign.target_amount.toLocaleString()}</span>
                             </div>
                             <div class="flex items-end gap-2">
-                                <button class="bg-orange-500 text-white w-full py-2 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Ikut Donasi</button>
+                                <button class="bg-orange-500 text-white w-full py-1 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Ikut Donasi</button>
                                 <p class="text-gray-400 text-sm mt-2 text-right">${new Date(campaign.end_date).toLocaleDateString()}</p>
                             </div>
                         </div>

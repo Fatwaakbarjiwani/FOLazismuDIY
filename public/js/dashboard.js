@@ -8,48 +8,40 @@ fetch(
 
         data.data.forEach((campaign) => {
             const campaignItem = `
+            <div class="swiper-slide">
                        <div  onclick="window.location.href='detailCampaign?id=${
                            campaign.id
-                       }'" class="h-[55vh] flex flex-col justify-between swiper-slide bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 cursor-pointer">
+                       }'" class="h-[54vh] flex flex-col justify-between bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 cursor-pointer">
     <img alt="${
         campaign.campaign_name
     }" class="w-full h-[20vh] object-cover" src="${
                 campaign.campaign_thumbnail
             }" />
+            <h2 class="text-base font-bold line-clamp-2 text-gray-800 p-2">${
+                campaign.campaign_name
+            }</h2>
     <div class="p-2">
-        <h2 class="text-sm font-bold text-gray-800">${
-            campaign.campaign_name
-        }</h2>
-        <p class="text-orange-500 font-semibold text-[10px]">Kategori: ${
-            campaign.category.campaign_category
-        }</p>
-        <p class="text-gray-500 text-[10px]"><i class="fas fa-map-marker-alt"></i> ${
-            campaign.location
-        }</p>
-
-        <div class="mt-4">
-            <div class="flex justify-between text-gray-600 text-[10px]">
+        <div class="mt-2">
+            <div class="flex justify-between text-gray-600 text-sm">
                 <span class="font-medium">Terkumpul</span>
                 <span class="font-medium">Rp ${campaign.current_amount.toLocaleString()}</span>
             </div>
-            <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
                 <div class="bg-orange-500 h-2.5 rounded-full" style="width: ${
                     (campaign.current_amount / campaign.target_amount) * 100
                 }%"></div>
             </div>
-            <div class="flex justify-between text-gray-600 mt-2 text-[10px]">
+            <div class="flex justify-between text-gray-600 mt-1 text-sm">
                 <span class="font-medium">Target</span>
                 <span class="font-medium">Rp ${campaign.target_amount.toLocaleString()}</span>
             </div>
-            <div class="flex items-end justify-between gap-2">
+            <div class="w-full">
                 <button class="bg-orange-500 text-sm text-white w-full py-1 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Ikut Donasi</button>
-                <p class="text-gray-400 text-[10px] mt-2 text-right">${new Date(
-                    campaign.end_date
-                ).toLocaleDateString()}</p>
             </div>
         </div>
     </div>
 </div>
+ </div>
 
                     `;
             campaignList.innerHTML += campaignItem;
@@ -80,7 +72,7 @@ fetch(
                     spaceBetween: 10,
                 },
                 768: {
-                    slidesPerView: 2.5,
+                    slidesPerView: 2,
                     spaceBetween: 5,
                 },
             },

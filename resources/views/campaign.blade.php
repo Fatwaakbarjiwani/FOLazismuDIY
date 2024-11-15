@@ -9,14 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
 </head>
 <body class="font-roboto bg-gray-100 flex justify-center">
-    <div class="w-1/2 bg-white min-h-screen py-4 shadow">
+    <div class="w-[40%] bg-white min-h-screen py-4 shadow">
         @include('components.header')
-        <main class="container mx-auto mt-20 px-6">
+        <main class="container mx-auto mt-20 px-4">
             <h1 class="text-3xl font-bold text-gray-800 text-center">DAFTAR <span class="text-orange-500">CAMPAIGN</span></h1>
             <p class="text-gray-600 text-center mb-8">Pilih dan salurkan donasi untuk program yang berarti bagi Anda dan mereka</p>
             
             <!-- Container for Campaign Cards -->
-            <div id="campaignList" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+            <div id="campaignList" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
             <!-- Pagination Navigation -->
             <div class="flex justify-center items-center mt-6 space-x-4">
                 <button id="prevPage" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>Prev</button>

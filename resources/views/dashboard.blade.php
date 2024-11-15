@@ -15,23 +15,33 @@
     </style>
 </head>
 <body class="bg-gray-100 flex justify-center">
-    <div class="w-1/2 bg-white shadow">
+    <div class="w-[40%] bg-white shadow">
         @include('components.header')
-        @include('components.slider')
+        @include('components.swiper')
         
         <div class="bg-white">
-            <div class="mt-12 flex items-center p-4">
-                <div class="w-full space-y-4">
-                    <h1 class="text-3xl font-bold text-gray-800">Salurkan donasi kamu dengan mudah</h1>
-                    <p class="text-gray-600">Jadikan program dan design kamu lebih menarik dan tertata rapi dengan menggunakan jasa dari Coristict.Studio</p>
-                    <button class="bg-orange-500 text-white font-bold py-2 px-4 rounded-lg">Donasi Sekarang</button>
-                </div>
-                <div class="w-1/2 flex justify-end">
-                    <img alt="Group of people holding donation items" class="h-[40vh] rounded-lg shadow-lg" src="https://storage.googleapis.com/a1aa/image/iBYB51XroyYeeEgotfjqmBQurBmNhW55cgppLICGebi7zfSdC.jpg" />
-                </div>
+            <div class="items-center p-4 bg-gradient-to-b from-orange-300 via-orange-200 to-orange-50">
+                    <div class="grid grid-cols-4 gap-2 w-full">
+                        <a href="campaign" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+                            <i class="fas fa-hands-helping text-4xl text-orange-500"></i>
+                            <p class="mt-2 text-gray-700 font-medium">Campaign</p>
+                        </a>
+                        <a href="ziswaf" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+                            <i class="fas fa-hand-holding-heart text-4xl text-orange-500"></i>
+                            <p class="mt-2 text-gray-700 font-medium">Zakat</p>
+                        </a>
+                        <a href="ziswaf" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+                            <i class="fas fa-donate text-4xl text-orange-500"></i>
+                            <p class="mt-2 text-gray-700 font-medium">Wakaf</p>
+                        </a>
+                        <a href="ziswaf" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+                            <i class="fas fa-hand-holding-usd text-4xl text-orange-500"></i>
+                            <p class="mt-2 text-gray-700 font-medium">Infak</p>
+                        </a>
+                    </div>
             </div>
-            <div class="mt-8 bg-gray-100 p-4">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Daftar Campaign</h1>
+            <div class="bg-orange-50 p-4">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi Campaign</h1>
                 <!-- Swiper Container for Campaign Cards -->
                 <div class="swiper-container overflow-x-hidden p-2">
                     <div class="swiper-wrapper" id="campaignList">

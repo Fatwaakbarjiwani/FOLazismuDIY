@@ -18,13 +18,13 @@ async function fetchCampaigns(page) {
             }'">
                 <img alt="${
                     campaign.campaign_name
-                }" class="w-full h-48 object-cover" src="${
+                }" class="w-full h-32 object-cover" src="${
                 campaign.campaign_thumbnail
             }" />
-                <div class="p-4">
-                    <h2 class="text-lg font-bold text-gray-800">${
-                        campaign.campaign_name
-                    }</h2>
+            <h2 class="text-base font-bold text-gray-800 px-2">${
+                campaign.campaign_name
+            }</h2>
+                <div class="p-2">
                     <p class="text-orange-500 font-semibold mt-1 text-sm">Kategori ${
                         campaign.category.campaign_category
                     }</p>

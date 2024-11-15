@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body class="font-roboto bg-gray-100 flex justify-center">
-    <div class="w-1/2 bg-white min-h-screen py-4 shadow">
+    <div class="w-[40%] bg-white min-h-screen py-4 shadow">
           <button 
                 onclick="window.location.href='dashboard'" 
                 class="flex items-center font-semibold text-gray-800 py-2 px-4 rounded p-4"
@@ -21,9 +21,9 @@
             <p class="text-gray-600 mb-4">Find campaigns that matter to you</p>
         </header>
 
-        <main class="container mx-auto px-6">
+        <main class="container mx-auto px-4">
             <!-- Container for Campaign Cards -->
-            <div id="campaignList" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+            <div id="campaignList" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
 
             <!-- Pagination Navigation -->
             <div class="flex justify-center items-center mt-6 space-x-4">
