@@ -10,7 +10,7 @@
         <p class="text-xs">Campaign</p>
     </a>
     <a href="ziska" 
-       class="text-center {{ Request::is('ziska') ? 'text-yellow-500' : 'text-gray-500' }}">
+       class="text-center {{ Request::is('ziswaf') ? 'text-yellow-500' : 'text-gray-500' }}">
         <i class="fas fa-hand-holding-usd"></i>
         <p class="text-xs">Ziska</p>
     </a>
