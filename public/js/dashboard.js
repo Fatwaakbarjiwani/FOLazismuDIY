@@ -92,3 +92,7 @@ function handleSearch(event) {
         }
     }
 }
+
+    function setType(type) {
+        localStorage.setItem("type", type);
+    }

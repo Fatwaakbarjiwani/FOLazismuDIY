@@ -1,152 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Donation Page</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-    }
-  </style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Ziska</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .active {
+            background-color: orange;
+            color: white;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-
-  <!-- Header -->
-  <header class="bg-white shadow">
-        <div class="container mx-auto flex items-center justify-between py-4 px-6">
-            <div class="flex items-center">
-            <img alt="Lazismu Logo" class="h-8" src="{{ asset('storage/Logo-Lazismu-Kota-Yogyakarta-2-1024x709.png') }}" width="50"/>
+<body class="bg-gray-100 flex justify-center">
+    <div class="w-[40%] bg-white shadow-md">
+        @include('components.header')       
+        <div class="bg-white my-16 px-4 min-h-screen">
+            <div id="typeButtons" class="py-4 flex gap-4 justify-center">
+                <button 
+                    class="capitalize border-orange-500 border p-2 rounded" 
+                    data-type="zakats">zakat</button>
+                <button 
+                    class="capitalize border-orange-500 border p-2 rounded" 
+                    data-type="infaks">infak</button>
+                <button 
+                    class="capitalize border-orange-500 border p-2 rounded" 
+                    data-type="wakafs">wakaf</button>
             </div>
-            <div class="flex items-center space-x-4">
-                <a class="text-gray-600 hover:text-orange-500" href="#">Masuk</a>
-                <a class="bg-orange-500 text-white px-4 py-2 rounded" href="#">Daftar</a>
+            <h1 class="text-left text-xl font-bold mt-2">Daftar <span id="typeTitle">Zakat</span></h1>
+            <div id="dataContainer" class="grid grid-cols-2 gap-4 mt-2">
+                <!-- Cards akan diisi dengan JavaScript -->
             </div>
         </div>
-    </header>
-
-  <!-- Quote Section -->
-  <section class="bg-orange-500 text-black py-10">
-    <div class="container mx-auto flex justify-between items-center">
-      <div>
-        <p class="text-2xl font-bold">"Orang yang berzakat menjadikan hartanya menjadi suci bersih."</p>
-        <p class="text-xl">- Prof. Dr. Quraish Shihab</p>
-      </div>
-      <img src="https://storage.googleapis.com/a1aa/image/rhlAz4AQOf2NSa0pxKZpytaWOCUfN4IbXiimXTVyeut2eWpOB.jpg" 
-           alt="Plant Image" class="h-32 rounded-full shadow-md" />
+        @include('components.bottomNav')
     </div>
-  </section>
 
-  <!-- Donation Form Section -->
-  <section class="py-20">
-    <div class="container mx-auto flex justify-center">
-      <div class="bg-white shadow-lg rounded-lg p-10 w-full max-w-md text-lg">
-        <div class="flex justify-center space-x-6 mb-8">
-          <button class="tab-button bg-orange-500 text-white px-6 py-3 rounded-full" onclick="fetchCategories('zakats')">Zakat</button>
-          <button class="tab-button bg-gray-200 text-gray-700 px-6 py-3 rounded-full" onclick="fetchCategories('infaks')">Infaq</button>
-          <button class="tab-button bg-gray-200 text-gray-700 px-6 py-3 rounded-full" onclick="fetchCategories('wakafs')">Wakaf</button>
-        </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Default API Endpoint
+        const baseUrl = 'http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/';
+        const typeButtons = document.querySelectorAll('#typeButtons button');
+        const dataContainer = document.getElementById('dataContainer');
+        const typeTitle = document.getElementById('typeTitle');
 
-        <div class="relative mb-6">
-          <button class="bg-orange-500 text-white px-6 py-3 rounded-full w-full text-left text-lg font-semibold" onclick="toggleDropdown()">
-            Pilih Kategori
-            <i class="fas fa-chevron-down float-right mt-1"></i>
-          </button>
-          <div class="absolute bg-white shadow-lg rounded-lg mt-2 w-full hidden" id="dropdown"></div>
-        </div>
+        // Fungsi untuk mengambil data dari API
+        const fetchData = async (type) => {
+            try {
+                const response = await fetch(`${baseUrl}${type}`);
+                const data = await response.json();
+                renderData(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                dataContainer.innerHTML = '<p class="text-center text-red-500">Failed to load data.</p>';
+            }
+        };
 
-        <div class="relative mb-6">
-          <input type="text" placeholder="Jumlah Donasi" class="w-full px-6 py-3 border rounded-full pl-12 text-lg" />
-          <span class="absolute left-6 top-3 text-gray-500">Rp</span>
-        </div>
+        // Fungsi untuk render data ke dalam DOM
+        const renderData = (data) => {
+            dataContainer.innerHTML = '';
+            data.forEach(item => {
+                const card = `
+                    <div class="border rounded p-2 shadow-md">
+                        <img src="${item.thumbnail}" alt="${item.category_name}" class="w-full h-32 object-cover rounded mb-2">
+                        <h3 class="text-center font-semibold">${item.category_name}</h3>
+                    </div>`;
+                dataContainer.insertAdjacentHTML('beforeend', card);
+            });
+        };
 
-        <button class="bg-orange-500 text-white w-full py-3 rounded-full font-semibold text-lg">Hitung Donasi</button>
-      </div>
-    </div>
-  </section>
+        // Fungsi untuk mengatur tombol aktif
+        const setActiveButton = (type) => {
+            typeButtons.forEach(button => {
+                button.classList.toggle('active', button.getAttribute('data-type') === type);
+            });
+        };
 
-  <!-- Donation Call to Action -->
-  <section class="py-20">
-    <div class="container mx-auto flex justify-between items-center">
-      <div>
-        <h2 class="text-4xl font-bold mb-6">Salurkan donasi kamu dengan mudah</h2>
-        <p class="text-xl mb-8">Jadikan program dan donasi kamu lebih mudah dengan sistem yang terintegrasi.</p>
-        <button class="bg-orange-500 text-white px-8 py-4 rounded-full text-lg font-semibold">Donasi Sekarang</button>
-      </div>
-      <img src="https://storage.googleapis.com/a1aa/image/GXw9bbSLvM4oHBZFPOC69fDzD2rmXBd5vuldn932e1ceeWpOB.jpg" 
-           alt="Group of people receiving donations" class="h-72 rounded-lg shadow-lg" />
-    </div>
-  </section>
+        // Fungsi untuk inisialisasi halaman
+        const initialize = () => {
+            const savedType = localStorage.getItem('type') || 'zakats';
+            setActiveButton(savedType);
+            typeTitle.textContent = savedType.charAt(0).toUpperCase() + savedType.slice(1,-1);
+            fetchData(savedType);
+        };
 
-  <!-- Footer -->
-  <footer class="bg-orange-500 text-white py-10">
-    <div class="container mx-auto flex justify-between text-lg">
-      <div>
-        <img src="{{ asset('storage/Logo-Lazismu-Kota-Yogyakarta-2-1024x709.png') }}" 
-             alt="Logo" class="h-12 mb-6" />
-        <p>No Care: LAZISMU</p>
-        <p>Jl. Sultan Agung No.14, Wirogunan, Pakualaman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55151</p>
-      </div>
-      <div>
-        <h3 class="font-bold mb-4">Program</h3>
-        <ul>
-          <li><a href="#" class="hover:underline">Zakat</a></li>
-          <li><a href="#" class="hover:underline">Infaq</a></li>
-          <li><a href="#" class="hover:underline">Wakaf</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-bold mb-4">Lainnya</h3>
-        <ul>
-          <li><a href="#" class="hover:underline">Berita</a></li>
-          <li><a href="#" class="hover:underline">Profil</a></li>
-          <li><a href="#" class="hover:underline">Kontak</a></li>
-        </ul>
-      </div>
-      <div class="flex space-x-6">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-    <p class="text-center mt-10 text-lg">© 2023 LAZISMU. All rights reserved.</p>
-  </footer>
-
-  <script>
-    function toggleDropdown() {
-      document.getElementById('dropdown').classList.toggle('hidden');
-    }
-
-    function fetchCategories(type) {
-      const dropdown = document.getElementById('dropdown');
-      dropdown.innerHTML = '<p class="p-4">Loading...</p>'; // Show loading state
-
-      // Define API URL based on selected type
-      const apiUrl = `http://localhost:8000/api/${type}`;
-
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-          dropdown.innerHTML = ''; // Clear dropdown
-
-          data.forEach(category => {
-            // Populate dropdown with category names from the response
-            const categoryItem = document.createElement('a');
-            categoryItem.href = '#';
-            categoryItem.className = 'block px-6 py-3 hover:bg-gray-200';
-            categoryItem.textContent = category.category_name; // Display category name
-            dropdown.appendChild(categoryItem);
-          });
-        })
-        .catch(error => {
-          console.error('Error fetching categories:', error);
-          dropdown.innerHTML = '<p class="p-4 text-red-500">Failed to load categories.</p>';
+        // Event listener untuk tombol
+        typeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const type = button.getAttribute('data-type');
+                localStorage.setItem('type', type);
+                typeTitle.textContent = type.charAt(0).toUpperCase() + type.slice(1,-1);
+                setActiveButton(type);
+                fetchData(type);
+            });
         });
-    }
-  </script>
+
+        // Jalankan inisialisasi saat halaman dimuat
+        initialize();
+    </script>
 </body>
 </html>

@@ -15,7 +15,7 @@
     </style>
 </head>
 <body class="bg-gray-100 flex justify-center">
-    <div class="w-[40%] bg-white shadow">
+    <div class="w-[40%] bg-white shadow-md">
         @include('components.header')
         @include('components.swiper')
         
@@ -26,22 +26,22 @@
                             <i class="fas fa-hands-helping text-4xl text-orange-500"></i>
                             <p class="mt-2 text-gray-700 font-medium">Campaign</p>
                         </a>
-                        <a href="ziswaf" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                            <i class="fas fa-hand-holding-heart text-4xl text-orange-500"></i>
-                            <p class="mt-2 text-gray-700 font-medium">Zakat</p>
-                        </a>
-                        <a href="ziswaf" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                            <i class="fas fa-donate text-4xl text-orange-500"></i>
-                            <p class="mt-2 text-gray-700 font-medium">Wakaf</p>
-                        </a>
-                        <a href="ziswaf" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                            <i class="fas fa-hand-holding-usd text-4xl text-orange-500"></i>
-                            <p class="mt-2 text-gray-700 font-medium">Infak</p>
-                        </a>
+                        <a href="ziswaf" onclick="setType('zakats')" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+    <i class="fas fa-hand-holding-heart text-4xl text-orange-500"></i>
+    <p class="mt-2 text-gray-700 font-medium">Zakat</p>
+</a>
+<a href="ziswaf" onclick="setType('infaks')" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+    <i class="fas fa-hand-holding-usd text-4xl text-orange-500"></i>
+    <p class="mt-2 text-gray-700 font-medium">Infak</p>
+</a>
+<a href="ziswaf" onclick="setType('wakafs')" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+    <i class="fas fa-donate text-4xl text-orange-500"></i>
+    <p class="mt-2 text-gray-700 font-medium">Wakaf</p>
+</a>
                     </div>
-            </div>
-            <div class="bg-orange-50 p-4">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi Campaign</h1>
+                </div>
+                <div class="bg-orange-50 p-4">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi Campaign</h1>
                 <!-- Swiper Container for Campaign Cards -->
                 <div class="swiper-container overflow-x-hidden p-2">
                     <div class="swiper-wrapper" id="campaignList">
@@ -51,6 +51,8 @@
             </div>
         </div>
         @include('components.footer')
+        @include('components.bottomNav')
+
     </div>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

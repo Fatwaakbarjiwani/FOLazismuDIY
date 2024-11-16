@@ -1,15 +1,12 @@
 <!-- resources/views/components/footer.blade.php -->
 <div
   {{-- style="background-image: url('{{ asset('image/footer.svg') }}')" --}}
-  class="flex flex-col gap-y-4 justify-around p-5 bg-gradient-to-t from-orange-600 to-orange-400 text-white font-Inter mt-10 w-full h-auto"
+  class="mb-14 flex flex-col gap-y-4 justify-around p-5 bg-gradient-to-t from-orange-600 to-orange-400 text-white font-Inter mt-10 w-full h-auto"
 >
   <div class="w-full flex flex-col gap-2 xl:gap-5 items-start">
     <div class="bg-white p-1 rounded">
     <img alt="Lazismu Logo" class="h-8" src="{{ asset('image/Logo-Lazismu-Kota-Yogyakarta-2-1024x709.png') }}" width="50"/>
     </div>
-    <p class="text-base ">
-        LAZISMU adalah lembaga amil zakat nasional dengan SK. Menteri Agama RI No. 90 Tahun 2022, yang berkhidmat dalam pemberdayaan masyarakat, melalui pendayagunaan dana zakat, infaq dan dana kedermawanan lainnya baik dari perseorangan, lembaga, perusahaan dan instansi lainnya.
-    </p>
   </div>
   
   <div class="w-full flex flex-col gap-2">

@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body class="font-roboto bg-gray-100 flex justify-center">
-    <div class="w-[40%] bg-white min-h-screen py-4 shadow">
+    @include('components.header')
+    <div class="w-[40%] bg-white min-h-screen py-4 shadow my-14">
           <button 
                 onclick="window.location.href='dashboard'" 
                 class="flex items-center font-semibold text-gray-800 py-2 px-4 rounded p-4"
@@ -32,7 +33,7 @@
             </div>
         </main>
     </div>
-
+        @include('components.bottomNav')
     <!-- JavaScript for Fetching Campaigns -->
  
     <script src="{{ asset('js/searchCampaign.js') }}"></script>

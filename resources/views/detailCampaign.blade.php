@@ -33,7 +33,7 @@
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
     <div class="w-[40%] bg-white shadow-lg">
         @include('components.header')
-        <div class="bg-white p-4 mt-20">
+        <div class="bg-white p-4 mt-16">
             <h1 class="text-2xl font-bold text-gray-800 mb-4">DETAIL <span class="text-orange-600">CAMPAIGN</span></h1>
             <div class="flex flex-col gap-4">
                 <!-- Campaign Image -->
@@ -130,6 +130,7 @@
             </div>
         </div>  
         @include('components.footer')
+        @include('components.bottomNav')
     </div>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
