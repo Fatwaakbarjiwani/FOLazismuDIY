@@ -127,5 +127,6 @@
         document.execCommand("copy");
         document.body.removeChild(tempInput);
 
+        
         alert("Campaign link copied to clipboard!");
     }
