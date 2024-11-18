@@ -37,6 +37,7 @@
                         alt="Children smiling and sitting together"
                         src="{{ asset('image/slider2.jpg') }}"
                     />
+                    
                 </div>
                 <div class="swiper-slide">
                     <img
