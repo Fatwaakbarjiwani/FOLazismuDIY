@@ -121,7 +121,7 @@
             </div>
         </div>
         <div class="mt-8 bg-gray-100 p-4">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Daftar Campaign</h1>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi Campaign</h1>
             <!-- Swiper Container for Campaign Cards -->
             <div class="swiper-container overflow-x-hidden p-2">
                 <div class="swiper-wrapper" id="campaignList">

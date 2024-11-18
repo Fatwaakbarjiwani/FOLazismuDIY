@@ -48,7 +48,7 @@ async function fetchCampaigns(page) {
                             <span class="font-medium">Rp ${campaign.target_amount.toLocaleString()}</span>
                         </div>
                         <div class="flex  items-end gap-2">
-                        <button class="bg-orange-500 text-white w-full py-2 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Ikut Donasi</button>
+                        <button class="bg-orange-500 text-white w-full py-2 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Bantu Sekarang</button>
                         <p class="text-gray-400 text-sm mt-2 text-right">${new Date(
                             campaign.start_date
                         ).toLocaleDateString()}</p>

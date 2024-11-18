@@ -42,7 +42,7 @@ fetch(
                             <span class="font-medium">Rp ${campaign.target_amount.toLocaleString()}</span>
                         </div>
                         <div class="w-full">
-                            <button class="bg-orange-500 text-sm text-white w-full py-1 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Ikut Donasi</button>
+                            <button class="bg-orange-500 text-sm text-white w-full py-1 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Bantu Sekarang</button>
                         </div>
                     </div>
                 </div>
