@@ -8,20 +8,20 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
         .slider-container {
-            width: 100%;
             position: relative;
             overflow: hidden;
         }
         .image {
-            height: 55vh;
-            object-position: top        }
+            height: 255px;
+            width: 505px;
+            object-fit: cover;
+            object-position: center        
+        }
     </style>
 </head>
-<body>
-    <main class="slider-container mt-16 relative">
-        <div class="h-[55vh] z-40 w-full h-full bg-orange-600/20 absolute"></div>
-        <div class="absolute bottom-0 w-full h-[15vh] bg-gradient-to-t from-orange-300 via-orange-300/50 to-transparent z-40"></div>
-        <!-- Swiper Container -->
+<body class="flex justify-center w-full">
+    <main class="slider-container mt-16 mx-auto">
+     <!-- Swiper Container -->
         <div class="swiper slider-1">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">

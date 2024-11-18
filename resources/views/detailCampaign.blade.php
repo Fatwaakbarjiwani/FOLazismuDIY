@@ -65,7 +65,7 @@
                             <div id="progressBar" class="bg-orange-500 h-3 rounded-full progress-bar" style="width: 0%"></div>
                         </div>
                     </div>
-                    <p id="endDate" class="text-gray-500 text-sm text-right mt-1">End Date</p>
+                    <p id="Date" class="text-gray-500 text-sm text-right mt-1">Date</p>
                     
                     <!-- Share and Toggle Buttons -->
                     <div class="flex flex-wrap items-center gap-2 lg:gap-3 mt-2">
@@ -91,7 +91,7 @@
                             Donatur
                         </button>
                         <button onclick="showDetail('laporan')" class="text-sm lg:text-lg items-center hover:-translate-y-1 duration-200 flex gap-2 border-2 border-primary px-3 rounded-lg font-semibold text-primary">
-                            Laporan Donasi
+                            Kabar Terbaru
                         </button>
                     </div>
                 
@@ -111,7 +111,7 @@
                     </ul>
                 </div>
                 <div id="laporanDonasi" class="hidden w-full text-left mt-2">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Laporan Donasi</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Kabar Terbaru</h3>
                    <div class="bg-white rounded-xl p-2 flex shadow-md border border-gray-50 gap-4">
                     <img src="image/dashboard.png" class="w-1/2 rounded-xl" alt="">
                     <div class=""><p>Dana ini sudah disalurkan kepada korban bencana banjir</p>
@@ -181,7 +181,7 @@ if (campaignId) {
             document.getElementById("campaignLocation").innerHTML = `<i class="fas fa-map-marker-alt mr-1"></i> ${campaign.location}`;
             document.getElementById("currentAmount").textContent = `Rp ${campaign.current_amount.toLocaleString()}`;
             document.getElementById("targetAmount").textContent = `Rp ${campaign.target_amount.toLocaleString()}`;
-            document.getElementById("endDate").textContent = `End Date: ${new Date(campaign.end_date).toLocaleDateString()}`;
+            document.getElementById("Date").textContent = `Date: ${new Date(campaign.start_date).toLocaleDateString()}`;
             document.getElementById("campaignDescription").textContent = campaign.description;
 
             const progress = (campaign.current_amount / campaign.target_amount) * 100;

@@ -50,7 +50,7 @@ async function fetchCampaigns(page) {
                         <div class="flex  items-end gap-2">
                         <button class="bg-orange-500 text-white w-full py-2 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Ikut Donasi</button>
                         <p class="text-gray-400 text-sm mt-2 text-right">${new Date(
-                            campaign.end_date
+                            campaign.start_date
                         ).toLocaleDateString()}</p>
                         </div>
                     </div>

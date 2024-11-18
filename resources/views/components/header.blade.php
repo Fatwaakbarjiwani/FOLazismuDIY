@@ -2,7 +2,7 @@
         <div class="container fixed top-0 z-50 gap-2 h-16 bg-white w-[40%] shadow flex items-center justify-between items-center py-2 px-4">
             <div class="flex items-center w-2/12">
                 <a href="dashboard">
-                    <img alt="Lazismu Logo" class="h-8" src="{{ asset('image/Logo-Lazismu-Kota-Yogyakarta-2-1024x709.png') }}" width="50"/>
+                    <img alt="Lazismu Logo" class="h-12" src="{{ asset('image/logoOrange.png') }}" width="50"/>
                 </a>
             </div>
             <div class="w-10/12">
