@@ -15,7 +15,7 @@
     </style>
 </head>
 <body class="bg-gray-100 flex justify-center">
-    <div class="w-[40%] bg-white shadow-md">
+    <div class="w-[500px] bg-white shadow-md">
         @include('components.header')
         @include('components.swiper')
         

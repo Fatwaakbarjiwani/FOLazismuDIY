@@ -12,8 +12,8 @@
             overflow: hidden;
         }
         .image {
-            height: 255px;
-            width: 505px;
+            height: 250px;
+            width: 500px;
             object-fit: cover;
             object-position: center        
         }
@@ -37,7 +37,7 @@
                         alt="Children smiling and sitting together"
                         src="{{ asset('image/slider2.jpg') }}"
                     />
-                    
+
                 </div>
                 <div class="swiper-slide">
                     <img

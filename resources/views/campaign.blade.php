@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
 </head>
 <body class="font-roboto bg-gray-100 flex justify-center">
-    <div class="w-[40%] bg-white min-h-screen shadow">
+    <div class="w-[500px] bg-white min-h-screen shadow">
         @include('components.header')
         <main class="container mx-auto mt-20 px-4">
             <h1 class="text-3xl font-bold text-gray-800 text-center">DAFTAR <span class="text-orange-500">CAMPAIGN</span></h1>
