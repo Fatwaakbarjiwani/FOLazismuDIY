@@ -41,3 +41,9 @@ Route::get('/pembayaran', function () {
 Route::get('/formPembayaran', function () {
     return view('formPembayaran');
 });
+
+// routes/web.php
+use App\Http\Controllers\CampaignController;
+
+Route::get('/api/campaigns', [CampaignController::class, 'getCampaigns']);
+

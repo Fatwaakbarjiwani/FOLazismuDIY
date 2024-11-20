@@ -106,8 +106,6 @@
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Daftar Donatur</h3>
                     <ul id="donors" class="list-disc pl-5 text-gray-700">
                         <li>Donatur 1: Rp 100,000</li>
-                        <li>Donatur 2: Rp 200,000</li>
-                        <!-- Additional donors can be added here dynamically -->
                     </ul>
                 </div>
                 <div id="laporanDonasi" class="hidden w-full text-left mt-2">
@@ -134,64 +132,106 @@
     </div>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
-    <script>
-        function handleShareLink() {
-            const url = "{{ url()->current() }}";
-            const tempInput = document.createElement('input');
-            document.body.appendChild(tempInput);
-            tempInput.value = url;
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            alert('Campaign link copied to clipboard!');
+ <script>
+    function handleShareLink() {
+        const url = "{{ url()->current() }}";
+        const tempInput = document.createElement('input');
+        document.body.appendChild(tempInput);
+        tempInput.value = url;
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        alert('Campaign link copied to clipboard!');
+    }
+
+    function showDetail(section) {
+        const campaignDetail = document.getElementById('campaignDetail');
+        const donorList = document.getElementById('donorList');
+        const laporanList = document.getElementById('laporanDonasi');
+
+        if (section === 'campaign') {
+            campaignDetail.classList.remove('hidden');
+            donorList.classList.add('hidden');
+            laporanList.classList.add('hidden');
+        } else if (section === 'donatur') {
+            campaignDetail.classList.add('hidden');
+            donorList.classList.remove('hidden');
+            laporanList.classList.add('hidden');
+            fetchDonors(); // Fetch data transaksi saat tombol "Donatur" diklik
+        } else if (section === 'laporan') {
+            laporanList.classList.remove('hidden');
+            donorList.classList.add('hidden');
+            campaignDetail.classList.add('hidden');
         }
+    }
 
-        function showDetail(section) {
-            const campaignDetail = document.getElementById('campaignDetail');
-            const donorList = document.getElementById('donorList');
-            const laporanList = document.getElementById('laporanDonasi');
+    function fetchDonors() {
+        const donorListContainer = document.getElementById('donors');
+        donorListContainer.innerHTML = ''; // Clear existing donor list
 
-            if (section === 'campaign') {
-                campaignDetail.classList.remove('hidden');
-                donorList.classList.add('hidden');
-                laporanList.classList.add('hidden');
-            } else if (section === 'donatur') {
-                campaignDetail.classList.add('hidden');
-                donorList.classList.remove('hidden');
-                laporanList.classList.add('hidden');
-            } else if (section === 'laporan') {
-                laporanList.classList.remove('hidden');
-                donorList.classList.add('hidden')
-                campaignDetail.classList.add('hidden')
-                
-            }
+        const urlParams = new URLSearchParams(window.location.search);
+        const campaignId = urlParams.get('id');
+
+        if (campaignId) {
+            fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/transactions/campaign/${campaignId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.data && Array.isArray(data.data)) {
+                        data.data.forEach(transaction => {
+                            const donorCard = document.createElement('li');
+                            donorCard.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'mb-2', 'shadow-md');
+
+                            donorCard.innerHTML = `
+                                <p class="text-sm text-gray-700">
+                                    <span class="font-semibold">Tanggal:</span> 
+                                    ${new Date(transaction.created_at).toLocaleDateString()}
+                                </p>
+                                <p class="text-sm text-gray-700">
+                                    <span class="font-semibold">Donatur:</span> 
+                                    ${transaction.donatur || 'Anonim'}
+                                </p>
+                                <p class="text-sm text-gray-700">
+                                    <span class="font-semibold">Pesan:</span> 
+                                    ${transaction.message || '-'}
+                                </p>
+                            `;
+                            donorListContainer.appendChild(donorCard);
+                        });
+                    } else {
+                        donorListContainer.innerHTML = '<li class="text-gray-600">Belum ada transaksi.</li>';
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching donor data:", error);
+                    donorListContainer.innerHTML = '<li class="text-gray-600">Gagal memuat data donatur.</li>';
+                });
         }
+    }
 
-        // Fetch and display campaign details as before
-       const urlParams = new URLSearchParams(window.location.search);
-const campaignId = urlParams.get('id');
+    const urlParams = new URLSearchParams(window.location.search);
+    const campaignId = urlParams.get('id');
 
-if (campaignId) {
-    fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaigns/${campaignId}`)
-        .then(response => response.json())
-        .then(campaign => {
-            document.getElementById("campaignImage").src = campaign.campaign_thumbnail;
-            document.getElementById("campaignTitle").textContent = campaign.campaign_name;
-            document.getElementById("campaignCategory").textContent = `Kategori: ${campaign.category.campaign_category}`;
-            document.getElementById("campaignLocation").innerHTML = `<i class="fas fa-map-marker-alt mr-1"></i> ${campaign.location}`;
-            document.getElementById("currentAmount").textContent = `Rp ${campaign.current_amount.toLocaleString()}`;
-            document.getElementById("targetAmount").textContent = `Rp ${campaign.target_amount.toLocaleString()}`;
-            document.getElementById("Date").textContent = `Date: ${new Date(campaign.start_date).toLocaleDateString()}`;
-            document.getElementById("campaignDescription").textContent = campaign.description;
+    if (campaignId) {
+        fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaigns/${campaignId}`)
+            .then(response => response.json())
+            .then(campaign => {
+                document.getElementById("campaignImage").src = campaign.campaign_thumbnail;
+                document.getElementById("campaignTitle").textContent = campaign.campaign_name;
+                document.getElementById("campaignCategory").textContent = `Kategori: ${campaign.category.campaign_category}`;
+                document.getElementById("campaignLocation").innerHTML = `<i class="fas fa-map-marker-alt mr-1"></i> ${campaign.location}`;
+                document.getElementById("currentAmount").textContent = `Rp ${campaign.current_amount.toLocaleString()}`;
+                document.getElementById("targetAmount").textContent = `Rp ${campaign.target_amount.toLocaleString()}`;
+                document.getElementById("Date").textContent = `Date: ${new Date(campaign.start_date).toLocaleDateString()}`;
+                document.getElementById("campaignDescription").textContent = campaign.description;
 
-            const progress = (campaign.current_amount / campaign.target_amount) * 100;
-            document.getElementById("progressBar").style.width = `${progress}%`;
+                const progress = (campaign.current_amount / campaign.target_amount) * 100;
+                document.getElementById("progressBar").style.width = `${progress}%`;
 
-            // Set the donation link with the campaign ID
-            document.getElementById("donateButtonLink").href = `pembayaran?id=${campaignId}`;
-        })
-        .catch(error => console.error("Error fetching campaign data:", error));
-}
-    </script>
+                document.getElementById("donateButtonLink").href = `pembayaran?id=${campaignId}`;
+            })
+            .catch(error => console.error("Error fetching campaign data:", error));
+    }
+</script>
+
 </body>
 </html>

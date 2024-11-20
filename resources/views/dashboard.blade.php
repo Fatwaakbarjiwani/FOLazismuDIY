@@ -15,33 +15,34 @@
     </style>
 </head>
 <body class="bg-gray-100 flex justify-center">
-    <div class="w-[500px] bg-white shadow-md">
+    <div class="w-full md:w-[500px] bg-white shadow-md">
         @include('components.header')
         @include('components.swiper')
         
         <div class="bg-white">
-            <div class="items-center p-4 bg-gradient-to-b from-orange-300 via-orange-200 to-orange-50">
-                    <div class="grid grid-cols-4 gap-2 w-full">
-                        <a href="campaign" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                            <i class="fas fa-hands-helping text-4xl text-orange-500"></i>
-                            <p class="mt-2 text-gray-700 font-medium">Campaign</p>
-                        </a>
-                        <a href="ziswaf" onclick="setType('zakats')" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-    <i class="fas fa-hand-holding-heart text-4xl text-orange-500"></i>
-    <p class="mt-2 text-gray-700 font-medium">Zakat</p>
-</a>
-<a href="ziswaf" onclick="setType('infaks')" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-    <i class="fas fa-hand-holding-usd text-4xl text-orange-500"></i>
-    <p class="mt-2 text-gray-700 font-medium">Infak</p>
-</a>
-<a href="ziswaf" onclick="setType('wakafs')" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-    <i class="fas fa-donate text-4xl text-orange-500"></i>
-    <p class="mt-2 text-gray-700 font-medium">Wakaf</p>
-</a>
-                    </div>
+            <div class="items-center p-4">
+                <!-- Grid untuk Ziswaf Categories -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+                    <a href="campaign" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+                        <i class="fas fa-hands-helping text-3xl sm:text-4xl text-orange-500"></i>
+                        <p class="mt-2 text-gray-700 text-sm sm:text-base font-medium">Campaign</p>
+                    </a>
+                    <a href="ziswaf" onclick="setType('zakats')" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+                        <i class="fas fa-hand-holding-heart text-3xl sm:text-4xl text-orange-500"></i>
+                        <p class="mt-2 text-gray-700 text-sm sm:text-base font-medium">Zakat</p>
+                    </a>
+                    <a href="ziswaf" onclick="setType('infaks')" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+                        <i class="fas fa-hand-holding-usd text-3xl sm:text-4xl text-orange-500"></i>
+                        <p class="mt-2 text-gray-700 text-sm sm:text-base font-medium">Infak</p>
+                    </a>
+                    <a href="ziswaf" onclick="setType('wakafs')" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
+                        <i class="fas fa-donate text-3xl sm:text-4xl text-orange-500"></i>
+                        <p class="mt-2 text-gray-700 text-sm sm:text-base font-medium">Wakaf</p>
+                    </a>
                 </div>
-                <div class="bg-orange-50 p-4">
-                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi Campaign</h1>
+            </div>
+            <div class="p-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">Rekomendasi Campaign</h1>
                 <!-- Swiper Container for Campaign Cards -->
                 <div class="swiper-container overflow-x-hidden p-2">
                     <div class="swiper-wrapper" id="campaignList">
@@ -52,10 +53,10 @@
         </div>
         @include('components.footer')
         @include('components.bottomNav')
-
     </div>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
+
 </html>
