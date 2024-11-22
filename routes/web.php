@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PembayaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,4 +48,24 @@ Route::get('/formPembayaran', function () {
 use App\Http\Controllers\CampaignController;
 
 Route::get('/api/campaigns', [CampaignController::class, 'getCampaigns']);
+
+
+// =====
+use Illuminate\Support\Facades\Session;
+
+Route::post('/set-nominal', function (Illuminate\Http\Request $request) {
+    $request->validate([
+        'nominal' => 'required|integer|min:1000', // Validasi minimal 1.000
+    ]);
+
+    Session::put('nominalDonatur', $request->nominal);
+
+    return response()->json(['message' => 'Nominal saved successfully.']);
+});
+
+
+Route::post('/payment/save', [PaymentController::class, 'save'])->name('payment.save');
+// routes/web.php
+Route::get('/qris', [PaymentController::class, 'qris'])->name('qris');
+
 

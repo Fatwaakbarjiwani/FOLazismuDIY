@@ -1,9 +1,15 @@
+<?php
+
+use Illuminate\Support\Facades\Session;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Payment Page</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
@@ -36,30 +42,108 @@
                     <p class="text-sm text-gray-600">Bayar dengan aplikasi pembayaran pilihan Anda</p>
                 </div>
             </div>
-
+            
+            <?php 
+            $nominal = Session::get('nominalDonatur');
+            $id = Session::get('idDonasi');
+            ?>
+            
+            <div class="mt-4 text-lg font-semibold">
+                Nominal Donasi: Rp <?php echo number_format($nominal, 0, ',', '.'); ?>
+            </div>
+            
             <!-- Payment Form -->
             <h2 class="text-lg font-semibold mt-6">Lengkapi Form Dibawah</h2>
-            <form class="mt-4">
+            <form id="paymentForm" class="mt-4">
+                @csrf
                 <div class="mb-4">
                     <label class="block text-gray-700">Nama</label>
-                    <input class="w-full px-3 py-2 border rounded-lg" placeholder="Nama" type="text"/>
+                    <input id="namaDonatur" name="namaDonatur" class="w-full px-3 py-2 border rounded-lg" placeholder="Nama" type="text"/>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700">Nomor Handphone</label>
-                    <input class="w-full px-3 py-2 border rounded-lg" placeholder="Nomor Handphone" type="text"/>
+                    <input id="noHp" name="noHp" class="w-full px-3 py-2 border rounded-lg" placeholder="Nomor Handphone" type="text"/>
                 </div>
                 <div class="mb-4 flex items-center">
-                    <input class="mr-2" id="anonymous" type="checkbox"/>
+                    <input class="mr-2" id="anonymous" name="anonymous" type="checkbox" onclick="toggleAnonymous()"/>
                     <label class="text-gray-700" for="anonymous">Sembunyikan nama saya (donasi sebagai hamba Allah)</label>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700">Pesan Anda</label>
-                    <textarea class="w-full px-3 py-2 border rounded-lg" placeholder="Pesan Anda..."></textarea>
+                    <textarea id="pesan" name="pesan" class="w-full px-3 py-2 border rounded-lg" placeholder="Pesan Anda..."></textarea>
                 </div>
                 <button class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors" type="submit">Lanjutkan Pembayaran</button>
             </form>
         </div>
     </div>
+
+<script>
+    // Toggle anonymous checkbox function
+    function toggleAnonymous() {
+        const checkbox = document.getElementById('anonymous');
+        const namaDonatur = document.getElementById('namaDonatur');
+
+        if (checkbox.checked) {
+            namaDonatur.value = 'Hamba Allah';
+            namaDonatur.readOnly = true;
+        } else {
+            namaDonatur.value = '';
+            namaDonatur.readOnly = false;
+        }
+    }
+
+    // Function to send POST request with form data
+    function sendRequest(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const nominal = <?php echo $nominal; ?>; // Get nominal from PHP session
+        const namaDonatur = document.getElementById('namaDonatur').value; // Get donor name
+        const noHp = document.getElementById('noHp').value; // Get phone number
+        const pesan = document.getElementById('pesan').value; // Get message
+        const campaignId = localStorage.getItem('campaignId'); // Get campaign ID from localStorage
+
+        if (!campaignId) {
+            console.error('Campaign ID not found in localStorage');
+            return;
+        }
+
+        // Validate input fields
+        if (!namaDonatur || !noHp || !pesan) {
+            alert('Harap lengkapi semua kolom.');
+            return;
+        }
+
+        const data = {
+            amount: nominal,
+            username: namaDonatur,
+            phone_number: noHp,
+            message: pesan
+        };
+
+        // Fetch request
+        fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/billing/create/campaign/${campaignId}`, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Add CSRF token to headers
+            },
+            body: JSON.stringify(data) // Convert form data to JSON
+        })
+        .then(response => response.json()) // Parse the response as JSON
+        .then(data => {
+            console.log('Success:', data);
+            // Redirect or show success message
+            localStorage.setItem('Ct', data.created_time);
+            window.location.href = '/qris'; // Example redirect
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    // Attach form submission event listener
+    document.getElementById('paymentForm').addEventListener('submit', sendRequest);
+</script>
+
 </body>
 </html>
-  

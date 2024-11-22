@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Donation Page</title>
+   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -54,9 +55,11 @@
       <p class="text-green-500 mt-2">Harap Periksa Kembali Jumlah Donasi Yang Anda Inginkan</p>
     </div>
 
-    <a href="formPembayaran">
-      <button class="w-full bg-orange-500 text-white py-2 rounded-lg mt-4">Lanjut Pembayaran</button>
-    </a>
+    <button 
+  onclick="saveNominalToState()" 
+  class="w-full bg-orange-500 text-white py-2 rounded-lg mt-4">
+  Lanjut Pembayaran
+</button>
 
   </div>
 
@@ -88,6 +91,62 @@
 
     // Load campaign data on page load
     window.onload = fetchCampaignData;
+
+  async function saveNominalToState() {
+  const nominalInput = document.getElementById('nominalInput').value.replace(/\./g, '');
+  const nominal = parseInt(nominalInput, 10);
+
+  if (isNaN(nominal) || nominal < 1000) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Nominal tidak valid',
+      text: 'Nominal harus lebih dari Rp 1.000.',
+    });
+    return;
+  }
+
+  try {
+      const urlParams = new URLSearchParams(window.location.search);
+    const campaignId = urlParams.get('id');
+    
+    const response = await fetch('/set-nominal', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+      },
+      body: JSON.stringify({ nominal }),
+    });
+    
+    localStorage.setItem('campaignId', campaignId);
+    localStorage.setItem('nominal', nominal);
+    
+
+    if (response.ok) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: 'Nominal telah disimpan. Anda akan dialihkan ke halaman pembayaran.',
+        timer: 2000,
+        showConfirmButton: false,
+      }).then(() => {
+        window.location.href = '/formPembayaran';
+      });
+    } else {
+      throw new Error('Gagal menyimpan nominal.');
+    }
+  } catch (error) {
+    console.error('Error saving nominal:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Kesalahan',
+      text: 'Terjadi kesalahan saat menyimpan nominal.',
+    });
+  }
+}
+
+
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
