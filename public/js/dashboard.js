@@ -54,7 +54,7 @@ fetch(
 
         // Inisialisasi ulang Swiper
         const swiper = new Swiper(".swiper-container", {
-            slidesPerView: 2,
+            slidesPerView: 1.5,
             spaceBetween: 10,
             loop: true,
             autoplay: false,

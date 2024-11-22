@@ -13,15 +13,22 @@
         }
         .image {
             height: 250px;
-            width: 500px;
+            width: 100%;
             object-fit: cover;
-            object-position: center        
+            object-position: center;
+        }
+
+        @media (min-width: 768px) {
+            .image {
+                height: 300px;
+                width: 500px;
+            }
         }
     </style>
 </head>
 <body class="flex justify-center w-full">
-    <main class="slider-container mt-16 mx-auto">
-     <!-- Swiper Container -->
+    <main class="slider-container mt-16 mx-auto w-full max-w-[500px]">
+        <!-- Swiper Container -->
         <div class="swiper slider-1">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -33,15 +40,14 @@
                 </div>
                 <div class="swiper-slide">
                     <img
-                    class="image"
+                        class="image"
                         alt="Children smiling and sitting together"
                         src="{{ asset('image/slider2.jpg') }}"
                     />
-
                 </div>
                 <div class="swiper-slide">
                     <img
-                    class="image"
+                        class="image"
                         alt="Children smiling and sitting together"
                         src="{{ asset('image/slider3.jpg') }}"
                     />
