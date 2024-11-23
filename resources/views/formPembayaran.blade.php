@@ -146,9 +146,10 @@
             // Tampilkan pesan sukses dengan SweetAlert
             Swal.fire({
                 icon: 'success',
-                title: 'Pembayaran Berhasil!',
+                title: 'Lanjutkan Pembayaran!',
                 text: 'Silakan lanjutkan ke halaman QRIS.',
-                confirmButtonText: 'Lanjutkan'
+                showConfirmButton: false,
+                timer: 2000,
             }).then(() => {
                 window.location.href = 'qris'; // Redirect setelah sukses
             });
