@@ -1,6 +1,3 @@
-<?php
-use Illuminate\Support\Facades\Session;
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,37 +17,7 @@ use Illuminate\Support\Facades\Session;
         <h1 class="text-2xl font-extrabold text-orange-600 mb-6 text-center">
             Pembayaran QRIS
         </h1>
-        <div class="space-y-6">
-            <?php 
-                $nominal = Session::get('nominalDonatur');
-                $idDonasi = Session::get('idDonasi');
-                $nama = Session::get('namaDonatur');
-
-                function displayDetail($label, $value, $isNominal = false, $emptyMessage = 'Data belum diatur') {
-                    if ($value) {
-                        if ($isNominal) {
-                            echo "<div class='flex justify-between items-center'>
-                                    <div class='text-lg font-semibold text-gray-700'>{$label}</div>
-                                    <div class='text-xl text-green-600 font-bold'>{$value}</div>
-                                  </div>";
-                        } else {
-                            echo "<div class='flex justify-between items-center'>
-                                    <div class='text-lg font-semibold text-gray-700'>{$label}</div>
-                                    <div class='text-lg text-gray-800'>{$value}</div>
-                                  </div>";
-                        }
-                    } else {
-                        echo "<div class='flex justify-between items-center'>
-                                <div class='text-lg font-semibold text-gray-700'>{$label}</div>
-                                <div class='text-sm text-red-500'>{$emptyMessage}</div>
-                              </div>";
-                    }
-                }
-
-                displayDetail('Nama Donatur', $nama);
-                displayDetail('Nominal Donasi', $nominal ? 'Rp ' . number_format($nominal, 0, ',', '.') : null, true);
-            ?>
-        </div>
+        <div id="donationDetails" class="space-y-6"></div>
 
         <!-- Section QR Code -->
         <div class="mt-6">
@@ -87,10 +54,39 @@ use Illuminate\Support\Facades\Session;
     </div>
 </body>
 <script>
-    const createdTime = localStorage.getItem('Ct');
-    const apiUrl = `http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/generate-qris?createdTime=${createdTime}`;
+    // Fungsi untuk memuat data dari localStorage
+    function loadDonationDetails() {
+        const nama = localStorage.getItem('namaDonatur') || 'Nama belum diatur';
+        const nominal = localStorage.getItem('nominal') || null;
+        const idDonasi = localStorage.getItem('campaignId') || 'ID Donasi belum diatur';
 
+        // Format nominal
+        const formattedNominal = nominal
+            ? `Rp ${parseInt(nominal, 10).toLocaleString('id-ID')}`
+            : 'Nominal belum diatur';
+
+        // Render detail ke dalam elemen HTML
+        document.getElementById('donationDetails').innerHTML = `
+            <div class="flex justify-between items-center">
+                <div class="text-lg font-semibold text-gray-700">Nama Donatur</div>
+                <div class="text-lg text-gray-800">${nama}</div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-lg font-semibold text-gray-700">Nominal Donasi</div>
+                <div class="text-xl text-green-600 font-bold">${formattedNominal}</div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-lg font-semibold text-gray-700">ID Donasi</div>
+                <div class="text-lg text-gray-800">${idDonasi}</div>
+            </div>
+        `;
+    }
+
+    // Fungsi untuk mengambil data QRIS
     async function fetchQrData() {
+        const createdTime = localStorage.getItem('Ct'); // Ganti dengan kunci yang sesuai jika berbeda
+        const apiUrl = `http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/generate-qris?createdTime=${createdTime}`;
+
         try {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error('Gagal mengambil data QRIS');
@@ -112,7 +108,8 @@ use Illuminate\Support\Facades\Session;
         }
     }
 
-    // Panggil fungsi fetch
+    // Panggil fungsi
+    loadDonationDetails();
     fetchQrData();
 </script>
 </html>

@@ -93,54 +93,61 @@ use Illuminate\Support\Facades\Session;
     }
 
     // Function to send POST request with form data
-    function sendRequest(event) {
-        event.preventDefault(); // Prevent default form submission
+// Function to send POST request with form data
+function sendRequest(event) {
+    event.preventDefault(); // Prevent default form submission
 
-        // const nominal = <?php echo $nominal; ?>; // Get nominal from PHP session
-        const namaDonatur = document.getElementById('namaDonatur').value; // Get donor name
-        const noHp = document.getElementById('noHp').value; // Get phone number
-        const pesan = document.getElementById('pesan').value; // Get message
-        const campaignId = localStorage.getItem('campaignId'); // Get campaign ID from localStorage
-        const nominal = localStorage.getItem('nominal'); // Get campaign ID from localStorage
+    const namaDonatur = document.getElementById('namaDonatur').value; // Get donor name
+    const noHp = document.getElementById('noHp').value; // Get phone number
+    const pesan = document.getElementById('pesan').value; // Get message
+    const campaignId = localStorage.getItem('campaignId'); // Get campaign ID from localStorage
+    const nominal = localStorage.getItem('nominal'); // Get nominal from localStorage
 
-        if (!campaignId) {
-            console.error('Campaign ID not found in localStorage');
-            return;
-        }
-
-        // Validate input fields
-        if (!namaDonatur || !noHp || !pesan) {
-            alert('Harap lengkapi semua kolom.');
-            return;
-        }
-
-        const data = {
-            amount: nominal,
-            username: namaDonatur,
-            phone_number: noHp,
-            message: pesan
-        };
-
-        // Fetch request
-        fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/billing/create/campaign/${campaignId}`, {
-            method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Add CSRF token to headers
-            },
-            body: JSON.stringify(data) // Convert form data to JSON
-        })
-        .then(response => response.json()) // Parse the response as JSON
-        .then(data => {
-            console.log('Success:', data);
-            // Redirect or show success message
-            localStorage.setItem('Ct', data.created_time);
-            window.location.href = '/qris'; // Example redirect
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    if (!campaignId) {
+        console.error('Campaign ID not found in localStorage');
+        return;
     }
+
+    // Validate input fields
+    if (!namaDonatur || !noHp || !pesan) {
+        alert('Harap lengkapi semua kolom.');
+        return;
+    }
+
+    // Simpan data ke localStorage
+    localStorage.setItem('namaDonatur', namaDonatur);
+    localStorage.setItem('noHp', noHp);
+    localStorage.setItem('pesan', pesan);
+
+    const data = {
+        amount: nominal,
+        username: namaDonatur,
+        phone_number: noHp,
+        message: pesan
+    };
+
+    // Fetch request
+    fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/billing/create/campaign/${campaignId}`, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Add CSRF token to headers
+        },
+        body: JSON.stringify(data) // Convert form data to JSON
+    })
+    .then(response => response.json()) // Parse the response as JSON
+    .then(data => {
+        console.log('Success:', data);
+        // Simpan waktu transaksi ke localStorage
+        localStorage.setItem('Ct', data.created_time);
+        // Redirect atau tampilkan pesan sukses
+        window.location.href = '/qris'; // Contoh redirect ke halaman QRIS
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
 
     // Attach form submission event listener
     document.getElementById('paymentForm').addEventListener('submit', sendRequest);
