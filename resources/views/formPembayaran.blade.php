@@ -1,9 +1,3 @@
-<?php
-
-use Illuminate\Support\Facades\Session;
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +7,7 @@ use Illuminate\Support\Facades\Session;
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -43,13 +38,8 @@ use Illuminate\Support\Facades\Session;
                 </div>
             </div>
             
-            <?php 
-            $nominal = Session::get('nominalDonatur');
-            $id = Session::get('idDonasi');
-            ?>
-            
             <div class="mt-4 text-lg font-semibold">
-                Nominal Donasi: Rp <?php echo number_format($nominal, 0, ',', '.'); ?>
+                Nominal Donasi: <span id="nominalDonasi">Rp 0</span>
             </div>
             
             <!-- Payment Form -->
@@ -78,6 +68,12 @@ use Illuminate\Support\Facades\Session;
     </div>
 
 <script>
+    // Load nominal from localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+        const nominal = localStorage.getItem('nominal') || 0; // Default to 0 if not found
+        document.getElementById('nominalDonasi').innerText = `Rp ${parseInt(nominal).toLocaleString('id-ID')}`;
+    });
+
     // Toggle anonymous checkbox function
     function toggleAnonymous() {
         const checkbox = document.getElementById('anonymous');
