@@ -41,7 +41,7 @@
 
         <!-- Tombol aksi -->
         <div class="mt-6 flex justify-center gap-4">
-            <a href="/formPembayaran" class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition duration-300">
+            <a href="formPembayaran" class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition duration-300">
                 Kembali
             </a>
             <a href="/confirm-payment" class="px-6 py-2 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-300">
