@@ -116,7 +116,7 @@
           showConfirmButton: false,
         }).then(() => {
           // Alihkan ke halaman pembayaran setelah notifikasi selesai
-          window.location.href = '/formPembayaran';
+          window.location.href = 'formPembayaran';
         });
       } catch (error) {
         console.error('Error saving nominal:', error);
