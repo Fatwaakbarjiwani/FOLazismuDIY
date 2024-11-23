@@ -96,11 +96,12 @@ use Illuminate\Support\Facades\Session;
     function sendRequest(event) {
         event.preventDefault(); // Prevent default form submission
 
-        const nominal = <?php echo $nominal; ?>; // Get nominal from PHP session
+        // const nominal = <?php echo $nominal; ?>; // Get nominal from PHP session
         const namaDonatur = document.getElementById('namaDonatur').value; // Get donor name
         const noHp = document.getElementById('noHp').value; // Get phone number
         const pesan = document.getElementById('pesan').value; // Get message
         const campaignId = localStorage.getItem('campaignId'); // Get campaign ID from localStorage
+        const nominal = localStorage.getItem('nominal'); // Get campaign ID from localStorage
 
         if (!campaignId) {
             console.error('Campaign ID not found in localStorage');
