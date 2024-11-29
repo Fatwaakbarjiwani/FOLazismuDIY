@@ -15,6 +15,11 @@
         .progress-bar {
             transition: width 0.5s ease;
         }
+        p.paragraph {
+            text-indent: 1.25em; /* Menambahkan indentasi di awal paragraf */
+            margin-bottom: 0.5em; /* Menambahkan jarak antar paragraf */
+            text-align: justify; /* Menjaga paragraf tetap rata kanan-kiri */
+        }
         .campaign-card {
             max-width: 800px;
             margin: 20px;
@@ -31,13 +36,13 @@
     </style>
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
-    <div class="w-[500px] bg-white shadow-lg">
+    <div class="w-full sm:w-[500px] bg-white shadow-lg">
         @include('components.header')
         <div class="bg-white p-4 mt-16">
             <h1 class="text-2xl font-bold text-gray-800 mb-4">DETAIL <span class="text-orange-600">CAMPAIGN</span></h1>
             <div class="flex flex-col gap-4">
                 <!-- Campaign Image -->
-                <img id="campaignImage" class="h-[40vh] w-full object-cover rounded-lg" alt="Campaign Image">
+                <img id="campaignImage" class="h-[30vh] sm:h-[40vh] w-full object-contain sm:object-cover rounded-lg" alt="Campaign Image">
                 <div class="flex flex-col w-full">
                     <!-- Campaign Title -->
                     <h2 id="campaignTitle" class="text-2xl font-bold text-gray-900">Campaign Title</h2>
@@ -98,8 +103,13 @@
                 <!-- Campaign Details and Donors List -->
                 <div id="campaignDetail" class="text-justify mt-2">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Deskripsi Campaign</h3>
-                    <p id="campaignDescription" class="text-gray-700">This is the campaign description.</p>
+                    <div id="campaignDescriptionContainer">
+                        <!-- Deskripsi akan dimasukkan secara dinamis -->
+                    </div>
+                     @include('components.swiperImage')
                 </div>
+                
+
                 </div>
                 
                 <div id="donorList" class="hidden w-full text-left mt-2">
@@ -130,108 +140,152 @@
         @include('components.footer')
         @include('components.bottomNav')
     </div>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="{{ asset('js/dashboard.js') }}"></script>
- <script>
-    function handleShareLink() {
-        const url = "{{ url()->current() }}";
-        const tempInput = document.createElement('input');
-        document.body.appendChild(tempInput);
-        tempInput.value = url;
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-        alert('Campaign link copied to clipboard!');
+</body>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{{ asset('js/dashboard.js') }}"></script>
+<script>
+function handleShareLink() {
+    const url = "{{ url()->current() }}";
+    const tempInput = document.createElement('input');
+    document.body.appendChild(tempInput);
+    tempInput.value = url;
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    alert('Campaign link copied to clipboard!');
+}
+
+function showDetail(section) {
+    const campaignDetail = document.getElementById('campaignDetail');
+    const donorList = document.getElementById('donorList');
+    const laporanList = document.getElementById('laporanDonasi');
+
+    if (section === 'campaign') {
+        campaignDetail.classList.remove('hidden');
+        donorList.classList.add('hidden');
+        laporanList.classList.add('hidden');
+    } else if (section === 'donatur') {
+        campaignDetail.classList.add('hidden');
+        donorList.classList.remove('hidden');
+        laporanList.classList.add('hidden');
+        fetchDonors(); // Fetch data transaksi saat tombol "Donatur" diklik
+    } else if (section === 'laporan') {
+        laporanList.classList.remove('hidden');
+        donorList.classList.add('hidden');
+        campaignDetail.classList.add('hidden');
     }
+}
 
-    function showDetail(section) {
-        const campaignDetail = document.getElementById('campaignDetail');
-        const donorList = document.getElementById('donorList');
-        const laporanList = document.getElementById('laporanDonasi');
-
-        if (section === 'campaign') {
-            campaignDetail.classList.remove('hidden');
-            donorList.classList.add('hidden');
-            laporanList.classList.add('hidden');
-        } else if (section === 'donatur') {
-            campaignDetail.classList.add('hidden');
-            donorList.classList.remove('hidden');
-            laporanList.classList.add('hidden');
-            fetchDonors(); // Fetch data transaksi saat tombol "Donatur" diklik
-        } else if (section === 'laporan') {
-            laporanList.classList.remove('hidden');
-            donorList.classList.add('hidden');
-            campaignDetail.classList.add('hidden');
-        }
-    }
-
-    function fetchDonors() {
-        const donorListContainer = document.getElementById('donors');
-        donorListContainer.innerHTML = ''; // Clear existing donor list
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const campaignId = urlParams.get('id');
-
-        if (campaignId) {
-            fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/transactions/campaign/${campaignId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.data && Array.isArray(data.data)) {
-                        data.data.forEach(transaction => {
-                            const donorCard = document.createElement('li');
-                            donorCard.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'mb-2', 'shadow-md');
-
-                            donorCard.innerHTML = `
-                                <p class="text-sm text-gray-700">
-                                    <span class="font-semibold">Tanggal:</span> 
-                                    ${new Date(transaction.created_at).toLocaleDateString()}
-                                </p>
-                                <p class="text-sm text-gray-700">
-                                    <span class="font-semibold">Donatur:</span> 
-                                    ${transaction.donatur || 'Anonim'}
-                                </p>
-                                <p class="text-sm text-gray-700">
-                                    <span class="font-semibold">Pesan:</span> 
-                                    ${transaction.message || '-'}
-                                </p>
-                            `;
-                            donorListContainer.appendChild(donorCard);
-                        });
-                    } else {
-                        donorListContainer.innerHTML = '<li class="text-gray-600">Belum ada transaksi.</li>';
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching donor data:", error);
-                    donorListContainer.innerHTML = '<li class="text-gray-600">Gagal memuat data donatur.</li>';
-                });
-        }
-    }
+function fetchDonors() {
+    const donorListContainer = document.getElementById('donors');
+    donorListContainer.innerHTML = ''; // Clear existing donor list
 
     const urlParams = new URLSearchParams(window.location.search);
     const campaignId = urlParams.get('id');
 
     if (campaignId) {
-        fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaigns/${campaignId}`)
+        fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/transactions/campaign/${campaignId}`)
             .then(response => response.json())
-            .then(campaign => {
-                document.getElementById("campaignImage").src = campaign.campaign_thumbnail;
-                document.getElementById("campaignTitle").textContent = campaign.campaign_name;
-                document.getElementById("campaignCategory").textContent = `Kategori: ${campaign.category.campaign_category}`;
-                document.getElementById("campaignLocation").innerHTML = `<i class="fas fa-map-marker-alt mr-1"></i> ${campaign.location}`;
-                document.getElementById("currentAmount").textContent = `Rp ${campaign.current_amount.toLocaleString()}`;
-                document.getElementById("targetAmount").textContent = `Rp ${campaign.target_amount.toLocaleString()}`;
-                document.getElementById("Date").textContent = `Date: ${new Date(campaign.start_date).toLocaleDateString()}`;
-                document.getElementById("campaignDescription").textContent = campaign.description;
+            .then(data => {
+                if (data && data.data && Array.isArray(data.data)) {
+                    data.data.forEach(transaction => {
+                        const donorCard = document.createElement('li');
+                        donorCard.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'mb-2', 'shadow-md');
 
-                const progress = (campaign.current_amount / campaign.target_amount) * 100;
-                document.getElementById("progressBar").style.width = `${progress}%`;
-
-                document.getElementById("donateButtonLink").href = `pembayaran?id=${campaignId}`;
+                        donorCard.innerHTML = `
+                            <p class="text-sm text-gray-700">
+                                <span class="font-semibold">Tanggal:</span> 
+                                ${new Date(transaction.created_at).toLocaleDateString()}
+                            </p>
+                            <p class="text-sm text-gray-700">
+                                <span class="font-semibold">Donatur:</span> 
+                                ${transaction.donatur || 'Anonim'}
+                            </p>
+                            <p class="text-sm text-gray-700">
+                                <span class="font-semibold">Pesan:</span> 
+                                ${transaction.message || '-'}
+                            </p>
+                        `;
+                        donorListContainer.appendChild(donorCard);
+                    });
+                } else {
+                    donorListContainer.innerHTML = '<li class="text-gray-600">Belum ada transaksi.</li>';
+                }
             })
-            .catch(error => console.error("Error fetching campaign data:", error));
+            .catch(error => {
+                console.error("Error fetching donor data:", error);
+                donorListContainer.innerHTML = '<li class="text-gray-600">Gagal memuat data donatur.</li>';
+            });
     }
-</script>
+}
 
-</body>
+const urlParams = new URLSearchParams(window.location.search);
+const campaignId = urlParams.get('id');
+
+if (campaignId) {
+    fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaigns/${campaignId}`)
+        .then(response => response.json())
+        .then(campaign => {
+             const campaignDescriptionContainer = document.getElementById("campaignDescriptionContainer");
+    const descriptionText = campaign.description;
+
+    // Pisahkan deskripsi menjadi paragraf berdasarkan karakter baris baru (\n)
+    const paragraphs = descriptionText.split('\n');
+
+    // Bersihkan kontainer deskripsi
+    campaignDescriptionContainer.innerHTML = '';
+
+    // Buat elemen <p> untuk setiap paragraf
+    paragraphs.forEach(paragraph => {
+        if (paragraph.trim() !== '') { // Pastikan tidak ada paragraf kosong
+            const pElement = document.createElement('p');
+            pElement.classList.add('paragraph'); // Tambahkan class untuk gaya CSS
+            pElement.textContent = paragraph.trim(); // Tambahkan teks paragraf
+            campaignDescriptionContainer.appendChild(pElement); // Tambahkan ke kontainer
+        }
+    });
+            document.getElementById("campaignImage").src = campaign.campaign_thumbnail;
+            document.getElementById("campaignTitle").textContent = campaign.campaign_name;
+            document.getElementById("campaignCategory").textContent = `Kategori: ${campaign.category.campaign_category}`;
+            document.getElementById("campaignLocation").innerHTML = `<i class="fas fa-map-marker-alt mr-1"></i> ${campaign.location}`;
+            document.getElementById("currentAmount").textContent = `Rp ${campaign.current_amount.toLocaleString()}`;
+            document.getElementById("targetAmount").textContent = `Rp ${campaign.target_amount.toLocaleString()}`;
+            document.getElementById("Date").textContent = `Date: ${new Date(campaign.start_date).toLocaleDateString()}`;
+           
+
+            const progress = (campaign.current_amount / campaign.target_amount) * 100;
+            document.getElementById("progressBar").style.width = `${progress}%`;
+
+            document.getElementById("donateButtonLink").href = `pembayaran?id=${campaignId}`;
+
+              const slide1 = document.querySelector(".image1").parentElement;
+            const slide2 = document.querySelector(".image2").parentElement;
+            const slide3 = document.querySelector(".image3").parentElement;
+            
+
+            if (campaign.campaign_image_1) {
+                slide1.querySelector("img").src = campaign.campaign_image_1;
+                slide1.querySelector("img")
+                slide1.style.display = "block";
+            } else {
+                slide1.style.display = "none"; 
+            }
+
+            if (campaign.campaign_image_2) {
+                slide2.querySelector("img").src = campaign.campaign_image_2;
+                slide2.style.display = "block";
+            } else {
+                slide2.style.display = "none"; 
+            }
+
+            if (campaign.campaign_image_3) {
+                slide3.querySelector("img").src = campaign.campaign_image_3;
+                slide3.style.display = "block";
+            } else {
+                slide3.style.display = "none"; 
+            }
+        })
+        .catch(error => console.error("Error fetching campaign data:", error));
+}
+</script>
 </html>

@@ -10,7 +10,7 @@
 </head>
 <body class="font-roboto bg-gray-100 flex justify-center">
     @include('components.header')
-    <div class="w-[500px] bg-white min-h-screen py-4 shadow my-14">
+    <div class="w-full sm:w-[500px] bg-white min-h-screen py-4 shadow my-14">
           <button 
                 onclick="window.location.href='dashboard'" 
                 class="flex items-center font-semibold text-gray-800 py-2 px-4 rounded p-4"

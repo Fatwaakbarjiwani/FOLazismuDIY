@@ -1,6 +1,6 @@
 <headers>
 <header>
-    <div class="container fixed top-0 z-50 gap-2 h-16 bg-white w-full max-w-[500px] shadow flex items-center justify-between py-2 px-4">
+    <div class="container fixed top-0 z-50 gap-2 h-16 bg-white w-full sm:max-w-[500px] shadow flex items-center justify-between py-2 px-4">
         <!-- Logo -->
         <div class="flex items-center w-2/12">
             <a href="dashboard">

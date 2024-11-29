@@ -18,51 +18,53 @@
     </style>
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
-    <div class="w-[500px] bg-white shadow-lg rounded-lg">
+    <div class="w-full min-h-screen md:max-w-md bg-white shadow-lg rounded-lg">
         <div class="bg-white p-6">
             <div class="flex items-center justify-between mb-4">
                 <a href="campaign">
                     <i class="fas fa-chevron-left text-orange-500"></i>
                 </a>
-                <h1 class="text-2xl font-bold text-gray-800">Form Pembayaran</h1>
+                <h1 class="text-lg md:text-2xl font-bold text-gray-800">Form Pembayaran</h1>
                 <i class="fas fa-bars text-gray-500"></i>
             </div>
 
             <!-- Payment Method Selection -->
-            <h2 class="text-lg font-semibold">Pilih Metode Pembayaran</h2>
+            <h2 class="text-base md:text-lg font-semibold">Pilih Metode Pembayaran</h2>
             <div class="flex items-center mt-4 p-4 border rounded-lg">
-                <img alt="QRIS logo" class="w-12 h-12 mr-4" src="https://storage.googleapis.com/a1aa/image/21SOJpytvRZcHlPNeQ27pyX38HOIKhBkzAXRYpOiyhuGmF3JA.jpg"/>
+                <img alt="QRIS logo" class="w-10 h-10 md:w-12 md:h-12 mr-4" src="https://storage.googleapis.com/a1aa/image/21SOJpytvRZcHlPNeQ27pyX38HOIKhBkzAXRYpOiyhuGmF3JA.jpg"/>
                 <div>
-                    <h3 class="font-semibold">Pembayaran QR</h3>
-                    <p class="text-sm text-gray-600">Bayar dengan aplikasi pembayaran pilihan Anda</p>
+                    <h3 class="text-sm md:font-semibold">Pembayaran QR</h3>
+                    <p class="text-xs md:text-sm text-gray-600">Bayar dengan aplikasi pembayaran pilihan Anda</p>
                 </div>
             </div>
             
-            <div class="mt-4 text-lg font-semibold">
+            <div class="mt-4 text-sm md:text-lg font-semibold">
                 Nominal Donasi: <span id="nominalDonasi">Rp 0</span>
             </div>
             
             <!-- Payment Form -->
-            <h2 class="text-lg font-semibold mt-6">Lengkapi Form Dibawah</h2>
-            <form id="paymentForm" class="mt-4">
+            <h2 class="text-base md:text-lg font-semibold mt-6">Lengkapi Form Dibawah</h2>
+            <form id="paymentForm" class="mt-4 space-y-4">
                 @csrf
-                <div class="mb-4">
-                    <label class="block text-gray-700">Nama</label>
-                    <input id="namaDonatur" name="namaDonatur" class="w-full px-3 py-2 border rounded-lg" placeholder="Nama" type="text"/>
+                <div>
+                    <label class="block text-sm md:text-gray-700">Nama</label>
+                    <input id="namaDonatur" name="namaDonatur" class="w-full px-3 py-2 border rounded-lg text-sm md:text-base" placeholder="Nama" type="text"/>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700">Nomor Handphone</label>
-                    <input id="noHp" name="noHp" class="w-full px-3 py-2 border rounded-lg" placeholder="Nomor Handphone" type="text"/>
+                <div>
+                    <label class="block text-sm md:text-gray-700">Nomor Handphone</label>
+                    <input id="noHp" name="noHp" class="w-full px-3 py-2 border rounded-lg text-sm md:text-base" placeholder="Nomor Handphone" type="text"/>
                 </div>
-                <div class="mb-4 flex items-center">
+                <div class="flex items-center">
                     <input class="mr-2" id="anonymous" name="anonymous" type="checkbox" onclick="toggleAnonymous()"/>
-                    <label class="text-gray-700" for="anonymous">Sembunyikan nama saya (donasi sebagai hamba Allah)</label>
+                    <label class="text-sm md:text-gray-700" for="anonymous">Sembunyikan nama saya (donasi sebagai hamba Allah)</label>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700">Pesan Anda</label>
-                    <textarea id="pesan" name="pesan" class="w-full px-3 py-2 border rounded-lg" placeholder="Pesan Anda..."></textarea>
+                <div>
+                    <label class="block text-sm md:text-gray-700">Pesan Anda</label>
+                    <textarea id="pesan" name="pesan" class="w-full px-3 py-2 border rounded-lg text-sm md:text-base" placeholder="Pesan Anda..."></textarea>
                 </div>
-                <button class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors" type="submit">Lanjutkan Pembayaran</button>
+                <button class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors text-sm md:text-base" type="submit">
+                    Lanjutkan Pembayaran
+                </button>
             </form>
         </div>
     </div>

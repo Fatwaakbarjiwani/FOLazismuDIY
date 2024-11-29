@@ -39,5 +39,30 @@
         <p>Mitra</p>
       </a>
     </div>
+    <div class="mb-6">
+      <h1 class="my-2 font-bold text-lg">Temukan kami di </h1>
+      <div class="flex gap-4">
+        <!-- Logo Facebook -->
+        <a href="https://facebook.com/lazismudiy" target="_blank" class="hover:scale-110 duration-200 shadow">
+          <img src="https://store-images.s-microsoft.com/image/apps.30645.9007199266245907.cb06f1f9-9154-408e-b4ef-d19f2325893b.ac3b465e-4384-42a8-9142-901c0405e1bc" alt="Facebook Logo" class="h-8 w-8 rounded" />
+        </a>
+        <!-- Logo Instagram -->
+        <a href="https://instagram.com/lazismudiy" target="_blank" class="hover:scale-110 duration-200 shadow">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png" alt="YouTube Logo" class="h-8 w-8 rounded" />
+        </a>
+        <!-- Logo TikTok -->
+        <a href="https://www.tiktok.com/@jalankebaikan.id" target="_blank" class="hover:scale-110 duration-200 shadow">
+          <img src="https://play-lh.googleusercontent.com/-eFRwLcNm0Ax43uXu5BrXIwhuGC7vm7N2OFRqVuMCVQxYE7Ca3Xdr5xvGmnYGoUO8jfm" alt="TikTok Logo" class="h-8 w-8 rounded" />
+        </a>
+        <!-- Logo YouTube -->
+        <a href="https://www.youtube.com/@lazismudiy" target="_blank" class="hover:scale-110 duration-200 shadow">
+          <img src="https://play-lh.googleusercontent.com/6am0i3walYwNLc08QOOhRJttQENNGkhlKajXSERf3JnPVRQczIyxw2w3DxeMRTOSdsY" alt="Instagram Logo" class="h-8 w-8 rounded" />
+        </a>
+        <a href="https://x.com/@lazismu_diy" target="_blank" class="hover:scale-110 duration-200 shadow">
+          <img src="https://akcdn.detik.net.id/visual/2023/07/24/logo-twitter-terbaru_169.jpeg?w=480&q=90" alt="Instagram Logo" class="h-8 w-8 rounded" />
+        </a>
+      </div>
+      <p class="text-sm my-2">Jalan Kebaikan by Lazismu Daerah Istimewa Yogyakarta</p>
+    </div>
   </div>
 </div>
