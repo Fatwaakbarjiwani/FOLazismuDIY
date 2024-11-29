@@ -13,7 +13,7 @@
     </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-blue-100 flex justify-center items-center min-h-screen">
-    <div class="bg-white p-8 shadow-2xl rounded-lg w-full max-w-md">
+    <div class="bg-white p-8 shadow-2xl rounded-lg w-full sm:max-w-md h-screen sm:h-auto">
         <h1 class="text-xl md:text-2xl font-extrabold text-orange-600 mb-6 text-center">
             Pembayaran QRIS
         </h1>
