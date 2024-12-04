@@ -65,14 +65,15 @@
                         <div class="w-6 h-12 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
                     </div>
                 </div>
-                <div id="campaignPopular">
-                    <div class="flex w-full gap-2 rounded border border-gray-200 shadow">
-                        <img src="" class="bg-gray-100 h-auto w-1/3" alt="">
-                        <div>
-                        <h1>Judul</h1>
-                        <p></p>
-                        </div>
+                <div class="flex w-full gap-2 rounded-lg border border-gray-200 shadow">
+                    <img src="" class="bg-gray-100 h-auto w-1/3" alt="">
+                    <div>
+                    <h1>Judul</h1>
+                    <p>Terkumpul</p>
+                    <p>Target</p>
                     </div>
+                </div>
+                <div id="campaignPopular">
                 </div>
             </div>
         </div>
