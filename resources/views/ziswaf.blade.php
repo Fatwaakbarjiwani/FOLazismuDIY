@@ -29,9 +29,6 @@
                 <button 
                     class="capitalize border-orange-500 border p-2 rounded" 
                     data-type="infaks">infak</button>
-                <button 
-                    class="capitalize border-orange-500 border p-2 rounded" 
-                    data-type="wakafs">wakaf</button>
             </div>
             <h1 class="text-left text-xl font-bold mt-2">Daftar <span id="typeTitle">Zakat</span></h1>
             <div id="dataContainer" class="grid grid-cols-2 gap-4 mt-2">
@@ -67,7 +64,7 @@
             data.forEach(item => {
                 const card = `
                     <div class="border rounded p-2 shadow-md">
-                        <img src="${item.thumbnail}" alt="${item.category_name}" class="w-full h-32 object-cover rounded mb-2">
+                        <img src="${item.thumbnail}" alt="${item.category_name}" class="w-full h-auto object-contain rounded mb-2">
                         <h3 class="text-center font-semibold">${item.category_name}</h3>
                     </div>`;
                 dataContainer.insertAdjacentHTML('beforeend', card);

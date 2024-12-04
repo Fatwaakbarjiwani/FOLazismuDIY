@@ -5,7 +5,7 @@ fetch(
     .then((response) => response.json())
     .then((data) => {
         const campaignList = document.getElementById("campaignList");
-
+        const campaignPopular = document.getElementById("campaignPopular");
 
         // Kosongkan kontainer sebelum menambahkan elemen baru
         campaignList.innerHTML = "";
@@ -52,6 +52,15 @@ fetch(
             campaignList.innerHTML += campaignItem;
         });
 
+        campaignPopular.innerHTML = "";
+
+        data.data.forEach((campaign) => {
+            const campaignItem = `
+        
+        `;
+            campaignPopular.innerHTML += campaignItem;
+        });
+
         // Inisialisasi ulang Swiper
         const swiper = new Swiper(".swiper-container", {
             slidesPerView: 1.5,
@@ -94,6 +103,6 @@ function handleSearch(event) {
     }
 }
 
-    function setType(type) {
-        localStorage.setItem("type", type);
-    }
+function setType(type) {
+    localStorage.setItem("type", type);
+}
