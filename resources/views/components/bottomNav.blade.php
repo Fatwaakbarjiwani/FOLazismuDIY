@@ -1,4 +1,4 @@
-<div class="fixed bottom-0 flex w-full sm:w-[500px] z-50 bg-white shadow border-t-2 border-gray-100/50 justify-around py-2 mt-4 max-h-14">
+<div class="fixed bottom-0 flex w-full sm:w-[500px] z-40 bg-white shadow border-t-2 border-gray-100/50 justify-around py-2 mt-4 max-h-14">
     <a href="dashboard" 
        class="text-center flex flex-col items-center text-sm {{ Request::is('dashboard') ? 'text-yellow-500' : 'text-gray-500' }}">
         <i class="fas fa-home text-lg"></i>

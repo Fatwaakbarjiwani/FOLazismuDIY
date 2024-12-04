@@ -15,10 +15,10 @@ fetch(
         <div class="swiper-slide">
             <div onclick="window.location.href='detailCampaign?id=${
                 campaign.id
-            }'" class="h-[54vh] flex flex-col justify-between bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 cursor-pointer">
+            }'" class="h-auto md:h-[54vh] flex flex-col justify-between bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 cursor-pointer">
                 <img alt="${
                     campaign.campaign_name
-                }" class="w-full h-[20vh] object-cover" src="${
+                }" class="w-full h-auto sm:h-[20vh] object-contain" src="${
                 campaign.campaign_thumbnail
             }" />
                 <h2 class="text-base font-bold line-clamp-2 text-gray-800 p-2">${
@@ -54,9 +54,9 @@ fetch(
 
         // Inisialisasi ulang Swiper
         const swiper = new Swiper(".swiper-container", {
-            slidesPerView: 1,
+            slidesPerView: 1.5,
             spaceBetween: 10,
-            loop: true,
+            loop: false,
             autoplay: false,
             pagination: {
                 el: ".swiper-pagination",

@@ -1,6 +1,7 @@
 <headers>
+@include('components.modalLogin')
 <header>
-    <div class="container fixed top-0 z-50 gap-2 h-16 bg-white w-full sm:max-w-[500px] shadow flex items-center justify-between py-2 px-4">
+    <div class="container fixed top-0 z-40 gap-2 h-16 bg-white w-full sm:max-w-[500px] shadow flex items-center justify-between py-2 px-4">
         <!-- Logo -->
         <div class="flex items-center w-2/12">
             <a href="dashboard">
@@ -29,7 +30,7 @@
 
         <!-- User Actions -->
         <div class="flex items-center space-x-2 sm:space-x-4">
-            <a class="text-gray-600 hover:text-orange-500 text-sm sm:text-base" href="#">Masuk</a>
+            <a class="text-gray-600 hover:text-orange-500 text-sm sm:text-base" href="#" onclick="showModal()">Masuk</a>
             <a class="bg-orange-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded text-sm sm:text-base" href="#">Daftar</a>
         </div>
     </div>
@@ -37,3 +38,27 @@
 
 </headers>
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script>// Show the modal
+function showModal() {
+    const modal = document.getElementById('loginModal');
+    modal.classList.remove('hidden');
+}
+
+// Hide the modal
+function closeModal() {
+    const modal = document.getElementById('loginModal');
+    modal.classList.add('hidden');
+}
+
+// Submit phone number
+function submitPhoneNumber() {
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    if (!phoneNumber) {
+        alert('Nomor telepon harus diisi!');
+        return;
+    }
+    console.log('Nomor Telepon:', phoneNumber);
+    // Lakukan sesuatu dengan nomor telepon, misalnya mengirim ke server
+    closeModal();
+}
+</script>

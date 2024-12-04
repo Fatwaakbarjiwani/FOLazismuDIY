@@ -30,6 +30,9 @@ Route::get('/campaign', function () {
 Route::get('/ziswaf', function () {
     return view('ziswaf');
 });
+Route::get('/ziska', function () {
+    return view('ziska');
+});
 
 Route::get('/detailCampaign', function () {
     return view('detailCampaign');
