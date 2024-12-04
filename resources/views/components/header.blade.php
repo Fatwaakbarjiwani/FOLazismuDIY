@@ -5,7 +5,7 @@
             class="container fixed top-0 z-40 gap-2 h-16 bg-white w-full sm:max-w-[500px] shadow flex items-center justify-between py-2 px-4">
             <!-- Logo -->
             <div class="flex items-center w-2/12">
-                <a href="/">
+                <a href="/lazismuDIY/FOLazismuDIY">
                     <img alt="Lazismu Logo" class="h-10 sm:h-12" src="{{ asset('image/logoOrange.png') }}" width="50" />
                 </a>
             </div>
