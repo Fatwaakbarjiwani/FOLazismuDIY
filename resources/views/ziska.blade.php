@@ -25,7 +25,7 @@
     <div class="w-full sm:w-[500px] bg-white shadow-lg min-h-screen">
         @include('components.header')
         <img src="image/logooo.jpg" class="bg-gray-200 w-full h-[30vh] object-contain mt-16" alt="">
-        <div class="bg-white w-5/6 sm:w-3/4 m-auto p-4">
+        <div class="bg-white w-full sm:w-3/4 m-auto p-4">
             <div class="bg-white shadow rounded-lg p-4">
                 <!-- Button Pilihan Tipe -->
                 <div id="typeButtons" class="flex justify-between text-white font-semibold bg-orange-500 rounded">
@@ -47,6 +47,7 @@
                     <input type="text" id="amountInput"
                         class="w-full border border-gray-500 rounded p-2 outline-none mt-1" placeholder="Rp.0" />
                 </div>
+                <button class="bg-orange-500 w-full mt-2 text-white font-semibold p-2 rounded active:scale-105 duration-300">Submit</button>
             </div>
 
 
