@@ -18,7 +18,7 @@ async function fetchCampaigns(page) {
             }'">
                 <img alt="${
                     campaign.campaign_name
-                }" class="w-full h-32 object-cover" src="${
+                }" class="w-full h-auto object-cover" src="${
                 campaign.campaign_thumbnail
             }" />
             <h2 class="text-base font-bold text-gray-800 px-2">${

@@ -16,7 +16,7 @@
             <p class="text-gray-600 text-center mb-4">Pilih dan salurkan donasi untuk program yang berarti bagi Anda dan mereka</p>
             
             <!-- Container for Campaign Cards -->
-            <div id="campaignList" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+            <div id="campaignList" class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-2"></div>
             <!-- Pagination Navigation -->
             <div class="flex justify-center items-center mt-6 space-x-4">
                 <button id="prevPage" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>Prev</button>

@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Ziska</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
         body {
             font-family: 'Roboto', sans-serif;
         }
+
         .active {
             background-color: rgb(255, 187, 0);
             color: white;
         }
     </style>
 </head>
+
 <body class="bg-gray-100 flex justify-center">
-    <div class="w-full sm:w-[500px] bg-white shadow-md min-h-screen">
-        @include('components.header')       
-        <div class="bg-gray-200 w-full h-[30vh] mt-16"></div>
-        <div class="bg-white w-3/4 m-auto p-4">
+    <div class="w-full sm:w-[500px] bg-white shadow-lg min-h-screen">
+        @include('components.header')
+        <img src="image/logooo.jpg" class="bg-gray-200 w-full h-[30vh] object-contain mt-16" alt="">
+        <div class="bg-white w-5/6 sm:w-3/4 m-auto p-4">
             <div class="bg-white shadow rounded-lg p-4">
                 <!-- Button Pilihan Tipe -->
                 <div id="typeButtons" class="flex justify-between text-white font-semibold bg-orange-500 rounded">
-                    <button 
-                        class="capitalize w-1/3 border-x p-2 rounded-l" 
-                        data-type="zakats">zakat</button>
-                    <button 
-                        class="capitalize w-1/3 border-x p-2" 
-                        data-type="infaks">infak</button>
-                    <button 
-                        class="capitalize w-1/3 border-x p-2 rounded-r" 
-                        data-type="wakafs">wakaf</button>
+                    <button class="capitalize w-2/4 border-x p-2 rounded-l" data-type="zakats">zakat</button>
+                    <button class="capitalize w-2/4 border-x p-2" data-type="infaks">infak</button>
                 </div>
-                
+
                 <!-- Dropdown Pilihan Kategori -->
                 <div class="flex flex-row items-center justify-between mt-4">
                     <p class="font-semibold">Yuk Menunaikan <span id="typeTitle">Zakat</span>!</p>
@@ -48,11 +44,12 @@
                 <!-- Input Jumlah -->
                 <div class="mt-4">
                     <label class="font-semibold">Masukkan jumlah <span id="typeTitle">Zakat</span> kamu di sini</label>
-                    <input type="text" class="w-full border border-gray-500 rounded p-2 outline-none mt-1" placeholder="Rp.0">
+                    <input type="text" id="amountInput"
+                        class="w-full border border-gray-500 rounded p-2 outline-none mt-1" placeholder="Rp.0" />
                 </div>
             </div>
 
-        
+
         </div>
         @include('components.bottomNav')
     </div>
@@ -118,6 +115,31 @@
 
         // Jalankan inisialisasi saat halaman dimuat
         initialize();
+
+        const amountInput = document.getElementById('amountInput');
+
+        // Fungsi untuk memformat angka dengan titik ribuan
+        const formatRupiah = (angka) => {
+            const numberString = angka.replace(/[^,\d]/g, '').toString();
+            const split = numberString.split(',');
+            const sisa = split[0].length % 3;
+            let rupiah = split[0].substr(0, sisa);
+            const ribuan = split[0].substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+                const separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            return split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+        };
+
+        // Event listener untuk memformat input
+        amountInput.addEventListener('input', (event) => {
+            const rawValue = event.target.value;
+            event.target.value = formatRupiah(rawValue);
+        });
     </script>
 </body>
+
 </html>

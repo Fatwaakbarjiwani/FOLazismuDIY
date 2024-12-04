@@ -9,7 +9,7 @@
         <i class="fas fa-search text-lg"></i>
         <p>Campaign</p>
     </a>
-    <a href="ziswaf" 
+    <a href="ziska" 
        class="text-center flex flex-col items-center text-sm {{ Request::is('ziswaf') ? 'text-yellow-500' : 'text-gray-500' }}">
         <i class="fas fa-hand-holding-usd text-lg"></i>
         <p>Ziska</p>
