@@ -111,7 +111,7 @@
         }
 
         // Validate input fields
-        if (!namaDonatur || !noHp || !pesan) {
+        if (!namaDonatur || !noHp) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Kolom Belum Lengkap',

@@ -63,11 +63,6 @@
             const swiper = new Swiper(".slider-1", {
                 slidesPerView: 1,
                 spaceBetween: 10,
-                loop: true,
-                autoplay: {
-                    delay: 6000,
-                    disableOnInteraction: false,
-                },
             });
         });
     </script>

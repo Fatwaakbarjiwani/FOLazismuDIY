@@ -54,9 +54,43 @@ fetch(
 
         campaignPopular.innerHTML = "";
 
-        data.data.forEach((campaign) => {
+        data.data.slice(0,5).forEach((campaign) => {
             const campaignItem = `
-        
+                        <div  onclick="window.location.href='detailCampaign?id=${
+                            campaign.id
+                        }'" class="cursor-pointer flex w-full gap-2 border-y border-gray-300 p-2 items-center">
+                    <img src="${
+                        campaign.campaign_thumbnail
+                    }" class="h-auto w-1/2" alt="">
+                    <div class="w-1/2">
+                     <h2 class="text-base font-bold line-clamp-2 text-gray-800">${
+                         campaign.campaign_name
+                     }</h2>
+                     <div class="flex gap-2 items-center text-[10px] text-gray-600 text-sm">
+                            <span class="font-medium">${
+                                campaign.location
+                            }</span>
+                            <span class="text-white bg-orange-500 px-1 rounded-3xl font-medium">${
+                                campaign.category.campaign_category
+                            }</span>
+                        </div>
+                     <div class="flex justify-between text-gray-600 text-sm">
+                            <span class="font-medium text-[10px]">Terkumpul</span>
+                            <span class="text-orange-500 font-semibold">Rp ${campaign.current_amount.toLocaleString()}</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                            <div class="bg-orange-500 h-2 rounded-full" style="width: ${
+                                (campaign.current_amount /
+                                    campaign.target_amount) *
+                                100
+                            }%"></div>
+                        </div>
+                        <div class="flex justify-between text-gray-600 mt-1 text-sm">
+                            <span class="font-medium text-[10px]">Target</span>
+                            <span class="font-semibold text-orange-500">Rp ${campaign.target_amount.toLocaleString()}</span>
+                        </div>
+                    </div>
+                </div>
         `;
             campaignPopular.innerHTML += campaignItem;
         });
