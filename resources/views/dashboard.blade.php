@@ -54,7 +54,7 @@
                 <div class="flex gap-2 items-start w-full">
                     <div class="flex text-end mb-2">
                         <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 sm:mb-4 relative">Mari Bantu
-                            <span class="text-orange-600">Mereka</span>
+                            <span class="text-orange-500">Mereka</span>
                         </h1>
                     </div>
                     <div class="flex gap-1">
