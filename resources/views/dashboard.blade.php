@@ -23,7 +23,7 @@
         <div class="bg-white">
             <div class="items-center p-2 sm:p-4">
                 <!-- Grid untuk Ziswaf Categories -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
+                <div class="grid grid-cols-3 gap-4 w-full">
                     <a href="campaign" class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
                         <i class="fas fa-hands-helping text-3xl sm:text-4xl text-orange-500"></i>
                         <p class="mt-2 text-gray-700 text-sm sm:text-base font-medium">Campaign</p>
@@ -41,7 +41,8 @@
                 </div>
             </div>
             <div class="p-2 sm:p-4">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 sm:mb-4">Rekomendasi <span class="text-orange-500">Campaign</span></h1>
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 sm:mb-4">Rekomendasi <span
+                        class="text-orange-500">Campaign</span></h1>
                 <!-- Swiper Container for Campaign Cards -->
                 <div class="swiper-container overflow-x-hidden p-2">
                     <div class="swiper-wrapper" id="campaignList">
@@ -51,13 +52,15 @@
             </div>
             <div class="p-2 sm:p-4">
                 <div class="flex gap-2 items-start w-full">
-                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 sm:mb-4 relative">Mari Bantu
-                        <span class="text-orange-600">Mereka</span>
-                    </h1>
-                    <div class="flex gap-1 h-10">
-                        <div class="w-6 h-12 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
-                        <div class="w-6 h-12 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
-                        <div class="w-6 h-12 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
+                    <div class="flex text-end mb-2">
+                        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 sm:mb-4 relative">Mari Bantu
+                            <span class="text-orange-600">Mereka</span>
+                        </h1>
+                    </div>
+                    <div class="flex gap-1">
+                        <div class="w-6 h-10 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
+                        <div class="w-6 h-10 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
+                        <div class="w-6 h-10 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
                     </div>
                 </div>
                 <div id="campaignPopular" class="flex flex-col">
