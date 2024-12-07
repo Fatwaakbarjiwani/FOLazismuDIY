@@ -12,15 +12,15 @@
             overflow: hidden;
         }
         .image {
-            height: 250px;
+            height: auto;
             width: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
         }
 
         @media (min-width: 768px) {
             .image {
-                height: 300px;
+                height: auto;
                 width: 500px;
             }
         }
