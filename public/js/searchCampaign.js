@@ -44,7 +44,7 @@
                      }'">
                     <img alt="${
                         campaign.campaign_name
-                    }" class="w-full h-32 object-cover" src="${
+                    }" class="w-full h-auto object-content" src="${
                 campaign.campaign_thumbnail
             }" />
                     <h2 class="text-base px-2 font-bold text-gray-800">${

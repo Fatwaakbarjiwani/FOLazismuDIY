@@ -25,7 +25,7 @@
     </div>
 
     <div class="mt-4">
-      <img id="campaignImage" alt="Campaign banner" class="w-full h-64 object-cover rounded-lg" />
+      <img id="campaignImage" alt="Campaign banner" class="w-full h-auto object-content rounded-lg" />
       <div class="mt-4 p-4 bg-gray-100 rounded-lg">
         <h2 class="text-lg font-semibold">Anda akan berdonasi untuk campaign</h2>
         <p id="campaignName" class="text-gray-500"></p>
