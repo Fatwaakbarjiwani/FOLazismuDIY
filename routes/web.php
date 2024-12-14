@@ -38,8 +38,14 @@ Route::get('/searchCampaign', function () {
 Route::get('/pembayaran', function () {
     return view('pembayaran');
 });
+Route::get('/pembayaran_ziska', function () {
+    return view('pembayaran2');
+});
 Route::get('/formPembayaran', function () {
     return view('formPembayaran');
+});
+Route::get('/formPembayaran_ziska', function () {
+    return view('formPembayaran2');
 });
 
 // routes/web.php
@@ -65,5 +71,8 @@ use Illuminate\Support\Facades\Session;
 Route::post('/payment/save', [PaymentController::class, 'save'])->name('payment.save');
 // routes/web.php
 Route::get('/qris', [PaymentController::class, 'qris'])->name('qris');
+Route::get('/qris_ziska', function () {
+    return view('qris2');
+});
 
 

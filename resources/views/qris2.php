@@ -41,7 +41,7 @@
 
         <!-- Tombol aksi -->
         <div class="mt-6 flex flex-wrap justify-center gap-4">
-            <a href="formPembayaran" class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition duration-300 text-sm md:text-base">
+            <a href="formPembayaran_ziska" class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition duration-300 text-sm md:text-base">
                 Kembali
             </a>
             <!-- Tombol Download dengan background gradasi orange -->

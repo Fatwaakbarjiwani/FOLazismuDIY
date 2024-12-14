@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -47,7 +48,8 @@
                     <input type="text" id="amountInput"
                         class="w-full border border-gray-500 rounded p-2 outline-none mt-1" placeholder="Rp.0" />
                 </div>
-                <button class="bg-orange-500 w-full mt-2 text-white font-semibold p-2 rounded active:scale-105 duration-300">Submit</button>
+                <button id="submitButton"
+                    class="bg-orange-500 w-full mt-2 text-white font-semibold p-2 rounded active:scale-105 duration-300">Lanjutkan</button>
             </div>
 
 
@@ -63,6 +65,8 @@
         const dataContainer = document.getElementById('dataContainer');
         const typeTitle = document.getElementById('typeTitle');
         const categoryDropdown = document.getElementById('categoryDropdown');
+        const amountInput = document.getElementById('amountInput');
+        const submitButton = document.getElementById('submitButton');
 
         // Fungsi untuk mengambil data dari API
         const fetchData = async (type) => {
@@ -70,7 +74,6 @@
                 const response = await fetch(`${baseUrl}${type}`);
                 const data = await response.json();
                 populateCategories(data);
-                renderData(data);
             } catch (error) {
                 console.error('Error fetching data:', error);
                 dataContainer.innerHTML = '<p class="text-center text-red-500">Failed to load data.</p>';
@@ -82,8 +85,9 @@
             categoryDropdown.innerHTML = '<option>Pilih Kategori</option>';
             data.forEach(item => {
                 const option = document.createElement('option');
-                option.value = item.category_name;
+                option.value = item.id; // Menggunakan ID kategori
                 option.textContent = item.category_name;
+
                 categoryDropdown.appendChild(option);
             });
         };
@@ -114,10 +118,13 @@
             });
         });
 
-        // Jalankan inisialisasi saat halaman dimuat
-        initialize();
-
-        const amountInput = document.getElementById('amountInput');
+        // Event listener untuk dropdown kategori
+        categoryDropdown.addEventListener('change', () => {
+            const selectedCategoryId = categoryDropdown.value; 
+            if (selectedCategoryId !== 'Pilih Kategori') {
+                localStorage.setItem('id', selectedCategoryId); // Simpan ID ke localStorage
+            }
+        });
 
         // Fungsi untuk memformat angka dengan titik ribuan
         const formatRupiah = (angka) => {
@@ -140,6 +147,39 @@
             const rawValue = event.target.value;
             event.target.value = formatRupiah(rawValue);
         });
+
+        // Event listener untuk tombol "Lanjutkan"
+        submitButton.addEventListener('click', () => {
+            const amount = amountInput.value.replace(/[^\d]/g, ''); // Ambil angka tanpa format
+            const selectedCategory = categoryDropdown.value;
+
+            if (selectedCategory === 'Pilih Kategori') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Kategori Belum Dipilih',
+                    text: 'Silakan pilih kategori terlebih dahulu.',
+                });
+                return;
+            }
+
+            if (!amount || parseInt(amount) === 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Nominal Tidak Valid',
+                    text: 'Masukkan nominal yang valid.',
+                });
+                return;
+            }
+
+            // Simpan nominal ke localStorage
+            localStorage.setItem('nominal', amount);
+
+            // Arahkan ke halaman formPembayaran
+            window.location.href = '/formPembayaran_ziska';
+        });
+
+        // Jalankan inisialisasi saat halaman dimuat
+        initialize();
     </script>
 </body>
 

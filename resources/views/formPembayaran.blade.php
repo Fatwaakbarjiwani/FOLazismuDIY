@@ -143,7 +143,6 @@
         })
         .then(response => response.json()) // Parse the response as JSON
         .then(data => {
-            console.log('Success:', data);
             localStorage.setItem('Ct', data.created_time); // Simpan waktu transaksi ke localStorage
 
             // Tampilkan pesan sukses dengan SweetAlert

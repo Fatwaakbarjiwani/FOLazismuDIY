@@ -53,14 +53,9 @@
             <div class="p-2 sm:p-4">
                 <div class="flex gap-2 items-start w-full">
                     <div class="flex text-end mb-2">
-                        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 sm:mb-4 relative">Mari Bantu
+                        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 relative">Mari Bantu
                             <span class="text-orange-500">Mereka</span>
                         </h1>
-                    </div>
-                    <div class="flex gap-1">
-                        <div class="w-6 h-10 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
-                        <div class="w-6 h-10 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
-                        <div class="w-6 h-10 bg-orange-300 rounded-tl-2xl rotate-12 rounded-br-2xl"></div>
                     </div>
                 </div>
                 <div id="campaignPopular" class="flex flex-col">

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .image {
             height: auto;
             width: 100%;
@@ -26,32 +28,13 @@
         }
     </style>
 </head>
+
 <body class="flex justify-center w-full">
     <main class="slider-container mt-16 mx-auto w-full max-w-[500px]">
         <!-- Swiper Container -->
         <div class="swiper slider-1">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img
-                        alt="Dashboard view"
-                        class="image"
-                        src="{{ asset('image/slider1.jpg') }}"
-                    />
-                </div>
-                <div class="swiper-slide">
-                    <img
-                        class="image"
-                        alt="Children smiling and sitting together"
-                        src="{{ asset('image/slider2.jpg') }}"
-                    />
-                </div>
-                <div class="swiper-slide">
-                    <img
-                        class="image"
-                        alt="Children smiling and sitting together"
-                        src="{{ asset('image/slider3.jpg') }}"
-                    />
-                </div>
+            <div class="swiper-wrapper" id="sliderHomePage">
+
             </div>
         </div>
     </main>
@@ -59,7 +42,7 @@
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const swiper1 = new Swiper(".slider-1", {
                 slidesPerView: 1,
                 spaceBetween: 0,
@@ -72,4 +55,29 @@
         });
     </script>
 </body>
+<script>
+    fetch(
+            "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaign/get-recomendation"
+        )
+        .then((response) => response.json())
+        .then((data) => {
+
+            const sliderHomePage = document.getElementById("sliderHomePage");
+            sliderHomePage.innerHTML = "";
+
+            data.slice(0, 3).forEach((campaign) => {
+                const campaignItem = `
+                       <div onclick="window.location.href='detailCampaign?id=${
+                campaign.id
+            }'" class="swiper-slide">
+                    <img alt="Dashboard view" class="image" src="${
+                        campaign.campaign_thumbnail
+                    }" />
+                </div>
+        `;
+                sliderHomePage.innerHTML += campaignItem;
+            });
+        })
+</script>
+
 </html>

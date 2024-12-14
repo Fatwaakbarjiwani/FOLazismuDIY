@@ -1,6 +1,6 @@
 // Fetch data from the API and dynamically add to Swiper
 fetch(
-    "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaigns?page=1"
+    "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaign/get-recomendation"
 )
     .then((response) => response.json())
     .then((data) => {
@@ -9,22 +9,22 @@ fetch(
         // Kosongkan kontainer sebelum menambahkan elemen baru
         campaignList.innerHTML = "";
 
-        data.data.forEach((campaign) => {
+        data.forEach((campaign) => {
             const campaignItem = `
         <div class="swiper-slide">
             <div onclick="window.location.href='detailCampaign?id=${
                 campaign.id
-            }'" class="h-auto md:h-[54vh] flex flex-col justify-between bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 cursor-pointer">
+            }'" class="h-auto md:h-[50vh] flex flex-col justify-between bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 cursor-pointer">
                 <img alt="${
                     campaign.campaign_name
                 }" class="w-full h-auto sm:h-[20vh] object-contain" src="${
                 campaign.campaign_thumbnail
             }" />
-                <h2 class="text-base font-bold line-clamp-2 text-gray-800 p-2">${
+                <h2 class="text-base font-bold line-clamp-2 text-gray-800 px-2">${
                     campaign.campaign_name
                 }</h2>
-                <div class="p-2">
-                    <div class="mt-2">
+                <div class="px-2">
+                    <div>
                         <div class="flex justify-between text-gray-600 text-sm">
                             <span class="font-medium">Terkumpul</span>
                             <span class="font-medium">Rp ${campaign.current_amount.toLocaleString()}</span>
@@ -40,7 +40,7 @@ fetch(
                             <span class="font-medium">Target</span>
                             <span class="font-medium">Rp ${campaign.target_amount.toLocaleString()}</span>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full mb-2">
                             <button class="bg-orange-500 text-sm text-white w-full py-1 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Bantu Sekarang</button>
                         </div>
                     </div>
@@ -102,14 +102,6 @@ fetch(
                      <h2 class="text-base font-bold line-clamp-2 text-gray-800">${
                          campaign.campaign_name
                      }</h2>
-                     <div class="flex gap-2 items-center text-[10px] text-gray-600 text-sm">
-                            <span class="font-medium">${
-                                campaign.location
-                            }</span>
-                            <span class="text-white bg-orange-500 px-1 rounded-3xl font-medium">${
-                                campaign.category.campaign_category
-                            }</span>
-                        </div>
                      <div class="flex justify-between text-gray-600 text-xs">
                             <span class="font-medium text-[10px]">Terkumpul</span>
                             <span class="text-orange-500 font-semibold">Rp ${campaign.current_amount.toLocaleString()}</span>
