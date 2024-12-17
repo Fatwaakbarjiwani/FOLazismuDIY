@@ -56,11 +56,13 @@
         </div>
         @include('components.bottomNav')
     </div>
+     <script>
+        const apiUrl = "{{ env('API_URL') }}";
+    </script>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         // Default API Endpoint
-        const baseUrl = 'http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/';
         const typeButtons = document.querySelectorAll('#typeButtons button');
         const dataContainer = document.getElementById('dataContainer');
         const typeTitle = document.getElementById('typeTitle');
@@ -71,7 +73,7 @@
         // Fungsi untuk mengambil data dari API
         const fetchData = async (type) => {
             try {
-                const response = await fetch(`${baseUrl}${type}`);
+                const response = await fetch(`${apiUrl}/${type}`);
                 const data = await response.json();
                 populateCategories(data);
             } catch (error) {

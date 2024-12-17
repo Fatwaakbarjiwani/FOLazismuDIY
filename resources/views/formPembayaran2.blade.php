@@ -80,6 +80,9 @@
             </form>
         </div>
     </div>
+    <script>
+        const apiUrl = "{{ env('API_URL') }}";
+    </script>
 
     <script>
         // Fungsi untuk mendapatkan data pengguna dan mengisi kolom otomatis
@@ -165,7 +168,7 @@
             };
 
             // Fetch request
-            fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/billing/create/${type == "zakats" ?"zakat":"infak"}/${id}`, {
+            fetch(`${apiUrl}/billing/create/${type == "zakats" ?"zakat":"infak"}/${id}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

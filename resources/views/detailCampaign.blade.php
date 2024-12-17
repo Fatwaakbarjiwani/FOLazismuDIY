@@ -43,7 +43,8 @@
         .visible {
             display: block;
         }
-         .paragraph {
+
+        .paragraph {
             margin-bottom: 1rem;
         }
     </style>
@@ -181,7 +182,8 @@
             </div>
         </div>
         <div class="mt-8 bg-gray-100 p-4">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi <span class="text-orange-500">Campaign</span></h1>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi <span class="text-orange-500">Campaign</span>
+            </h1>
             <!-- Swiper Container for Campaign Cards -->
             <div class="swiper-container overflow-x-hidden p-2">
                 <div class="swiper-wrapper" id="campaignList">
@@ -198,6 +200,9 @@
         @include('components.bottomNav')
     </div>
 </body>
+<script>
+    const apiUrl = "{{ env('API_URL') }}";
+</script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
@@ -241,7 +246,7 @@
         const campaignId = urlParams.get('id');
 
         if (campaignId) {
-            fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/transactions/campaign/${campaignId}`)
+            fetch(`${apiUrl}/transactions/campaign/${campaignId}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.data && Array.isArray(data.data)) {
@@ -283,33 +288,33 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     const campaignId = urlParams.get('id');
-           if (campaignId) {
-                fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/latestNews/list/campaign/${campaignId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const kabarTerbaruContainer = document.getElementById('kabarTerbaru');
-                        kabarTerbaruContainer.innerHTML = ''; // Clear existing content
-                        if (data && Array.isArray(data)) {
-                            data.forEach(news => {
-                                const newsCard = document.createElement('div');
-                                newsCard.classList.add(
-                                    'news-card',
-                                    'bg-white',
-                                    'rounded-xl',
-                                    'p-4',
-                                    'shadow-md',
-                                    'border',
-                                    'border-gray-300',
-                                    'gap-4'
-                                );
+    if (campaignId) {
+        fetch(`${apiUrl}/latestNews/list/campaign/${campaignId}`)
+            .then(response => response.json())
+            .then(data => {
+                const kabarTerbaruContainer = document.getElementById('kabarTerbaru');
+                kabarTerbaruContainer.innerHTML = ''; // Clear existing content
+                if (data && Array.isArray(data)) {
+                    data.forEach(news => {
+                        const newsCard = document.createElement('div');
+                        newsCard.classList.add(
+                            'news-card',
+                            'bg-white',
+                            'rounded-xl',
+                            'p-4',
+                            'shadow-md',
+                            'border',
+                            'border-gray-300',
+                            'gap-4'
+                        );
 
-                                // Pecah deskripsi menjadi paragraf
-                                const descriptionParagraphs = news.description.split('\n').map(paragraph => {
-                                    return `<p class="text-gray-700 text-justify paragraph">${paragraph.trim()}</p>`;
-                                }).join('');
+                        // Pecah deskripsi menjadi paragraf
+                        const descriptionParagraphs = news.description.split('\n').map(paragraph => {
+                            return `<p class="text-gray-700 text-justify paragraph">${paragraph.trim()}</p>`;
+                        }).join('');
 
-                                // Tambahkan elemen untuk teks dan gambar
-                                newsCard.innerHTML = `
+                        // Tambahkan elemen untuk teks dan gambar
+                        newsCard.innerHTML = `
                                     <p class="text-sm text-gray-500">${news.latest_news_date}</p>
                                     <div class="news-description text-clamp-3">
                                         ${descriptionParagraphs}
@@ -317,63 +322,64 @@
                                     <img src="${news.image}" class="news-image hidden w-full h-48 object-contain rounded-xl mt-4" alt="${news.title || 'Kabar Terbaru'}">
                                 `;
 
-                                // Event listener untuk toggle deskripsi dan gambar
-                                newsCard.addEventListener('click', () => {
-                                    const descriptionEl = newsCard.querySelector('.news-description');
-                                    const imageEl = newsCard.querySelector('.news-image');
-                                    if (descriptionEl.style.webkitLineClamp) {
-                                        // Tampilkan semua deskripsi dan gambar
-                                        descriptionEl.style.webkitLineClamp = '';
-                                        descriptionEl.style.display = 'block';
-                                        imageEl.classList.remove('hidden');
-                                        imageEl.classList.add('visible');
-                                    } else {
-                                        // Sembunyikan deskripsi tambahan dan gambar
-                                        descriptionEl.style.webkitLineClamp = '3';
-                                        descriptionEl.style.display = '-webkit-box';
-                                        imageEl.classList.remove('visible');
-                                        imageEl.classList.add('hidden');
-                                    }
-                                });
+                        // Event listener untuk toggle deskripsi dan gambar
+                        newsCard.addEventListener('click', () => {
+                            const descriptionEl = newsCard.querySelector('.news-description');
+                            const imageEl = newsCard.querySelector('.news-image');
+                            if (descriptionEl.style.webkitLineClamp) {
+                                // Tampilkan semua deskripsi dan gambar
+                                descriptionEl.style.webkitLineClamp = '';
+                                descriptionEl.style.display = 'block';
+                                imageEl.classList.remove('hidden');
+                                imageEl.classList.add('visible');
+                            } else {
+                                // Sembunyikan deskripsi tambahan dan gambar
+                                descriptionEl.style.webkitLineClamp = '3';
+                                descriptionEl.style.display = '-webkit-box';
+                                imageEl.classList.remove('visible');
+                                imageEl.classList.add('hidden');
+                            }
+                        });
 
-                                kabarTerbaruContainer.appendChild(newsCard);
-                            });
-                        } else {
-                            kabarTerbaruContainer.innerHTML = '<p class="text-gray-600">Belum ada kabar terbaru.</p>';
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error fetching latest news:", error);
-                        document.getElementById('kabarTerbaru').innerHTML =
-                            '<p class="text-gray-600">Gagal memuat kabar terbaru.</p>';
+                        kabarTerbaruContainer.appendChild(newsCard);
                     });
-            }           if (campaignId) {
-                fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/latestNews/list/campaign/${campaignId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const kabarTerbaruContainer = document.getElementById('kabarTerbaru');
-                        kabarTerbaruContainer.innerHTML = ''; // Clear existing content
-                        if (data && Array.isArray(data)) {
-                            data.forEach(news => {
-                                const newsCard = document.createElement('div');
-                                newsCard.classList.add(
-                                    'news-card',
-                                    'bg-white',
-                                    'rounded-xl',
-                                    'p-4',
-                                    'shadow-md',
-                                    'border',
-                                    'border-gray-300',
-                                    'gap-4'
-                                );
+                } else {
+                    kabarTerbaruContainer.innerHTML = '<p class="text-gray-600">Belum ada kabar terbaru.</p>';
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching latest news:", error);
+                document.getElementById('kabarTerbaru').innerHTML =
+                    '<p class="text-gray-600">Gagal memuat kabar terbaru.</p>';
+            });
+    }
+    if (campaignId) {
+        fetch(`${apiUrl}/latestNews/list/campaign/${campaignId}`)
+            .then(response => response.json())
+            .then(data => {
+                const kabarTerbaruContainer = document.getElementById('kabarTerbaru');
+                kabarTerbaruContainer.innerHTML = ''; // Clear existing content
+                if (data && Array.isArray(data)) {
+                    data.forEach(news => {
+                        const newsCard = document.createElement('div');
+                        newsCard.classList.add(
+                            'news-card',
+                            'bg-white',
+                            'rounded-xl',
+                            'p-4',
+                            'shadow-md',
+                            'border',
+                            'border-gray-300',
+                            'gap-4'
+                        );
 
-                                // Pecah deskripsi menjadi paragraf
-                                const descriptionParagraphs = news.description.split('\n').map(paragraph => {
-                                    return `<p class="text-gray-700 text-justify paragraph">${paragraph.trim()}</p>`;
-                                }).join('');
+                        // Pecah deskripsi menjadi paragraf
+                        const descriptionParagraphs = news.description.split('\n').map(paragraph => {
+                            return `<p class="text-gray-700 text-justify paragraph">${paragraph.trim()}</p>`;
+                        }).join('');
 
-                                // Tambahkan elemen untuk teks dan gambar
-                                newsCard.innerHTML = `
+                        // Tambahkan elemen untuk teks dan gambar
+                        newsCard.innerHTML = `
                                     <p class="text-sm text-gray-500">${news.latest_news_date}</p>
                                     <div class="news-description text-clamp-3">
                                         ${descriptionParagraphs}
@@ -381,40 +387,40 @@
                                     <img src="${news.image}" class="news-image hidden w-full h-48 object-contain rounded-xl mt-4" alt="${news.title || 'Kabar Terbaru'}">
                                 `;
 
-                                // Event listener untuk toggle deskripsi dan gambar
-                                newsCard.addEventListener('click', () => {
-                                    const descriptionEl = newsCard.querySelector('.news-description');
-                                    const imageEl = newsCard.querySelector('.news-image');
-                                    if (descriptionEl.style.webkitLineClamp) {
-                                        // Tampilkan semua deskripsi dan gambar
-                                        descriptionEl.style.webkitLineClamp = '';
-                                        descriptionEl.style.display = 'block';
-                                        imageEl.classList.remove('hidden');
-                                        imageEl.classList.add('visible');
-                                    } else {
-                                        // Sembunyikan deskripsi tambahan dan gambar
-                                        descriptionEl.style.webkitLineClamp = '3';
-                                        descriptionEl.style.display = '-webkit-box';
-                                        imageEl.classList.remove('visible');
-                                        imageEl.classList.add('hidden');
-                                    }
-                                });
+                        // Event listener untuk toggle deskripsi dan gambar
+                        newsCard.addEventListener('click', () => {
+                            const descriptionEl = newsCard.querySelector('.news-description');
+                            const imageEl = newsCard.querySelector('.news-image');
+                            if (descriptionEl.style.webkitLineClamp) {
+                                // Tampilkan semua deskripsi dan gambar
+                                descriptionEl.style.webkitLineClamp = '';
+                                descriptionEl.style.display = 'block';
+                                imageEl.classList.remove('hidden');
+                                imageEl.classList.add('visible');
+                            } else {
+                                // Sembunyikan deskripsi tambahan dan gambar
+                                descriptionEl.style.webkitLineClamp = '3';
+                                descriptionEl.style.display = '-webkit-box';
+                                imageEl.classList.remove('visible');
+                                imageEl.classList.add('hidden');
+                            }
+                        });
 
-                                kabarTerbaruContainer.appendChild(newsCard);
-                            });
-                        } else {
-                            kabarTerbaruContainer.innerHTML = '<p class="text-gray-600">Belum ada kabar terbaru.</p>';
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error fetching latest news:", error);
-                        document.getElementById('kabarTerbaru').innerHTML =
-                            '<p class="text-gray-600">Gagal memuat kabar terbaru.</p>';
+                        kabarTerbaruContainer.appendChild(newsCard);
                     });
-            }
+                } else {
+                    kabarTerbaruContainer.innerHTML = '<p class="text-gray-600">Belum ada kabar terbaru.</p>';
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching latest news:", error);
+                document.getElementById('kabarTerbaru').innerHTML =
+                    '<p class="text-gray-600">Gagal memuat kabar terbaru.</p>';
+            });
+    }
 
     if (campaignId) {
-        fetch(`http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaigns/${campaignId}`)
+        fetch(`${apiUrl}/campaigns/${campaignId}`)
             .then(response => response.json())
             .then(campaign => {
                 const campaignDescriptionContainer = document.getElementById("campaignDescriptionContainer");

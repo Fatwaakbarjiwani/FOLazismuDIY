@@ -66,6 +66,9 @@
         @include('components.bottomNav')
     </div>
 
+    <script>
+        const apiUrl = "{{ env('API_URL') }}";
+    </script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>

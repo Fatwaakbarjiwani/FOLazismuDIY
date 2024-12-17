@@ -1,7 +1,5 @@
 // Fetch data from the API and dynamically add to Swiper
-fetch(
-    "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaign/get-recomendation"
-)
+fetch(`${apiUrl}/campaign/get-recomendation`)
     .then((response) => response.json())
     .then((data) => {
         const campaignList = document.getElementById("campaignList");
@@ -81,16 +79,16 @@ fetch(
     .catch((error) => {
         console.error("Error fetching campaigns:", error);
     });
-    
+
 fetch(
-    "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaign/get-priority"
+    `${apiUrl}/campaign/get-priority`
 )
     .then((response) => response.json())
     .then((data) => {
         const campaignPopular = document.getElementById("campaignPopular");
         campaignPopular.innerHTML = "";
 
-        data.slice(0,5).forEach((campaign) => {
+        data.slice(0, 5).forEach((campaign) => {
             const campaignItem = `
                         <div  onclick="window.location.href='detailCampaign?id=${
                             campaign.id
@@ -122,7 +120,7 @@ fetch(
         `;
             campaignPopular.innerHTML += campaignItem;
         });
-    })
+    });
 
 function handleSearch(event) {
     if (event.key === "Enter") {

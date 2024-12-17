@@ -49,9 +49,9 @@ Route::get('/formPembayaran_ziska', function () {
 });
 
 // routes/web.php
-use App\Http\Controllers\CampaignController;
+// use App\Http\Controllers\CampaignController;
 
-Route::get('/api/campaigns', [CampaignController::class, 'getCampaigns']);
+// Route::get('/api/campaigns', [CampaignController::class, 'getCampaigns']);
 
 
 // =====

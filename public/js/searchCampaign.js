@@ -13,7 +13,7 @@
         if (!searchTerm) return; // Exit if no search term is found
 
         const response = await fetch(
-            `http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaign/get-active?page=${currentPage}&search=${encodeURIComponent(
+            `${apiUrl}/campaign/get-active?page=${currentPage}&search=${encodeURIComponent(
                 searchTerm
             )}`
         );

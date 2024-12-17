@@ -1,14 +1,13 @@
 let currentPage = 1;
-
-async function fetchCampaigns(page) {
+async function getCampaigns(page) {
     try {
         const response = await fetch(
-            `http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaign/get-active?page=${page}`
+            `${apiUrl}/campaign/get-active?page=${page}`
         );
         const data = await response.json();
 
-        const campaignList = document.getElementById("campaignList");
-        campaignList.innerHTML = ""; // Clear previous content
+        const campaigns = document.getElementById("campaignCard");
+        campaigns.innerHTML = ""; // Clear previous content
 
         data.data.forEach((campaign) => {
             const campaignCard = `
@@ -54,7 +53,7 @@ async function fetchCampaigns(page) {
                     </div>
                 </div>
             </div>`;
-            campaignList.innerHTML += campaignCard;
+            campaigns.innerHTML += campaignCard;
         });
 
         document.getElementById("prevPage").disabled = page === 1;
@@ -67,15 +66,15 @@ async function fetchCampaigns(page) {
 document.getElementById("prevPage").addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
-        fetchCampaigns(currentPage);
+        getCampaigns(currentPage);
     }
 });
 
 document.getElementById("nextPage").addEventListener("click", () => {
     currentPage++;
-    fetchCampaigns(currentPage);
+    getCampaigns(currentPage);
 });
 
 document.addEventListener("DOMContentLoaded", () =>
-    fetchCampaigns(currentPage)
+    getCampaigns(currentPage)
 );

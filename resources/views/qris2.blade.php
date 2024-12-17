@@ -41,7 +41,7 @@
 
         <!-- Tombol aksi -->
         <div class="mt-6 flex flex-wrap justify-center gap-4">
-            <a href="formPembayaran" class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition duration-300 text-sm md:text-base">
+            <a href="formPembayaran_ziska" class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition duration-300 text-sm md:text-base">
                 Kembali
             </a>
             <!-- Tombol Download dengan background gradasi orange -->
@@ -54,6 +54,9 @@
         </p>
     </div>
 </body>
+ <script>
+        const url = "{{ env('API_URL') }}";
+    </script>
 <script>
     // Fungsi untuk memuat data dari localStorage
     const nama = localStorage.getItem('namaDonatur') || 'Nama belum diatur';
@@ -86,7 +89,7 @@
     // Fungsi untuk mengambil data QRIS
     async function fetchQrData() {
         const createdTime = localStorage.getItem('Ct'); // Ganti dengan kunci yang sesuai jika berbeda
-        const apiUrl =` http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/generate-qris?createdTime=${createdTime}`;
+        const apiUrl =`${url}/generate-qris?createdTime=${createdTime}`;
 
         try {
             const response = await fetch(apiUrl);

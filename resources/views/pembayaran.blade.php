@@ -62,11 +62,14 @@
     </button>
   </div>
 
+   <script>
+        const apiUrl = "{{ env('API_URL') }}";
+    </script>
   <script>
     async function fetchCampaignData() {
       const urlParams = new URLSearchParams(window.location.search);
       const campaignId = urlParams.get('id');
-      const apiEndpoint = `http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaigns/${campaignId}`;
+      const apiEndpoint = `${apiUrl}/campaigns/${campaignId}`;
 
       try {
         const response = await fetch(apiEndpoint);
