@@ -5,6 +5,7 @@
     <meta property="og:title" content="Judul Kampanye Anda" />
     <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" />
     <meta property="og:url" content="https://jalankebaikan.id/campaign-link" />
+    <meta property="og:type" content="website" />
     {{-- <meta charset="utf-8" /> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
@@ -212,8 +213,6 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Fungsi untuk memperbarui metadata Open Graph
         function updateOpenGraphMetadata(title, image, url) {
-            console.log(title);
-            
             document.querySelector('meta[property="og:title"]').content = title;
             document.querySelector('meta[property="og:image"]').content = image;
             document.querySelector('meta[property="og:url"]').content = url;
