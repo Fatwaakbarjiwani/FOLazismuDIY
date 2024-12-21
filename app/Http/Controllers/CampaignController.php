@@ -18,9 +18,22 @@ class CampaignController extends Controller
 
     return response()->json($campaign);
 }
-public function showCampaign($id)
+
+public function showCampaign(Request $request)
 {
-    $apiUrl = url('/api/campaigns/' . $id);
-    return view('campaign-detail', compact('id', 'apiUrl'));
+    $campaignId = $request->query('id'); // Ambil ID dari query string
+    if (!$campaignId) {
+        abort(400, 'Campaign ID is missing'); // Jika ID tidak ada
+    }
+
+    $campaign = Campaign::with('category')->find($campaignId); // Ambil data campaign
+    if (!$campaign) {
+        abort(404, 'Campaign not found'); // Jika campaign tidak ditemukan
+    }
+
+    return view('detailCampaign', [
+        'campaign' => $campaign // Kirim data campaign ke view
+    ]);
 }
+
 }
