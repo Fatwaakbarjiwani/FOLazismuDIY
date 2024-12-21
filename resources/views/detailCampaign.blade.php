@@ -3,7 +3,7 @@
 
 <head>
     <meta property="og:title" content="Campaign Title" id="ogTitle" />
-    <meta property="og:description" content="Campaign description goes here." id="ogDescription" />
+    {{-- <meta property="og:description" content="Campaign description goes here." id="ogDescription" /> --}}
     <meta property="og:image" content="https://example.com/path/to/campaign-thumbnail.jpg" id="ogImage" />
     <meta property="og:url" content="https://example.com/campaign-link" id="ogUrl" />
     <meta property="og:type" content="website" />
@@ -211,29 +211,84 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
-   function handleShareLink() {
-    const campaignTitle = document.getElementById('campaignTitle').textContent;
-    const campaignDescription = "Dukung campaign ini untuk membantu lebih banyak orang!";
-    const campaignImage = document.getElementById('campaignImage').src;
-    const campaignUrl = window.location.href;
+    function updateOpenGraphMetadata(title, description, image, url) {
+        document.getElementById('ogTitle').setAttribute('content', title);
+        // document.getElementById('ogDescription').setAttribute('content', description);
+        document.getElementById('ogImage').setAttribute('content', image);
+        document.getElementById('ogUrl').setAttribute('content', url);
+    }
 
-    // Update Open Graph metadata
-    document.getElementById('ogTitle').setAttribute('content', campaignTitle);
-    document.getElementById('ogDescription').setAttribute('content', campaignDescription);
-    document.getElementById('ogImage').setAttribute('content', campaignImage);
-    document.getElementById('ogUrl').setAttribute('content', campaignUrl);
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Campaign link copied to clipboard with a thumbnail!');
+        }).catch(() => {
+            alert('Failed to copy campaign link. Please try again.');
+        });
+    }
 
-    // Copy link to clipboard
-    const tempInput = document.createElement('input');
-    document.body.appendChild(tempInput);
-    tempInput.value = campaignUrl;
-    tempInput.select();
-    document.execCommand('copy');
-    document.body.removeChild(tempInput);
+    function handleShareLink() {
+        const campaignTitle = document.getElementById('campaignTitle').textContent;
+        const campaignDescription = "Dukung campaign ini untuk membantu lebih banyak orang!";
+        const campaignImage = document.getElementById('campaignImage').src;
+        const campaignUrl = window.location.href;
 
-    alert('Campaign link copied to clipboard with a thumbnail!');
-}
+        updateOpenGraphMetadata(campaignTitle, campaignDescription, campaignImage, campaignUrl);
+        copyToClipboard(campaignUrl);
+    }
 
+    function toggleVisibility(section) {
+        const sections = {
+            campaign: document.getElementById('campaignDetail'),
+            donor: document.getElementById('donorList'),
+            report: document.getElementById('laporanDonasi'),
+        };
+
+        Object.keys(sections).forEach(key => {
+            sections[key].classList.toggle('hidden', key !== section);
+        });
+
+        if (section === 'donor') fetchDonors();
+    }
+
+    function fetchData(url, onSuccess, onError) {
+        fetch(url)
+            .then(response => response.json())
+            .then(onSuccess)
+            .catch(onError);
+    }
+
+    function renderDonors(data) {
+        const donorListContainer = document.getElementById('donors');
+        donorListContainer.innerHTML = '';
+
+        if (data && data.data && Array.isArray(data.data)) {
+            data.data.forEach(transaction => {
+                const donorCard = document.createElement('li');
+                donorCard.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'mb-2', 'shadow-md');
+                donorCard.innerHTML = `
+                <p class="text-sm text-gray-700"><span class="font-semibold">Tanggal:</span> ${new Date(transaction.transaction_date).toLocaleDateString()}</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Donatur:</span> ${transaction.donatur || 'Anonim'}</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Pesan:</span> ${transaction.message || '-'}</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Nominal:</span> Rp ${transaction.transaction_amount.toLocaleString()}</p>
+            `;
+                donorListContainer.appendChild(donorCard);
+            });
+        } else {
+            donorListContainer.innerHTML = '<li class="text-gray-600">Belum ada transaksi.</li>';
+        }
+    }
+
+    function fetchDonors() {
+        const campaignId = new URLSearchParams(window.location.search).get('id');
+        if (!campaignId) return;
+
+        fetchData(
+            `${apiUrl}/transactions/campaign/${campaignId}`,
+            renderDonors,
+            () => document.getElementById('donors').innerHTML =
+            '<li class="text-gray-600">Gagal memuat data donatur.</li>'
+        );
+    }
 
     function showDetail(section) {
         const campaignDetail = document.getElementById('campaignDetail');
@@ -459,6 +514,7 @@
                         campaignDescriptionContainer.appendChild(pElement); // Tambahkan ke kontainer
                     }
                 });
+                updateOpenGraphMetadata(campaign.campaign_name, campaign.campaign_thumbnail, url)
                 document.getElementById("campaignImage").src = campaign.campaign_thumbnail;
                 document.getElementById("campaignTitle").textContent = campaign.campaign_name;
                 document.getElementById("campaignCategory").textContent =
