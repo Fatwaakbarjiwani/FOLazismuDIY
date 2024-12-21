@@ -2,6 +2,18 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="TOLONG! Ribuan Korban Terdampak Akibat Kebakaran" />
+    <meta property="og:description" content="Keterlibatan Anda Sangat Berarti - Yuk Bantu Mereka Sekarang!" />
+    <meta property="og:image" content="https://res.cloudinary.com/donation-application/image/upload/v1732340877/campaign_images/giss9oehuq8eof3z0svs.jpg" />
+    <meta property="og:url" content="https://www.amalsoleh.com/bantukorban" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TOLONG! Ribuan Korban Terdampak Akibat Kebakaran" />
+    <meta name="twitter:description" content="Keterlibatan Anda Sangat Berarti - Yuk Bantu Mereka Sekarang!" />
+    <meta name="twitter:image" content="https://res.cloudinary.com/donation-application/image/upload/v1732340877/campaign_images/giss9oehuq8eof3z0svs.jpg" />
+    <title>Bantu Korban Kebakaran</title>
     <title>Lazismu - Campaign Detail</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -123,7 +135,7 @@
 
                     <!-- Share and Toggle Buttons -->
                     <div class="flex flex-wrap items-center gap-2 lg:gap-3 mt-2">
-                        <p class="text-gray-600" >Bagikan Campaign</p>
+                        <p class="text-gray-600">Bagikan Campaign</p>
                         <button id="shareButton"
                             class="btn-share text-sm lg:text-lg items-center hover:scale-110 flex gap-2 border-2 border-primary px-1 rounded-lg font-semibold text-primary">
                             Share <i class="fas fa-share-alt"></i>
@@ -208,12 +220,12 @@
         id: 12345,
         title: "Judul Campaign Luar Biasa",
         description: "Deskripsi singkat tentang campaign luar biasa ini.",
-        thumbnail: "https://via.placeholder.com/150",
+        thumbnail: "https://res.cloudinary.com/donation-application/image/upload/v1732340877/campaign_images/giss9oehuq8eof3z0svs.jpg",
     };
 
     // URL share
     const shareUrl =
-        `${window.location.origin}/campaign/${campaign.id}?title=${encodeURIComponent(campaign.title)}&image=${encodeURIComponent(campaign.thumbnail)}`;
+        `${window.location.origin}/detailCampaign?id=${campaign.id}`;
 
     // Tombol share
     const shareButton = document.getElementById('shareButton');
