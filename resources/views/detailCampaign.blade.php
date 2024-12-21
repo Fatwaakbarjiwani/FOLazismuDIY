@@ -213,12 +213,12 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
-    function updateOpenGraphMetadata(title, description, image, url) {
-        document.getElementById('ogTitle').setAttribute('content', title);
-        document.getElementById('ogDescription').setAttribute('content', description);
-        document.getElementById('ogImage').setAttribute('content', image);
-        document.getElementById('ogUrl').setAttribute('content', url);
-    }
+   function updateOpenGraphMetadata(title, description, image, url) {
+  document.getElementById('ogTitle').content = title;
+  document.getElementById('ogDescription').content = description;
+  document.getElementById('ogImage').content = image;
+  document.getElementById('ogUrl').content = url;
+}
 
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
