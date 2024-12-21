@@ -3,7 +3,7 @@
 
 <head>
     <meta property="og:title" content="Campaign Title" id="ogTitle" />
-    {{-- <meta property="og:description" content="Campaign description goes here." id="ogDescription" /> --}}
+    <meta property="og:description" content="Campaign description goes here." id="ogDescription" />
     <meta property="og:image" content="https://example.com/path/to/campaign-thumbnail.jpg" id="ogImage" />
     <meta property="og:url" content="https://example.com/campaign-link" id="ogUrl" />
     <meta property="og:type" content="website" />
@@ -213,7 +213,7 @@
 <script>
     function updateOpenGraphMetadata(title, description, image, url) {
         document.getElementById('ogTitle').setAttribute('content', title);
-        // document.getElementById('ogDescription').setAttribute('content', description);
+        document.getElementById('ogDescription').setAttribute('content', description);
         document.getElementById('ogImage').setAttribute('content', image);
         document.getElementById('ogUrl').setAttribute('content', url);
     }
@@ -231,6 +231,8 @@
         const campaignDescription = "Dukung campaign ini untuk membantu lebih banyak orang!";
         const campaignImage = document.getElementById('campaignImage').src;
         const campaignUrl = window.location.href;
+        console.log(campaignTitle,campaignImage);
+        
 
         updateOpenGraphMetadata(campaignTitle, campaignDescription, campaignImage, campaignUrl);
         copyToClipboard(campaignUrl);
@@ -514,7 +516,6 @@
                         campaignDescriptionContainer.appendChild(pElement); // Tambahkan ke kontainer
                     }
                 });
-                updateOpenGraphMetadata(campaign.campaign_name, campaign.campaign_thumbnail, url)
                 document.getElementById("campaignImage").src = campaign.campaign_thumbnail;
                 document.getElementById("campaignTitle").textContent = campaign.campaign_name;
                 document.getElementById("campaignCategory").textContent =
