@@ -4,7 +4,7 @@
 <head>
     <meta property="og:title" content="Judul Kampanye Anda" />
     <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" />
-    <meta property="og:url" content="https://jalankebaikan.id/campaign-link" />
+    <meta property="og:url" content="https://jalankebaikan.id/campaign-link?cache_buster=12345" />
     <meta property="og:type" content="website" />
     {{-- <meta charset="utf-8" /> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
