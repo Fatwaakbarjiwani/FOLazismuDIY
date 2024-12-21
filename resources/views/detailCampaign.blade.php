@@ -216,16 +216,9 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
-    const campaign = {
-        id: 12345,
-        title: "Judul Campaign Luar Biasa",
-        description: "Deskripsi singkat tentang campaign luar biasa ini.",
-        thumbnail: "https://res.cloudinary.com/donation-application/image/upload/v1732340877/campaign_images/giss9oehuq8eof3z0svs.jpg",
-    };
-
     // URL share
     const shareUrl =
-        `${window.location.origin}/detailCampaign?id=${campaign.id}`;
+        `${window.location.origin}/detailCampaign?id=${campaignId}`;
 
     // Tombol share
     const shareButton = document.getElementById('shareButton');
