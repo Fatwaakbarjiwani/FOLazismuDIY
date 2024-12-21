@@ -21,6 +21,9 @@ Route::get('/', function () {
 Route::get('/campaign', function () {
     return view('campaign');
 });
+Route::get('/laporan', function () {
+    return view('laporan');
+});
 
 Route::get('/campaign/{id}', [CampaignController::class, 'showCampaign'])->name('campaign.detail');
 
