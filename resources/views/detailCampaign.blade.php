@@ -227,6 +227,7 @@
     }
 
     function handleShareLink() {
+        const campaignUrl = window.location.href;
         copyToClipboard(campaignUrl);
     }
 
