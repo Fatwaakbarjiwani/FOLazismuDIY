@@ -211,7 +211,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Fungsi untuk memperbarui metadata Open Graph
-        function updateOpenGraphMetadata(title, description, image, url) {
+        function updateOpenGraphMetadata(title, image, url) {
+            console.log(title);
+            
             document.querySelector('meta[property="og:title"]').content = title;
             document.querySelector('meta[property="og:image"]').content = image;
             document.querySelector('meta[property="og:url"]').content = url;
