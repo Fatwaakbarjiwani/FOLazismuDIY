@@ -500,8 +500,7 @@
         fetch(`${apiUrl}/campaigns/${campaignId}`)
             .then(response => response.json())
             .then(campaign => {
-
-
+                updateMetaTags(campaign);
                 const campaignDescriptionContainer = document.getElementById("campaignDescriptionContainer");
                 const descriptionText = campaign.description;
 
@@ -567,6 +566,33 @@
                 }
             })
             .catch(error => console.error("Error fetching campaign data:", error));
+    }
+
+    function updateMetaTags(campaign) {
+        // Perbarui tag meta Open Graph
+        setMetaTag('og:title', campaign.campaign_name);
+        setMetaTag('og:description', campaign.description);
+        setMetaTag('og:image', campaign.campaign_thumbnail);
+        setMetaTag('og:url', window.location.href);
+
+        // Perbarui tag meta Twitter
+        setMetaTag('twitter:title', campaign.campaign_name);
+        setMetaTag('twitter:description', campaign.description);
+        setMetaTag('twitter:image', campaign.campaign_thumbnail);
+    }
+
+    function setMetaTag(property, content) {
+        let metaTag = document.querySelector(`meta[property='${property}'], meta[name='${property}']`);
+        if (!metaTag) {
+            metaTag = document.createElement('meta');
+            if (property.startsWith('og:') || property.startsWith('twitter:')) {
+                metaTag.setAttribute('property', property);
+            } else {
+                metaTag.setAttribute('name', property);
+            }
+            document.head.appendChild(metaTag);
+        }
+        metaTag.setAttribute('content', content);
     }
 </script>
 
