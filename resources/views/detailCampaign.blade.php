@@ -219,8 +219,7 @@
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
     // URL share
-    const shareUrl =
-        `${window.location.origin}/detailCampaign?id=${campaignId}`;
+    const shareUrl = window.location.href;
 
     // Tombol share
     const shareButton = document.getElementById('shareButton');
