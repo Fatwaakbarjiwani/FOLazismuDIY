@@ -2,11 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta property="og:title" content="Campaign Title" id="ogTitle" />
-    <meta property="og:description" content="Campaign description goes here." id="ogDescription" />
-    <meta property="og:image" content="https://example.com/path/to/campaign-thumbnail.jpg" id="ogImage" />
-    <meta property="og:url" content="https://example.com/campaign-link" id="ogUrl" />
-    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Judul Kampanye" id="ogTitle" />
+    <meta property="og:description" content="Deskripsi Singkat Kampanye" id="ogDescription" />
+    <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
+    <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
+</head>
+
+<head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
@@ -497,6 +499,11 @@
                     campaign.campaign_thumbnail,
                     window.location.href
                 );
+                console.log(campaign.campaign_name,
+                    campaign.description,
+                    campaign.campaign_thumbnail,
+                    window.location.href);
+
                 const campaignDescriptionContainer = document.getElementById("campaignDescriptionContainer");
                 const descriptionText = campaign.description;
 
