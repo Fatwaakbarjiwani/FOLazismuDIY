@@ -3,7 +3,7 @@
 
 <head>
     <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
-    <meta property="og:title" content="Judul Campaign" id="ogTitle" />
+    <meta property="og:title" content="Judul Campaigns" id="ogTitle" />
     <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
     {{-- <meta charset="utf-8" /> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
