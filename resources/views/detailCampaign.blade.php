@@ -3,7 +3,7 @@
 
 <head>
     <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
-    <meta property="og:title" content="Judul Campaigns" id="ogTitle" />
+    <meta property="og:title" content="Judul Campaign LS" id="ogTitle" />
     <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
     {{-- <meta charset="utf-8" /> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -213,6 +213,8 @@
         document.getElementById('ogTitle').content = title || 'Default Campaign Title';
         document.getElementById('ogImage').content = image || 'default-image.jpg';
         document.getElementById('ogUrl').content = url || window.location.href;
+        console.log(title, image, url);
+
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -225,10 +227,6 @@
                     campaign.campaign_thumbnail,
                     window.location.href
                 );
-                console.log( campaign.campaign_name,
-                    campaign.campaign_thumbnail,
-                    window.location.href);
-                
             })
             .catch(() => {
                 console.error("Failed to fetch campaign data");
