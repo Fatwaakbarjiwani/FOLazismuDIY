@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta property="og:title" content="Campaign Title" id="ogTitle" />
-    <meta property="og:image" content="https://example.com/path/to/campaign-thumbnail.jpg" id="ogImage" />
-    <meta property="og:url" content="https://example.com/campaign-link" id="ogUrl" />
-    <meta charset="utf-8" />
+    <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
+    <meta property="og:title" content="Judul Campaign" id="ogTitle" />
+    <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
+    {{-- <meta charset="utf-8" /> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -209,39 +209,38 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
-    function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert('Campaign link copied to clipboard with a thumbnail!');
-        }).catch(() => {
-            alert('Failed to copy campaign link. Please try again.');
-        });
+    function updateOpenGraphMetadata(title, image, url) {
+        document.getElementById('ogTitle').content = title || 'Default Campaign Title';
+        document.getElementById('ogImage').content = image || 'default-image.jpg';
+        document.getElementById('ogUrl').content = url || window.location.href;
     }
 
-    function handleShareLink() {
-        const campaignTitle = document.getElementById('campaignTitle').textContent;
-        const campaignImage = document.getElementById('campaignImage').src;
-        const campaignUrl = window.location.href;
-
-        // Update Open Graph metadata
-        document.getElementById('ogTitle').setAttribute('content', campaignTitle);
-        document.getElementById('ogImage').setAttribute('content', campaignImage);
-        document.getElementById('ogUrl').setAttribute('content', campaignUrl);
-
-        // Copy link to clipboard
-        navigator.clipboard.writeText(campaignUrl)
-            .then(() => {
-                alert('Campaign link copied to clipboard!');
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch(`${apiUrl}/campaigns/${campaignId}`)
+            .then(response => response.json())
+            .then(campaign => {
+                // Update Open Graph metadata dynamically
+                updateOpenGraphMetadata(
+                    campaign.campaign_name,
+                    campaign.campaign_thumbnail,
+                    window.location.href
+                );
+                console.log( campaign.campaign_name,
+                    campaign.campaign_thumbnail,
+                    window.location.href);
+                
             })
             .catch(() => {
-                alert('Failed to copy campaign link. Please try again.');
+                console.error("Failed to fetch campaign data");
             });
+    });
+
+    function handleShareLink() {
+        const campaignUrl = window.location.href;
+        navigator.clipboard.writeText(campaignUrl)
+            .then(() => alert('Link berhasil disalin!'))
+            .catch(() => alert('Gagal menyalin link.'));
     }
-
-
-    // function handleShareLink() {
-    //     const campaignUrl = window.location.href;
-    //     copyToClipboard(campaignUrl);
-    // }
 
     function toggleVisibility(section) {
         const sections = {
