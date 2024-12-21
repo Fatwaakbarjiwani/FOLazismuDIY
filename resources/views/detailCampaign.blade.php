@@ -209,13 +209,26 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
-    function updateOpenGraphMetadata(title, image, url) {
-        document.getElementById('ogImage').content = image;
-        document.getElementById('ogTitle').content = title;
-        document.getElementById('ogUrl').content = url;
-        console.log(title, image, url);
-        
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fungsi untuk memperbarui metadata Open Graph
+        function updateOpenGraphMetadata(title, description, image, url) {
+            document.querySelector('meta[property="og:title"]').content = title;
+            document.querySelector('meta[property="og:image"]').content = image;
+            document.querySelector('meta[property="og:url"]').content = url;
+        }
+
+        // Contoh cara mendapatkan data kampanye dari server (misalnya menggunakan Fetch API)
+
+        fetch(`${apiUrl}/campaigns/${campaignId}`)
+            .then(response => response.json())
+            .then(campaign => {
+                updateOpenGraphMetadata(
+                    campaign.campaign_name,
+                    campaign.campaign_thumbnail,
+                    window.location.href
+                );
+            })
+    });
 
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
@@ -490,11 +503,7 @@
         fetch(`${apiUrl}/campaigns/${campaignId}`)
             .then(response => response.json())
             .then(campaign => {
-                updateOpenGraphMetadata(
-                    campaign.campaign_name,
-                    campaign.campaign_thumbnail,
-                    window.location.href
-                );
+
 
                 const campaignDescriptionContainer = document.getElementById("campaignDescriptionContainer");
                 const descriptionText = campaign.description;
