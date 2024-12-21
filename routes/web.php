@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\CampaignController;
 use Illuminate\Support\Facades\Route;
 
 /*

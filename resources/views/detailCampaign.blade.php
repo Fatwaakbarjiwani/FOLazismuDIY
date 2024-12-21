@@ -569,31 +569,61 @@
     }
 
     function updateMetaTags(campaign) {
-        // Perbarui tag meta Open Graph
-        setMetaTag('og:title', campaign.campaign_name);
-        setMetaTag('og:description', campaign.description);
-        setMetaTag('og:image', campaign.campaign_thumbnail);
-        setMetaTag('og:url', window.location.href);
+        // Update title
+        document.title = campaign.campaign_name;
 
-        // Perbarui tag meta Twitter
-        setMetaTag('twitter:title', campaign.campaign_name);
-        setMetaTag('twitter:description', campaign.description);
-        setMetaTag('twitter:image', campaign.campaign_thumbnail);
-    }
-
-    function setMetaTag(property, content) {
-        let metaTag = document.querySelector(`meta[property='${property}'], meta[name='${property}']`);
-        if (!metaTag) {
-            metaTag = document.createElement('meta');
-            if (property.startsWith('og:') || property.startsWith('twitter:')) {
-                metaTag.setAttribute('property', property);
-            } else {
-                metaTag.setAttribute('name', property);
-            }
-            document.head.appendChild(metaTag);
+        // Update meta description
+        const descriptionMeta = document.querySelector('meta[name="description"]');
+        if (descriptionMeta) {
+            descriptionMeta.setAttribute('content', campaign.description);
+        } else {
+            const newDescriptionMeta = document.createElement('meta');
+            newDescriptionMeta.name = "description";
+            newDescriptionMeta.content = campaign.description;
+            document.head.appendChild(newDescriptionMeta);
         }
-        metaTag.setAttribute('content', content);
+
+        // Update og:title
+        const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+        if (ogTitleMeta) {
+            ogTitleMeta.setAttribute('content', campaign.campaign_name);
+        } else {
+            const newOgTitleMeta = document.createElement('meta');
+            newOgTitleMeta.setAttribute('property', 'og:title');
+            newOgTitleMeta.setAttribute('content', campaign.campaign_name);
+            document.head.appendChild(newOgTitleMeta);
+        }
+
+        // Update og:description
+        const ogDescriptionMeta = document.querySelector('meta[property="og:description"]');
+        if (ogDescriptionMeta) {
+            ogDescriptionMeta.setAttribute('content', campaign.description);
+        } else {
+            const newOgDescriptionMeta = document.createElement('meta');
+            newOgDescriptionMeta.setAttribute('property', 'og:description');
+            newOgDescriptionMeta.setAttribute('content', campaign.description);
+            document.head.appendChild(newOgDescriptionMeta);
+        }
+
+        // Update og:image
+        const ogImageMeta = document.querySelector('meta[property="og:image"]');
+        if (ogImageMeta) {
+            ogImageMeta.setAttribute('content', campaign.campaign_thumbnail);
+        } else {
+            const newOgImageMeta = document.createElement('meta');
+            newOgImageMeta.setAttribute('property', 'og:image');
+            newOgImageMeta.setAttribute('content', campaign.campaign_thumbnail);
+            document.head.appendChild(newOgImageMeta);
+        }
     }
+
+    // Example usage: Fetch campaign data and update meta tags
+    fetch(`${apiUrl}/campaigns/${campaignId}`)
+        .then(response => response.json())
+        .then(campaign => {
+            updateMetaTags(campaign);
+        })
+        .catch(error => console.error("Error fetching campaign data:", error));
 </script>
 
 </html>
