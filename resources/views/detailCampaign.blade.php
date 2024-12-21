@@ -216,7 +216,6 @@
         document.getElementById('ogDescription').setAttribute('content', description);
         document.getElementById('ogImage').setAttribute('content', image);
         document.getElementById('ogUrl').setAttribute('content', url);
-
     }
 
     function copyToClipboard(text) {
@@ -488,14 +487,15 @@
     }
 
     if (campaignId) {
-        const campaignTitle = document.getElementById('campaignTitle').textContent;
-        const campaignDescription = "Dukung campaign ini untuk membantu lebih banyak orang!";
-        const campaignImage = document.getElementById('campaignImage').src;
-        const campaignUrl = window.location.href;
-        updateOpenGraphMetadata(campaignTitle, campaignDescription, campaignImage, campaignUrl);
         fetch(`${apiUrl}/campaigns/${campaignId}`)
             .then(response => response.json())
             .then(campaign => {
+                updateOpenGraphMetadata(
+                    campaign.campaign_name,
+                    campaign.description,
+                    campaign.campaign_thumbnail,
+                    window.location.href
+                );
                 const campaignDescriptionContainer = document.getElementById("campaignDescriptionContainer");
                 const descriptionText = campaign.description;
 
