@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
-    <meta property="og:title" content="Judul Kampanye" id="ogTitle" />
-    <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
+    <meta property="og:title" content="Judul Kampanye Anda" />
+    <meta property="og:image" content="https://contoh.com/gambar-kampanye.jpg" />
+    <meta property="og:url" content="https://contoh.com/link-kampanye" />
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
@@ -210,11 +210,10 @@
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
     function updateOpenGraphMetadata(title, image, url) {
-        document.getElementById('ogImage').content = image;
-        document.getElementById('ogTitle').content = title;
-        document.getElementById('ogUrl').content = url;
-        console.log(title, image, url);
-        
+        document.querySelector('meta[property="og:title"]').content = title;
+        document.querySelector('meta[property="og:image"]').content = image;
+        document.querySelector('meta[property:og:url"]').content = url;
+
     }
 
     function copyToClipboard(text) {
