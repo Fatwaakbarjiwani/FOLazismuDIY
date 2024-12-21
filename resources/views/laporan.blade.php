@@ -142,7 +142,7 @@
 
     <script>
         const apiUrl = "{{ env('API_URL') }}";
-        const endpoint = `${apiUrl}/api/get-report`;
+        const endpoint = `${apiUrl}/get-report`;
         const baseUrl = "https://ws.jalankebaikan.id/storage/"; // Base URL for file paths
 
         // Event listener for fetch button
