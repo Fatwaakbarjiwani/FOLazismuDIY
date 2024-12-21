@@ -2,9 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta property="og:title" content="Judul Kampanye" id="ogTitle" />
-    <meta property="og:description" content="Deskripsi Singkat Kampanye" id="ogDescription" />
     <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
+    <meta property="og:title" content="Judul Kampanye" id="ogTitle" />
     <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -210,12 +209,13 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
-   function updateOpenGraphMetadata(title, description, image, url) {
-  document.getElementById('ogTitle').content = title;
-  document.getElementById('ogDescription').content = description;
-  document.getElementById('ogImage').content = image;
-  document.getElementById('ogUrl').content = url;
-}
+    function updateOpenGraphMetadata(title, image, url) {
+        document.getElementById('ogImage').content = image;
+        document.getElementById('ogTitle').content = title;
+        document.getElementById('ogUrl').content = url;
+        console.log(title, image, url);
+        
+    }
 
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
@@ -492,14 +492,9 @@
             .then(campaign => {
                 updateOpenGraphMetadata(
                     campaign.campaign_name,
-                    campaign.description,
                     campaign.campaign_thumbnail,
                     window.location.href
                 );
-                console.log(campaign.campaign_name,
-                    campaign.description,
-                    campaign.campaign_thumbnail,
-                    window.location.href);
 
                 const campaignDescriptionContainer = document.getElementById("campaignDescriptionContainer");
                 const descriptionText = campaign.description;
