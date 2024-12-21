@@ -2,10 +2,6 @@
 <html lang="en">
 
 <head>
-    <meta property="og:title" content="Judul Kampanye Anda" />
-    <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" />
-    <meta property="og:url" content="https://jalankebaikan.id/campaign-link?cache_buster=12345" />
-    <meta property="og:type" content="website" />
     {{-- <meta charset="utf-8" /> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
@@ -210,26 +206,6 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Fungsi untuk memperbarui metadata Open Graph
-        function updateOpenGraphMetadata(title, image, url) {
-            document.querySelector('meta[property="og:title"]').content = title;
-            document.querySelector('meta[property="og:image"]').content = image;
-            document.querySelector('meta[property="og:url"]').content = url;
-        }
-
-        // Contoh cara mendapatkan data kampanye dari server (misalnya menggunakan Fetch API)
-
-        fetch(`${apiUrl}/campaigns/${campaignId}`)
-            .then(response => response.json())
-            .then(campaign => {
-                updateOpenGraphMetadata(
-                    campaign.campaign_name,
-                    campaign.campaign_thumbnail,
-                    window.location.href
-                );
-            })
-    });
 
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
