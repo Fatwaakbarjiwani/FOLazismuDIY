@@ -5,7 +5,7 @@
     <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
     <meta property="og:title" content="Judul Kampanye" id="ogTitle" />
     <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
-    <meta charset="utf-8" />
+    {{-- <meta charset="utf-8" /> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -98,7 +98,7 @@
                     alt="Campaign Image">
                 <div class="flex flex-col w-full">
                     <!-- Campaign Title -->
-                    <h2 id="campaignTitle" class="text-2xl font-bold text-gray-900">Campaign Titleww</h2>
+                    <h2 id="campaignTitle" class="text-2xl font-bold text-gray-900">Campaign Title</h2>
                     <!-- Category and Location -->
                     <div class="flex justify-between items-center">
                         <p id="campaignCategory" class="text-orange-500 font-semibold mt-1">Kategori: Category</p>
