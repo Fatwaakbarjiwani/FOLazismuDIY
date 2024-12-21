@@ -22,6 +22,9 @@ Route::get('/campaign', function () {
     return view('campaign');
 });
 
+Route::get('/campaign/{id}', [CampaignController::class, 'showCampaign'])->name('campaign.detail');
+
+
 Route::get('/ziswaf', function () {
     return view('ziswaf');
 });
