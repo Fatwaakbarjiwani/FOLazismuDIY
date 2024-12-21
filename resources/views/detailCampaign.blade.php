@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="TOLONG! Ribuan Korban Terdampak Akibat Kebakaran" />
     <meta property="og:description" content="Keterlibatan Anda Sangat Berarti - Yuk Bantu Mereka Sekarang!" />
-    <meta property="og:image" content="https://res.cloudinary.com/donation-application/image/upload/v1732340877/campaign_images/giss9oehuq8eof3z0svs.jpg" />
+    <meta property="og:image"
+        content="https://res.cloudinary.com/donation-application/image/upload/v1732340877/campaign_images/giss9oehuq8eof3z0svs.jpg" />
     <meta property="og:url" content="https://www.amalsoleh.com/bantukorban" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="TOLONG! Ribuan Korban Terdampak Akibat Kebakaran" />
     <meta name="twitter:description" content="Keterlibatan Anda Sangat Berarti - Yuk Bantu Mereka Sekarang!" />
-    <meta name="twitter:image" content="https://res.cloudinary.com/donation-application/image/upload/v1732340877/campaign_images/giss9oehuq8eof3z0svs.jpg" />
+    <meta name="twitter:image"
+        content="https://res.cloudinary.com/donation-application/image/upload/v1732340877/campaign_images/giss9oehuq8eof3z0svs.jpg" />
     <title>Bantu Korban Kebakaran</title>
     <title>Lazismu - Campaign Detail</title>
     <script src="https://cdn.tailwindcss.com"></script>
