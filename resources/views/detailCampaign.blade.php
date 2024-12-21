@@ -6,9 +6,6 @@
     <meta property="og:description" content="Deskripsi Singkat Kampanye" id="ogDescription" />
     <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
     <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
-</head>
-
-<head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
