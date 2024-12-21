@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
-    <meta property="og:title" content="Judul Kampanye" id="ogTitle" />
-    <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
+    <meta property="og:title" content="Judul Kampanye Anda" />
+    <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" />
+    <meta property="og:url" content="https://jalankebaikan.id/campaign-link" />
     {{-- <meta charset="utf-8" /> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
