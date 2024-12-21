@@ -2,7 +2,12 @@
 <html lang="en">
 
 <head>
-    {{-- <meta charset="utf-8" /> --}}
+    <meta property="og:title" content="Campaign" id="ogTitle" />
+    <meta property="og:description" content="Campaign description goes here." id="ogDescription" />
+    <meta property="og:image" content="https://example.com/path/to/campaign-thumbnail.jpg" id="ogImage" />
+    <meta property="og:url" content="https://example.com/campaign-link" id="ogUrl" />
+    <meta property="og:type" content="website" />
+    <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -206,7 +211,6 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
-
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
             alert('Campaign link copied to clipboard with a thumbnail!');
@@ -216,9 +220,32 @@
     }
 
     function handleShareLink() {
+        const campaignTitle = document.getElementById('campaignTitle').textContent;
+        const campaignDescription = "Dukung campaign ini untuk membantu lebih banyak orang!";
+        const campaignImage = document.getElementById('campaignImage').src;
         const campaignUrl = window.location.href;
-        copyToClipboard(campaignUrl);
+
+        // Update Open Graph metadata
+        document.getElementById('ogTitle').setAttribute('content', campaignTitle);
+        document.getElementById('ogDescription').setAttribute('content', campaignDescription);
+        document.getElementById('ogImage').setAttribute('content', campaignImage);
+        document.getElementById('ogUrl').setAttribute('content', campaignUrl);
+
+        // Copy link to clipboard
+        const tempInput = document.createElement('input');
+        document.body.appendChild(tempInput);
+        tempInput.value = campaignUrl;
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+
+        alert('Campaign link copied to clipboard with a thumbnail!');
     }
+
+    // function handleShareLink() {
+    //     const campaignUrl = window.location.href;
+    //     copyToClipboard(campaignUrl);
+    // }
 
     function toggleVisibility(section) {
         const sections = {
