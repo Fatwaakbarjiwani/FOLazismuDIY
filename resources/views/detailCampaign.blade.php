@@ -2,11 +2,6 @@
 <html lang="en">
 
 <head>
-    <meta property="og:image" content="https://jalankebaikan.id/gambar-kampanye.jpg" id="ogImage" />
-    <meta property="og:title" content="Judul Campaign LS" id="ogTitle" />
-    <meta property="og:url" content="https://jalankebaikan.id/campaign-link" id="ogUrl" />
-    {{-- <meta charset="utf-8" /> --}}
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu - Campaign Detail</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -128,9 +123,9 @@
 
                     <!-- Share and Toggle Buttons -->
                     <div class="flex flex-wrap items-center gap-2 lg:gap-3 mt-2">
-                        <p class="text-gray-600">Bagikan Campaign</p>
-                        <button onclick="handleShareLink()"
-                            class="text-sm lg:text-lg items-center hover:scale-110 flex gap-2 border-2 border-primary px-1 rounded-lg font-semibold text-primary">
+                        <p class="text-gray-600" >Bagikan Campaign</p>
+                        <button id="shareButton"
+                            class="btn-share text-sm lg:text-lg items-center hover:scale-110 flex gap-2 border-2 border-primary px-1 rounded-lg font-semibold text-primary">
                             Share <i class="fas fa-share-alt"></i>
                         </button>
                     </div>
@@ -209,36 +204,37 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script>
-    function updateOpenGraphMetadata(title, image, url) {
-        document.getElementById('ogTitle').content = title || 'Default Campaign Title';
-        document.getElementById('ogImage').content = image || 'default-image.jpg';
-        document.getElementById('ogUrl').content = url || window.location.href;
-        console.log(title, image, url);
+    const campaign = {
+        id: 12345,
+        title: "Judul Campaign Luar Biasa",
+        description: "Deskripsi singkat tentang campaign luar biasa ini.",
+        thumbnail: "https://via.placeholder.com/150",
+    };
 
-    }
+    // URL share
+    const shareUrl =
+        `${window.location.origin}/campaign/${campaign.id}?title=${encodeURIComponent(campaign.title)}&image=${encodeURIComponent(campaign.thumbnail)}`;
 
-    document.addEventListener('DOMContentLoaded', () => {
-        fetch(`${apiUrl}/campaigns/${campaignId}`)
-            .then(response => response.json())
-            .then(campaign => {
-                // Update Open Graph metadata dynamically
-                updateOpenGraphMetadata(
-                    campaign.campaign_name,
-                    campaign.campaign_thumbnail,
-                    window.location.href
-                );
-            })
-            .catch(() => {
-                console.error("Failed to fetch campaign data");
-            });
+    // Tombol share
+    const shareButton = document.getElementById('shareButton');
+
+    shareButton.addEventListener('click', () => {
+        if (navigator.share) {
+            // Gunakan Web Share API
+            navigator.share({
+                    title: campaign.title,
+                    text: campaign.description,
+                    url: shareUrl,
+                })
+                .then(() => console.log('Berhasil dibagikan!'))
+                .catch((error) => console.error('Gagal membagikan:', error));
+        } else {
+            // Fallback: Salin URL ke clipboard
+            navigator.clipboard.writeText(shareUrl)
+                .then(() => alert('Link telah disalin ke clipboard!'))
+                .catch((error) => console.error('Gagal menyalin URL:', error));
+        }
     });
-
-    function handleShareLink() {
-        const campaignUrl = window.location.href;
-        navigator.clipboard.writeText(campaignUrl)
-            .then(() => alert('Link berhasil disalin!'))
-            .catch(() => alert('Gagal menyalin link.'));
-    }
 
     function toggleVisibility(section) {
         const sections = {
