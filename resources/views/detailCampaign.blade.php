@@ -229,8 +229,6 @@
         if (navigator.share) {
             // Gunakan Web Share API
             navigator.share({
-                    title: campaign.title,
-                    text: campaign.description,
                     url: shareUrl,
                 })
                 .then(() => console.log('Berhasil dibagikan!'))
