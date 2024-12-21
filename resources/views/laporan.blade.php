@@ -141,7 +141,8 @@
     </div>
 
     <script>
-        const endpoint = "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/get-report";
+        const apiUrl = "{{ env('API_URL') }}";
+        const endpoint = `${apiUrl}/api/get-report`;
         const baseUrl = "https://ws.jalankebaikan.id/storage/"; // Base URL for file paths
 
         // Event listener for fetch button
