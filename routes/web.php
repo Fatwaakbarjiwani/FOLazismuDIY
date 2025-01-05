@@ -38,6 +38,9 @@ Route::get('/ziska', function () {
 Route::get('/detailCampaign', function () {
     return view('detailCampaign');
 });
+Route::get('/profile', function () {
+    return view('profil');
+});
 Route::get('/searchCampaign', function () {
     return view('searchCampaign');
 });
@@ -82,3 +85,6 @@ Route::get('/qris_ziska', function () {
 });
 
 
+use App\Http\Controllers\UserController;
+
+Route::get('/user/data', [UserController::class, 'fetchUserData']);

@@ -25,6 +25,8 @@
 <body class="bg-gray-100 flex justify-center">
     <div class="w-full sm:w-[500px] bg-white shadow-lg min-h-screen py-16">
         @include('components.header')
+        @include('components.wa')
+
         <img src="image/logooo.jpg" class="bg-gray-200 w-full h-auto object-contain" alt="">
         <div class="bg-white w-full sm:w-3/4 m-auto p-4">
             <div class="bg-white shadow rounded-lg p-4">
@@ -56,7 +58,7 @@
         </div>
         @include('components.bottomNav')
     </div>
-     <script>
+    <script>
         const apiUrl = "{{ env('API_URL') }}";
     </script>
 
@@ -122,7 +124,7 @@
 
         // Event listener untuk dropdown kategori
         categoryDropdown.addEventListener('change', () => {
-            const selectedCategoryId = categoryDropdown.value; 
+            const selectedCategoryId = categoryDropdown.value;
             if (selectedCategoryId !== 'Pilih Kategori') {
                 localStorage.setItem('id', selectedCategoryId); // Simpan ID ke localStorage
             }

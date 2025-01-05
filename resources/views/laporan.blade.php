@@ -102,6 +102,7 @@
 <body class="flex justify-center items-center">
     @include('components.header')
     <div class="w-full sm:w-[500px] min-h-screen bg-white mt-16 p-6 shadow-lg rounded-lg">
+        @include('components.wa')
         <div class="bg-orange-500 w-full p-2 text-white">
             <h1 class="text-xl font-bold">Daftar Laporan</h1>
         </div>
@@ -140,6 +141,7 @@
         </div>
     </div>
 
+    @include('components.bottomNav')
     <script>
         const apiUrl = "{{ env('API_URL') }}";
         const endpoint = `${apiUrl}/get-report`;

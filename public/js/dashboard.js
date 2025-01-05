@@ -4,6 +4,15 @@ fetch(`${apiUrl}/campaign/get-recomendation`)
     .then((data) => {
         const campaignList = document.getElementById("campaignList");
 
+        if (data.length >= 0) {
+            document.getElementById("loadingScreen").classList.add("hidden");
+            document
+                .getElementById("dashboardContent")
+                .classList.remove("hidden");
+        } else {
+            document.getElementById("loadingScreen").classList.remove("hidden");
+            document.getElementById("dashboardContent").classList.add("hidden");
+        }
         // Kosongkan kontainer sebelum menambahkan elemen baru
         campaignList.innerHTML = "";
 
@@ -80,9 +89,7 @@ fetch(`${apiUrl}/campaign/get-recomendation`)
         console.error("Error fetching campaigns:", error);
     });
 
-fetch(
-    `${apiUrl}/campaign/get-priority`
-)
+fetch(`${apiUrl}/campaign/get-priority`)
     .then((response) => response.json())
     .then((data) => {
         const campaignPopular = document.getElementById("campaignPopular");

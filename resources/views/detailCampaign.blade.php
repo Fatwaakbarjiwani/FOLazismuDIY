@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ $campaign->description ?? 'Deskripsi tidak tersedia' }}">
-    <meta property="og:title" content="{{ $campaign->campaign_name ?? 'Judul tidak tersedia' }}">
-    <meta property="og:description" content="{{ $campaign->description ?? 'Deskripsi tidak tersedia' }}">
-    <meta property="og:image" content="{{ asset($campaign->campaign_thumbnail ?? 'default-thumbnail.jpg') }}">
+    <meta property="og:title" content="JALAN KEBAIKAN">
+    <meta property="og:description"
+        content="Platfrom Crowdfunding Lazismu DIY untuk menyalurkan berbagai kebaikan secara online dengan berbagai progam pemberdayaan dan pendayagunaan.">
+    <meta property="og:image" content="{{ asset('image/logoOrange.png') }}" />
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
     <title>Bantu Korban Kebakaran</title>
@@ -94,6 +94,7 @@
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
     <div class="w-full sm:w-[500px] bg-white shadow-lg">
         @include('components.header')
+        @include('components.wa')
         <div class="bg-white p-4 mt-16">
             <h1 class="text-2xl font-bold text-gray-800">DETAIL <span class="text-orange-600">CAMPAIGN</span></h1>
             <div class="flex flex-col gap-4">
@@ -198,11 +199,7 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8 bg-gray-100 p-4 hidden">
-            <div id="campaignPopular">
-                <!-- Campaigns will be injected here dynamically -->
-            </div>
-        </div>
+
         @include('components.footer')
         @include('components.bottomNav')
     </div>
@@ -211,7 +208,85 @@
     const apiUrl = "{{ env('API_URL') }}";
 </script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="{{ asset('js/dashboard.js') }}"></script>
+{{-- <script src="{{ asset('js/dashboard.js') }}"></script> --}}
+<script>
+    fetch(`${apiUrl}/campaign/get-recomendation`)
+        .then((response) => response.json())
+        .then((data) => {
+            const campaignList = document.getElementById("campaignList");
+
+            // Kosongkan kontainer sebelum menambahkan elemen baru
+            campaignList.innerHTML = "";
+
+            data.forEach((campaign) => {
+                const campaignItem = `
+        <div class="swiper-slide">
+            <div onclick="window.location.href='detailCampaign?id=${
+                campaign.id
+            }'" class="h-auto md:h-[50vh] flex flex-col justify-between bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 cursor-pointer">
+                <img alt="${
+                    campaign.campaign_name
+                }" class="w-full h-auto sm:h-[20vh] object-contain" src="${
+                campaign.campaign_thumbnail
+            }" />
+                <h2 class="text-base font-bold line-clamp-2 text-gray-800 px-2">${
+                    campaign.campaign_name
+                }</h2>
+                <div class="px-2">
+                    <div>
+                        <div class="flex justify-between text-gray-600 text-sm">
+                            <span class="font-medium">Terkumpul</span>
+                            <span class="font-medium">Rp ${campaign.current_amount.toLocaleString()}</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                            <div class="bg-orange-500 h-2.5 rounded-full" style="width: ${
+                                (campaign.current_amount /
+                                    campaign.target_amount) *
+                                100
+                            }%"></div>
+                        </div>
+                        <div class="flex justify-between text-gray-600 mt-1 text-sm">
+                            <span class="font-medium">Target</span>
+                            <span class="font-medium">Rp ${campaign.target_amount.toLocaleString()}</span>
+                        </div>
+                        <div class="w-full mb-2">
+                            <button class="bg-orange-500 text-sm text-white w-full py-1 mt-4 rounded-lg hover:bg-orange-600 transition-colors">Bantu Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+                campaignList.innerHTML += campaignItem;
+            });
+
+            // Inisialisasi ulang Swiper
+            const swiper = new Swiper(".swiper-container", {
+                slidesPerView: 1.5,
+                spaceBetween: 10,
+                loop: false,
+                autoplay: false,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: false,
+                },
+                navigation: {
+                    nextEl: false,
+                    prevEl: false,
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 5,
+                    },
+                },
+            });
+        })
+</script>
 <script>
     // URL share
     const shareUrl = window.location.href;

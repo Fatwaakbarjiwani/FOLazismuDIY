@@ -1,14 +1,35 @@
 let currentPage = 1;
+let categoryId = ""; // Variabel untuk menyimpan kategori yang dipilih
+
+// Fungsi untuk mengambil dan menampilkan data kategori
+async function fetchCategories() {
+    try {
+        const response = await fetch(`${apiUrl}/campaign-categories`);
+        const categories = await response.json(); // Parsing JSON response
+
+        const select = document.getElementById("campaignCategory");
+        categories.forEach((category) => {
+            const option = document.createElement("option");
+            option.value = category.id; // ID kategori
+            option.textContent = category.campaign_category; // Nama kategori
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Gagal mengambil data kategori:", error);
+    }
+}
+
+// Fungsi untuk mengambil data kampanye berdasarkan kategori dan halaman
 async function getCampaigns(page) {
     try {
         const response = await fetch(
-            `${apiUrl}/campaign/get-active?page=${page}`
+            `${apiUrl}/campaign/get-active?page=${page}&category_id=${categoryId}`
         );
         const data = await response.json();
 
         const campaigns = document.getElementById("campaignCard");
-        campaigns.innerHTML = ""; // Clear previous content
-
+        campaigns.innerHTML = ""; 
+        
         data.data.forEach((campaign) => {
             const campaignCard = `
             <div class="bg-white flex flex-col justify-between rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 cursor-pointer"
@@ -56,6 +77,7 @@ async function getCampaigns(page) {
             campaigns.innerHTML += campaignCard;
         });
 
+        // Periksa apakah tombol navigasi perlu dinonaktifkan
         document.getElementById("prevPage").disabled = page === 1;
         document.getElementById("nextPage").disabled = data.data.length < 12;
     } catch (error) {
@@ -63,6 +85,15 @@ async function getCampaigns(page) {
     }
 }
 
+// Fungsi untuk mencatat ID kategori yang dipilih dan memuat kampanye
+function logCategoryId() {
+    const select = document.getElementById("campaignCategory");
+    categoryId = select.value; // Perbarui ID kategori
+    currentPage = 1; // Reset ke halaman pertama
+    getCampaigns(currentPage); // Panggil fungsi untuk memuat kampanye
+}
+
+// Event listener untuk navigasi halaman
 document.getElementById("prevPage").addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
@@ -75,6 +106,8 @@ document.getElementById("nextPage").addEventListener("click", () => {
     getCampaigns(currentPage);
 });
 
-document.addEventListener("DOMContentLoaded", () =>
-    getCampaigns(currentPage)
-);
+// Panggil fungsi saat halaman dimuat
+document.addEventListener("DOMContentLoaded", () => {
+    fetchCategories(); // Ambil kategori saat halaman dimuat
+    getCampaigns(currentPage); // Muat kampanye awal
+});

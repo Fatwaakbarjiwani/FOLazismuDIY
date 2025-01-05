@@ -17,8 +17,10 @@
 </head>
 
 <body class="bg-gray-100 flex justify-center">
-    <div class="w-full md:w-[500px] bg-white shadow-md">
+    @include('components.loading')
+    <div id="dashboardContent" class="hidden w-full md:w-[500px] bg-white shadow-md">
         @include('components.header')
+        @include('components.wa')
         @include('components.swiper')
         <div class="bg-white">
             <div class="items-center p-2 sm:p-4">

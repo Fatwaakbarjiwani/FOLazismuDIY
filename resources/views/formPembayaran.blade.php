@@ -22,7 +22,7 @@
 </head>
 
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
-    <div class="w-full min-h-screen md:max-w-md bg-white shadow-lg rounded-lg">
+    <div class="w-full min-h-screen w-full md:w-[500px] bg-white shadow-lg rounded-lg">
         <div class="bg-white p-6">
             <div class="flex items-center justify-between mb-4">
                 <a href="campaign">

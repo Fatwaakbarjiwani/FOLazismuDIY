@@ -32,8 +32,13 @@
         </div>
     </header>
 </headers>
-<script src="{{ asset('js/dashboard.js') }}"></script>
+
 <script>
+    const token = localStorage.getItem('TK');
+    document.addEventListener("DOMContentLoaded", () => {
+        updateUserUI();
+    });
+
     // Show the modal
     function showModal() {
         const modal = document.getElementById('loginModal');
@@ -47,51 +52,99 @@
         document.getElementById('phoneNumber1').value = '';
     }
 
-    const token = localStorage.getItem('TK');
     if (token) {
         fetch("http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/get-me", {
-                method: "GET", // Pastikan metode yang benar untuk endpoint Anda
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}` // Sertakan token dalam header Authorization
+                    "Authorization": `Bearer ${token}` // Include the token in the Authorization header
                 },
             })
             .then((response) => {
-                
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 return response.json();
             })
             .then((data) => {
+                // Store name and phone number in localStorage
                 localStorage.setItem("nm", data.name);
                 localStorage.setItem("pn", data.phone_number);
-                const userActions = document.getElementById('userActions');
-
-                // Ganti tombol Masuk dengan nama pengguna
-                const userName = document.createElement('span');
-                userName.className = 'text-gray-600 text-sm sm:text-base line-clamp-2 ';
-                userName.textContent = data.name || "Pengguna"; // Nama pengguna dari respons API
-
-                // Ganti tombol Daftar dengan Logout
-                const logoutButton = document.createElement('a');
-                logoutButton.href = "#";
-                logoutButton.className =
-                    'bg-red-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded text-sm sm:text-base';
-                logoutButton.textContent = 'Logout';
-                logoutButton.onclick = function() {
-                    localStorage.removeItem('TK'); // Hapus token
-                    location.reload(); // Muat ulang halaman
-                };
-
-                // Bersihkan elemen lama dan tambahkan elemen baru
-                userActions.innerHTML = '';
-                userActions.appendChild(userName);
-                userActions.appendChild(logoutButton);
+                updateUserUI();
             })
             .catch((error) => {
-                console.error("Terjadi kesalahan:", error);
+                console.log(error);
+
             });
+    } else {
+        console.log(error);
+    }
+
+    // Function to update header UI with user's name and logout button
+    function updateUserUI() {
+        const userName = localStorage.getItem('nm');
+        const userActions = document.getElementById('userActions');
+
+        if (userName) {
+            // User is logged in, show user name and logout button
+            const userNameElement = document.createElement('span');
+            userNameElement.className = 'text-gray-600 text-sm sm:text-base line-clamp-2 cursor-pointer';
+            userNameElement.textContent = userName;
+
+            // Add onclick event to redirect to profile page
+            userNameElement.onclick = function() {
+                window.location.href = '/profile'; // Redirect to the profile page
+            };
+
+            // Logout button
+            const logoutButton = document.createElement('a');
+            logoutButton.href = "#";
+            logoutButton.className = 'bg-red-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded text-sm sm:text-base';
+            logoutButton.textContent = 'Logout';
+            logoutButton.onclick = function() {
+                // Clear localStorage
+                localStorage.removeItem('TK');
+                localStorage.removeItem('nm');
+                localStorage.removeItem('pn');
+                // Update UI after logout
+                updateUserUI();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Logged out successfully!',
+                    text: 'You have been logged out.',
+                    confirmButtonText: 'OK'
+                });
+            };
+
+            // Clear previous content and update UI
+            userActions.innerHTML = '';
+            userActions.appendChild(userNameElement);
+            userActions.appendChild(logoutButton);
+        } else {
+            // User is not logged in, show login and register buttons
+            const loginButton = document.createElement('a');
+            loginButton.className = 'text-gray-600 hover:text-orange-500 text-sm sm:text-base';
+            loginButton.href = "#";
+            loginButton.onclick = function() {
+                showModal();
+            };
+            loginButton.textContent = 'Masuk';
+
+            const registerButton = document.createElement('a');
+            registerButton.className =
+                'bg-orange-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded text-sm sm:text-base';
+            registerButton.href = "#";
+            registerButton.onclick = function() {
+                showRegisterModal();
+            };
+            registerButton.textContent = 'Daftar';
+
+            // Clear previous content and update UI
+            userActions.innerHTML = '';
+            userActions.appendChild(loginButton);
+            userActions.appendChild(registerButton);
+        }
     }
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
