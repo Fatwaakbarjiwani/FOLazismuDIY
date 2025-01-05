@@ -102,7 +102,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm text-gray-600 font-semibold">Total Kampanye</p>
-                        <p class="text-xl font-bold text-gray-800">${data.total_campaign}</p>
+                        <p class="text-xl font-bold text-gray-800">Rp ${data.total_campaign.toLocaleString()}</p>
                     </div>
                 </div>
                 <div class="bg-green-100 p-4 rounded-lg shadow flex items-center">
@@ -135,7 +135,7 @@
             </div>
         `;
             } catch (error) {
-                console.error("Error fetching summary data:", error);
+                // console.error("Error fetching summary data:", error);
                 getSummary();
                 summaryContainer.innerHTML =
                     `<div class="bg-red-100 text-red-700 p-4 rounded-md shadow text-center">
@@ -172,7 +172,6 @@
                 }
 
                 const data = await response.json();
-                console.log(data);
 
                 // Jika tidak ada transaksi
                 if (data.length === 0) {
@@ -213,8 +212,8 @@
                         </p>
                         <p class="text-sm text-gray-700">
                             <strong>Status:</strong> 
-                            <span class="${transaction.succes === 1 ? 'text-green-500 font-bold' : 'text-red-500 font-bold'}">
-                                ${transaction.succes==1?"SUKSES":"GAGAL"}
+                            <span class="${transaction.success === 1 ? 'text-green-500 font-bold' : 'text-red-500 font-bold'}">
+                                ${transaction.success===1?"SUKSES":"GAGAL"}
                             </span>
                         </p>
                     </div>
@@ -223,7 +222,7 @@
                     .join('');
             } catch (error) {
                 getTransactionHistory();
-                console.error("Error fetching transaction data:", error);
+                // console.error("Error fetching transaction data:", error);
                 transactionContainer.innerHTML = `
             <div class="bg-red-100 text-red-700 p-4 rounded-md shadow text-center">
                 <p class="font-medium">Terjadi kesalahan saat memuat data transaksi.</p>

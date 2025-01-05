@@ -129,16 +129,6 @@ fetch(`${apiUrl}/campaign/get-priority`)
         });
     });
 
-function handleSearch(event) {
-    if (event.key === "Enter") {
-        const searchTerm = document.getElementById("searchInput").value;
-        if (searchTerm.trim()) {
-            window.location.href = `searchCampaign?query=${encodeURIComponent(
-                searchTerm
-            )}`;
-        }
-    }
-}
 
 function setType(type) {
     localStorage.setItem("type", type);

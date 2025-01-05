@@ -15,12 +15,8 @@
     @include('components.wa')
 
     <div class="w-full sm:w-[500px] bg-white min-h-screen py-4 shadow my-14">
-        <button onclick="window.location.href='dashboard'"
-            class="flex items-center font-semibold text-gray-800 py-2 px-4 rounded p-4">
-            <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
-        </button>
         <header class="text-center py-2">
-            <h1 class="text-3xl font-bold text-gray-800">Search <span class="text-orange-500">Campaigns</span></h1>
+            <h1 class="text-3xl font-bold text-gray-800">SEARCH <span class="text-orange-500">CAMPAIGNS</span></h1>
             <p class="text-gray-600 mb-4">Find campaigns that matter to you</p>
         </header>
 
