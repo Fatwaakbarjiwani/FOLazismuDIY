@@ -48,7 +48,6 @@
     </div>
 
     <script>
-        const apiUrl = "{{ env('API_URL') }}"; // URL API dari environment
         const summaryContainer = document.getElementById("summary");
         const transactionContainer = document.getElementById("transaction");
         const greetingContainer = document.getElementById("greeting");
