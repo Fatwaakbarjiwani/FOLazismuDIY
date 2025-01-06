@@ -18,6 +18,7 @@
 
 <body class="bg-gray-100 flex justify-center">
     @include('components.loading')
+
     <div id="dashboardContent" class="hidden w-full md:w-[500px] bg-white shadow-md">
         @include('components.header')
         @include('components.wa')
@@ -68,9 +69,6 @@
         @include('components.bottomNav')
     </div>
 
-    <script>
-        const apiUrl = "{{ env('API_URL') }}";
-    </script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>

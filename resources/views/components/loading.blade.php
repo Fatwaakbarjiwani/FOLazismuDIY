@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Loading Screen</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
-</head>
-
-<body class="bg-white flex justify-center items-center min-h-screen">
+<div class="bg-white flex justify-center items-center min-h-screen">
     <!-- Wrapper dengan maksimal lebar 500px -->
     <div id="loadingScreen"
         class="relative w-full md:w-[500px] h-screen flex flex-col justify-center items-center bg-white">
@@ -34,6 +17,4 @@
             </span>
         </div>
     </div>
-</body>
-
-</html>
+</div>
