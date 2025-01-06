@@ -57,7 +57,7 @@
 </body>
 <script>
     fetch(
-            "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaign/get-recomendation"
+            `${apiUrl}/campaign/get-recomendation`
         )
         .then((response) => response.json())
         .then((data) => {
