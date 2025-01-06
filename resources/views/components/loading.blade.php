@@ -23,7 +23,7 @@
         <img alt="Lazismu Logo" src="{{ asset('image/logoOrange.png') }}" class="h-32 animate-pulse" />
 
         <!-- Teks dengan efek mengetik dan gradasi -->
-        <div class="mt-4 text-center">
+        <div class="mt-1 text-center">
             <span
                 class="block bg-clip-text text-transparent bg-gradient-to-r from-[#FFA500] via-[#FF4500] to-[#FF6347] text-lg sm:text-xl font-semibold">
                 SIAPA TAHU,
