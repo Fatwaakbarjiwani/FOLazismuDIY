@@ -39,6 +39,7 @@
     const token = localStorage.getItem('TK');
     document.addEventListener("DOMContentLoaded", () => {
         updateUserUI();
+        getMe();
     });
 
     function handleSearch(event) {
@@ -65,7 +66,12 @@
         document.getElementById('phoneNumber1').value = '';
     }
 
-    if (token) {
+    function getMe() {
+        if (!token) {
+            console.error("Token is missing.");
+            return;
+        }
+
         fetch(`${apiUrl}/get-me`, {
                 method: "GET",
                 headers: {
@@ -83,15 +89,17 @@
                 // Store name and phone number in localStorage
                 localStorage.setItem("nm", data.name);
                 localStorage.setItem("pn", data.phone_number);
-                updateUserUI();
+
+                // Call updateUserUI function to update the user interface
+                if (typeof updateUserUI === "function") {
+                    updateUserUI();
+                }
             })
             .catch((error) => {
-                console.log(error);
-
+                console.error("Failed to fetch user data:", error);
             });
-    } else {
-        console.log(error);
     }
+
 
     // Function to update header UI with user's name and logout button
     function updateUserUI() {
