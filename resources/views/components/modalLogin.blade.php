@@ -30,10 +30,7 @@
             </div>
         </div>
     </div>
-
     <script>
-        const apiUrl = "{{ env('API_URL') }}";
-
         // Fungsi untuk menutup modal
         function closeModal() {
             document.getElementById('loginModal').classList.add('hidden');

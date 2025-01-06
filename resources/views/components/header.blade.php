@@ -32,10 +32,11 @@
         </div>
     </header>
 </headers>
-
+<script>
+    const apiUrl = "{{ env('API_URL') }}";
+</script>
 <script>
     const token = localStorage.getItem('TK');
-    const apiUrl = "{{ env('API_URL') }}";
     document.addEventListener("DOMContentLoaded", () => {
         updateUserUI();
     });

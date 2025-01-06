@@ -36,9 +36,7 @@
             </div>
         </div>
     </div>
-
     <script>
-        const apiUrl = "{{ env('API_URL') }}";
         // Fungsi untuk menutup modal
         function closeRegisterModal() {
             document.getElementById('registerModal').classList.add('hidden');
