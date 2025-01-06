@@ -38,6 +38,7 @@
     </div>
 
     <script>
+        const apiUrl = "{{ env('API_URL') }}";
         // Fungsi untuk menutup modal
         function closeRegisterModal() {
             document.getElementById('registerModal').classList.add('hidden');
@@ -67,7 +68,7 @@
 
             try {
                 const response = await fetch(
-                    "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/register", {
+                    `${apiUrl}/register`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

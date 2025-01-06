@@ -35,6 +35,7 @@
 
 <script>
     const token = localStorage.getItem('TK');
+    const apiUrl = "{{ env('API_URL') }}";
     document.addEventListener("DOMContentLoaded", () => {
         updateUserUI();
     });
@@ -64,7 +65,7 @@
     }
 
     if (token) {
-        fetch("http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/get-me", {
+        fetch(`${apiUrl}/get-me`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

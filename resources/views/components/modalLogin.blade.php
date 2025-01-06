@@ -32,6 +32,8 @@
     </div>
 
     <script>
+        const apiUrl = "{{ env('API_URL') }}";
+
         // Fungsi untuk menutup modal
         function closeModal() {
             document.getElementById('loginModal').classList.add('hidden');
@@ -56,7 +58,7 @@
             }
             try {
                 const response = await fetch(
-                    "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/login", {
+                    `${apiUrl}/login`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
