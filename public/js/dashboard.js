@@ -129,8 +129,10 @@ async function loadRecommendations() {
         campaignList.innerHTML = data.map(createCampaignCard).join("");
         initializeSwiper();
     } else {
-        toggleLoading(true);
+        toggleLoading(false);
+        campaignList.innerHTML = `<p class="text-gray-500 text-center">Belum ada rekomendasi kampanye.</p>`;
     }
+
 }
 
 // Mendapatkan data kampanye populer
