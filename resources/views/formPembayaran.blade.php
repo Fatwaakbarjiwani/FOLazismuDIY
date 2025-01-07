@@ -85,6 +85,7 @@
         const apiUrl = "{{ env('API_URL') }}";
     </script>
     <script>
+        const token = localStorage.getItem('TK');
         // Load nominal from localStorage
         document.addEventListener('DOMContentLoaded', () => {
             const nominal = localStorage.getItem('nominal') || 0; // Default to 0 if not found
@@ -150,9 +151,8 @@
             fetch(`${apiUrl}/billing/create/campaign/${campaignId}`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                            'content') // Add CSRF token to headers
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}` // Include the token in the Authorization header
                     },
                     body: JSON.stringify(data) // Convert form data to JSON
                 })
