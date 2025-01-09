@@ -143,7 +143,6 @@
 
     @include('components.bottomNav')
     <script>
-        const apiUrl = "{{ env('API_URL') }}";
         const endpoint = `${apiUrl}/get-report`;
         const baseUrl = "https://ws.jalankebaikan.id/storage/"; // Base URL for file paths
 
@@ -156,7 +155,8 @@
                 const data = await response.json();
                 const reportList = document.getElementById("reportList");
                 const noData = document.getElementById("noData");
-                reportList.innerHTML = ""; // Clear previous content
+                reportList.innerHTML = ""; 
+                
 
                 if (data.length === 0) {
                     noData.classList.remove('hidden'); // Show no data message

@@ -12,7 +12,6 @@ async function fetchData(url) {
     }
 }
 
-// Fungsi untuk menampilkan loading dan konten dashboard
 function toggleLoading(showLoading) {
     const loadingScreen = document.getElementById("loadingScreen");
     const dashboardContent = document.getElementById("dashboardContent");
