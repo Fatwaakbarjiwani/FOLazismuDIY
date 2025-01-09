@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="description" content="Platfrom Crowdfunding Lazismu DIY untuk menyalurkan berbagai kebaikan secara online dengan berbagai progam pemberdayaan dan pendayagunaan.">
-    <meta name="keywords" content="Donasi, Daftar Zakat, Zakat Fitrah, Zakat Maal, Zakat Penghasilan, Zakat Perdagangan, Zakat Tabungan, Zakat Emas, Zakat Pertanian, Zakat Peternakan, Infak, Infak Sedekah, Infak Pendidikan, Infak Sosial, Infak Kesehatan, Sedekah, Campaign, Wakaf, Wakaf Produktif, Wakaf Tunai, Wakaf Kesehatan, Wakaf Pendidikan, Donasi Online, Program Sosial, Program Keagamaan, Jalan Kebaikan, Lazismu">
+    <meta name="description"
+        content="Platfrom Crowdfunding Lazismu DIY untuk menyalurkan berbagai kebaikan secara online dengan berbagai progam pemberdayaan dan pendayagunaan.">
+    <meta name="keywords"
+        content="Jalan Kebaikan, Donasi, Donasi Online, Program Sosial, Program Keagamaan, Jalan Kebaikan, Lazismu, Lazismu DIY, Campaign, Filantropi, Filantropi Digital,">
     <meta name="author" content="Akbar">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
