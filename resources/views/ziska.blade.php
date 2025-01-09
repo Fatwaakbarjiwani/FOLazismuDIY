@@ -8,6 +8,7 @@
     <meta name="keywords"
         content="Daftar Zakat, Zakat Fitrah, Zakat Maal, Zakat Penghasilan, Zakat Perdagangan, Zakat Tabungan, Zakat Emas, Zakat Pertanian, Zakat Peternakan, Infak, Infak Umum, Infak Pembangunan Masjid, Infak Pembangunan">
     <meta name="author" content="Akbar">
+    <meta name="title" content="Jalan Kebaikan">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Ziska</title>
     <script src="https://cdn.tailwindcss.com"></script>

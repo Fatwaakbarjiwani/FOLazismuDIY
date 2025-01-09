@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta property="og:description"
+    <meta name="description"
         content="Platfrom Crowdfunding Lazismu DIY untuk menyalurkan berbagai kebaikan secara online dengan berbagai progam pemberdayaan dan pendayagunaan.">
-    <meta property="og:keywords"
+    <meta name="keywords"
         content="Daftar Zakat, Zakat Fitrah, Zakat Maal, Zakat Penghasilan, Zakat Perdagangan, Zakat Tabungan, Zakat Emas, Zakat Pertanian, Zakat Peternakan, Infak, Infak Umum, Infak Pembangunan Masjid, Infak Pembangunan">
-    <meta property="og:author" content="Akbar">
-    <meta property="og:title" content="Jalan Kebaikan">
+    <meta name="author" content="Akbar">
+    <meta name="title" content="Jalan Kebaikan">
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Ziska</title>
     <script src="https://cdn.tailwindcss.com"></script>
