@@ -90,6 +90,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             const nominal = localStorage.getItem('nominal') || 0; // Default to 0 if not found
             document.getElementById('nominalDonasi').innerText = `Rp ${parseInt(nominal).toLocaleString('id-ID')}`;
+            // Ambil data pengguna dari localStorage (contoh: nama dan nomor handphone)
+            const namaDonatur = localStorage.getItem('nm') || '';
+            const noHp = localStorage.getItem('pn') || '';
+
+            // Isi otomatis field nama dan nomor handphone jika data tersedia
+            const namaField = document.getElementById('namaDonatur');
+            const noHpField = document.getElementById('noHp');
+
+            if (namaDonatur) {
+                namaField.value = namaDonatur;
+            }
+            if (noHp) {
+                noHpField.value = noHp;
+            }
         });
 
         // Toggle anonymous checkbox function
@@ -152,7 +166,7 @@
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}` 
+                        "Authorization": `Bearer ${token}`
                     },
                     body: JSON.stringify(data) // Convert form data to JSON
                 })
@@ -186,6 +200,7 @@
         // Attach form submission event listener
         document.getElementById('paymentForm').addEventListener('submit', sendRequest);
     </script>
+
 
 </body>
 
