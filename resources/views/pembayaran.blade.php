@@ -17,7 +17,7 @@
 
 <body class="bg-gray-100 flex justify-center">
     @include('components.header')
-    <div class="w-full sm:w-[500px] bg-white mt-16 p-4 shadow">
+    <div class="w-full sm:w-[500px] bg-white mt-16 p-2 sm:p-4 shadow">
         @include('components.wa')
         <div class="flex items-center justify-between">
             <a href="campaign">
