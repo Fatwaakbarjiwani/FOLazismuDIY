@@ -5,8 +5,7 @@
     <meta charset="utf-8" />
     <meta name="description"
         content="Platfrom Crowdfunding Lazismu DIY untuk menyalurkan berbagai kebaikan secara online dengan berbagai progam pemberdayaan dan pendayagunaan.">
-    <meta name="keywords"
-        content="Daftar Zakat, Zakat Fitrah, Zakat Maal, Zakat Penghasilan, Zakat Perdagangan, Zakat Tabungan, Zakat Emas, Zakat Pertanian, Zakat Peternakan, Infak, Infak Umum, Infak Pembangunan Masjid, Infak Pembangunan">
+    <meta name="keywords" content="Daftar Zakat, Zakat, Infak">
     <meta name="author" content="Akbar">
     <meta name="title" content="Jalan Kebaikan">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />

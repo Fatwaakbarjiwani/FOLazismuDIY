@@ -18,7 +18,7 @@
 <body class="bg-gray-100 flex justify-center">
     @include('components.header')
     @include('components.wa')
-    <div class="w-full sm:w-[500px] bg-white mt-16 p-4 shadow">
+    <div class="w-full sm:w-[500px] bg-white pb-4 mt-16 p-2 shadow">
         <div class="flex items-center justify-between">
             <a href="campaign">
                 <i class="fas fa-chevron-left text-orange-500"></i>

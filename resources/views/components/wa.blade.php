@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="fixed bottom-14 flex justify-end p-2 z-50">
+    <div class="fixed bottom-14 flex justify-end right-0 sm:right-auto p-2 z-50">
         <a class="bg-green-600 rounded-full flex items-center p-1 px-2 gap-2" href="https://wa.me/62895363520118"
             target="_blank" rel="noopener noreferrer">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1022px-WhatsApp.svg.png"
