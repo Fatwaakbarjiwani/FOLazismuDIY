@@ -171,9 +171,8 @@
             fetch(`${apiUrl}/billing/create/${type == "zakats" ?"zakat":"infak"}/${id}`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                            'content') // Add CSRF token to headers
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
                     },
                     body: JSON.stringify(data) // Convert form data to JSON
                 })

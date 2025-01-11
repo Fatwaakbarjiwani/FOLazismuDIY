@@ -58,7 +58,7 @@
         <a href="https://www.youtube.com/@lazismudiy" target="_blank" class="hover:scale-110 duration-200 shadow">
           <img src="https://play-lh.googleusercontent.com/6am0i3walYwNLc08QOOhRJttQENNGkhlKajXSERf3JnPVRQczIyxw2w3DxeMRTOSdsY" alt="Instagram Logo" class="h-8 w-8 rounded" />
         </a>
-        <a href="https://x.com/@lazismu_diy" target="_blank" class="hover:scale-110 duration-200 shadow">
+        <a href="https://x.com/@lazismu_ndiy" target="_blank" class="hover:scale-110 duration-200 shadow">
           <img src="https://akcdn.detik.net.id/visual/2023/07/24/logo-twitter-terbaru_169.jpeg?w=480&q=90" alt="Instagram Logo" class="h-8 w-8 rounded" />
         </a>
       </div>

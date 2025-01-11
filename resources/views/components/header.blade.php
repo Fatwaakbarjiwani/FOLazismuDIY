@@ -116,7 +116,7 @@
             userNameElement.onclick = function() {
                 window.location.href = '/profile'; // Redirect to the profile page
             };
-
+ 
             // Logout button
             const logoutButton = document.createElement('a');
             logoutButton.href = "#";
