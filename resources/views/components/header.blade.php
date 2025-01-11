@@ -42,16 +42,27 @@
         getMe();
     });
 
-    function handleSearch(event) {
-        if (event.key === "Enter") {
-            const searchTerm = document.getElementById("searchInput").value;
-            if (searchTerm.trim()) {
-                window.location.href = `searchCampaign?query=${encodeURIComponent(
-                searchTerm
-            )}`;
-            }
-        }
+  function handleSearch() {
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput && searchInput.value.trim()) {
+        const searchTerm = searchInput.value;
+        window.location.href = `searchCampaign?query=${encodeURIComponent(searchTerm)}`;
     }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton"); // jika ada tombol
+    if (searchInput) {
+        searchInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") handleSearch();
+        });
+    }
+    if (searchButton) {
+        searchButton.addEventListener("click", handleSearch);
+    }
+});
+
 
     // Show the modal
     function showModal() {
