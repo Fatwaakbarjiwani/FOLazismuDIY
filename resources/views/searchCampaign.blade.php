@@ -12,9 +12,9 @@
 
 <body class="font-roboto bg-gray-100 flex justify-center">
     @include('components.header')
-    @include('components.wa')
-
+    
     <div class="w-full sm:w-[500px] bg-white min-h-screen py-4 shadow my-14">
+        @include('components.wa')
         <header class="text-center py-2">
             <h1 class="text-3xl font-bold text-gray-800">SEARCH <span class="text-orange-500">CAMPAIGNS</span></h1>
             <p class="text-gray-600 mb-4">Find campaigns that matter to you</p>
@@ -36,9 +36,9 @@
     </div>
     @include('components.bottomNav')
     <!-- JavaScript for Fetching Campaigns -->
-    <script>
+    {{-- <script>
         const apiUrl = "{{ env('API_URL') }}";
-    </script>
+    </script> --}}
     <script src="{{ asset('js/searchCampaign.js') }}"></script>
 </body>
 

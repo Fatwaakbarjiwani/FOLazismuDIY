@@ -42,9 +42,9 @@
 
 
     <!-- Include the JavaScript file -->
-    <script>
+    {{-- <script>
         const apiUrl = "{{ env('API_URL') }}";
-    </script>
+    </script> --}}
     <script src="{{ asset('js/campaigns.js') }}"></script>
 </body>
 
