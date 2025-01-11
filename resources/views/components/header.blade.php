@@ -14,11 +14,17 @@
             <!-- Search Bar -->
             <div class="w-8/12 sm:w-10/12">
                 <div class="relative">
-                    <input onkeydown="handleSearch(event)" id="searchInput"
-                        class="w-full py-2 px-4 rounded-full shadow border border-gray-100 focus:outline-none text-sm sm:text-base"
-                        placeholder="Cari Campaign" type="text" />
-                    <i class="fas fa-search absolute top-1/2 transform -translate-y-1/2 right-4 text-gray-400"></i>
+                    <form onsubmit="handleSearch(event)" class="flex items-center">
+                        <input id="searchInput" name="query"
+                            class="w-full py-2 px-4 rounded-full shadow border border-gray-100 focus:outline-none text-sm sm:text-base"
+                            placeholder="Cari Campaign" type="text" />
+                        <button type="submit"
+                            class="absolute top-1/2 transform -translate-y-1/2 right-4 text-gray-400 focus:outline-none">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
                 </div>
+
             </div>
 
             <!-- User Actions -->
@@ -42,27 +48,18 @@
         getMe();
     });
 
-  function handleSearch() {
-    const searchInput = document.getElementById("searchInput");
-    if (searchInput && searchInput.value.trim()) {
-        const searchTerm = searchInput.value;
-        window.location.href = `searchCampaign?query=${encodeURIComponent(searchTerm)}`;
-    }
-}
+    function handleSearch(event) {
+        event.preventDefault(); // Mencegah pengiriman form bawaan
 
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("searchInput");
-    const searchButton = document.getElementById("searchButton"); // jika ada tombol
-    if (searchInput) {
-        searchInput.addEventListener("keydown", (event) => {
-            if (event.key === "Enter") handleSearch();
-        });
+        const searchInput = document.getElementById("searchInput");
+        if (searchInput && searchInput.value.trim()) {
+            const searchTerm = searchInput.value.trim(); // Hapus spasi tambahan
+            // Redirect ke URL dengan query term
+            window.location.href = `searchCampaign?query=${encodeURIComponent(searchTerm)}`;
+        } else {
+            alert("Masukkan kata kunci pencarian!"); // Berikan feedback jika kosong
+        }
     }
-    if (searchButton) {
-        searchButton.addEventListener("click", handleSearch);
-    }
-});
-
 
     // Show the modal
     function showModal() {
@@ -127,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
             userNameElement.onclick = function() {
                 window.location.href = '/profile'; // Redirect to the profile page
             };
- 
+
             // Logout button
             const logoutButton = document.createElement('a');
             logoutButton.href = "#";
