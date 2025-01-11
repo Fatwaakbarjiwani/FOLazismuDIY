@@ -85,6 +85,8 @@
     </script>
 
     <script>
+        const token = localStorage.getItem('TK');
+
         // Fungsi untuk mendapatkan data pengguna dan mengisi kolom otomatis
         function getUserData() {
             const namaDonatur = document.getElementById('namaDonatur');
