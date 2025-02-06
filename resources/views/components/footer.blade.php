@@ -3,11 +3,11 @@
   {{-- style="background-image: url('{{ asset('image/footer.svg') }}')" --}}
   class="relative mb-14 flex flex-col gap-y-2 py-2 justify-around bg-gradient-to-t from-orange-600 to-orange-400 text-white font-Inter mt-10 w-full h-auto"
 >
-<div class="absolute top-0">
-  <img alt="Lazismu Logo" class="h-24 left-0 " src="{{ asset('image/logoPutih.png') }}"/>
+<div class="absolute top-2">
+  <img alt="Lazismu Logo" class="h-auto w-1/3 left-0 " src="{{ asset('image/logoPutih.png') }}"/>
 </div>
   
-  <div class="w-full flex flex-col gap-2 mt-20 px-4">
+  <div class="w-full flex flex-col gap-2 mt-12 px-4">
     <p class="font-bold text-lg ">Kantor</p>
     <p class="text-base ">
         Jl. Gedongkuning No.152, RT.41, Rejowinangun, Kec. Kotagede, Kota Yogyakarta, Daerah Istimewa Yogyakarta
