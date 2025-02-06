@@ -148,12 +148,12 @@
 
                     <!-- Amount and Progress -->
                     <div class="mt-2">
-                        <div class="flex justify-between">
+                        <div class="flex flex-wrap justify-between">
                             <div class="flex justify-between gap-2 text-gray-700 text-sm">
                                 <span class="font-medium">Terkumpul</span>
                                 <span id="currentAmount" class="text-orange-600 font-semibold">Rp 0</span>
                             </div>
-                            <div class="flex justify-between gap-2 text-gray-700 mt-2 text-sm">
+                            <div class="flex justify-between gap-2 text-gray-700 text-sm">
                                 <span class="font-medium">Target</span>
                                 <span id="targetAmount" class="text-orange-600 font-semibold">Rp 0</span>
                             </div>
