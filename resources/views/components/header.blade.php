@@ -17,7 +17,7 @@
                     <form onsubmit="handleSearch(event)" class="flex items-center">
                         <input id="searchInput" name="query"
                             class="w-full py-2 px-4 rounded-full shadow border border-gray-100 focus:outline-none text-sm sm:text-base"
-                            placeholder="Cari Campaign" type="text" />
+                            placeholder="Search" type="text" />
                         <button type="submit"
                             class="absolute top-1/2 transform -translate-y-1/2 right-4 text-gray-400 focus:outline-none">
                             <i class="fas fa-search"></i>
