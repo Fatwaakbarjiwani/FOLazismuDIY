@@ -50,6 +50,8 @@
             color: white;
         }
     </style>
+    <link rel="icon" type="image/svg+xml" href="image/logoOrange.png"/>
+    
 </head>
 
 <body class="bg-gray-100 flex justify-center">

@@ -4,11 +4,14 @@
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWQ5Z1NW94"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'G-KWQ5Z1NW94');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KWQ5Z1NW94');
     </script>
     {{--  --}}
     <meta charset="UTF-8">
@@ -22,6 +25,7 @@
     <title>Bantu Korban Kebakaran</title>
     <title>Lazismu - Campaign Detail</title> --}}
     <title>{{ $campaign['campaign_name'] }}</title>
+    <link rel="icon" type="image/svg+xml" href="image/logoOrange.png"/>
     <!-- Meta Tags untuk Sosial Media -->
     <meta property="og:title" content="{{ $campaign['campaign_name'] }}">
     <meta property="og:description" content="{{ $campaign['description'] }}">
@@ -31,20 +35,29 @@
     {{--  --}}
     <!-- Meta Pixel Code -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '6779218792190886');
-    fbq('track', 'PageView');
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '6779218792190886');
+        fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=6779218792190886&ev=PageView&noscript=1"
-    /></noscript>
+            src="https://www.facebook.com/tr?id=6779218792190886&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -377,7 +390,7 @@
                 <p class="text-sm text-gray-700"><span class="font-semibold">Tanggal:</span> ${new Date(transaction.transaction_date).toLocaleDateString()}</p>
                 <p class="text-sm text-gray-700"><span class="font-semibold">Donatur:</span> ${transaction.donatur || 'Anonim'}</p>
                 <p class="text-sm text-gray-700"><span class="font-semibold">Pesan:</span> ${transaction.message || '-'}</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Nominal:</span> Rp ${transaction.transaction_amount.toLocaleString()}</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Nominal:</span> Rp ${transaction.transaction_amount.toLocaleString('id-ID', {day: '2-digit',month: 'short',year: 'numeric'})}</p>
             `;
                 donorListContainer.appendChild(donorCard);
             });

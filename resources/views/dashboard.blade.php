@@ -12,6 +12,7 @@
     </script>
     <meta charset="utf-8" />
     <meta name="title" content="Jalan Kebaikan">
+    <link rel="icon" type="image/svg+xml" href="image/logoOrange.png"/>
     <meta name="description"
         content="Platfrom Crowdfunding Lazismu DIY untuk menyalurkan berbagai kebaikan secara online dengan berbagai progam pemberdayaan dan pendayagunaan.">
     <meta name="keywords"

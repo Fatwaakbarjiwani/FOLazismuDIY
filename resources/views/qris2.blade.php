@@ -36,6 +36,8 @@
             font-family: Arial, sans-serif;
         }
     </style>
+    <link rel="icon" type="image/svg+xml" href="image/logoOrange.png"/>
+
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-blue-100 flex justify-center items-center min-h-screen" id="halamanQris">
     <div class="bg-white p-8 shadow-2xl rounded-lg w-full sm:max-w-md h-screen sm:h-auto">
