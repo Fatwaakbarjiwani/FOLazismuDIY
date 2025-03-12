@@ -25,7 +25,7 @@
     <title>Bantu Korban Kebakaran</title>
     <title>Lazismu - Campaign Detail</title> --}}
     <title>{{ $campaign['campaign_name'] }}</title>
-    <link rel="icon" type="image/svg+xml" href="image/logoOrange.png"/>
+    <link rel="icon" type="image/svg+xml" href="image/logoOrange.png" />
     <!-- Meta Tags untuk Sosial Media -->
     <meta property="og:title" content="{{ $campaign['campaign_name'] }}">
     <meta property="og:description" content="{{ $campaign['description'] }}">
@@ -186,6 +186,22 @@
                             Share <i class="fas fa-share-alt"></i>
                         </button>
                     </div>
+                    <h1 class="text-gray-600 mt-2 mb-2">Info Penggalang Dana :</h1>
+                    <div class="flex w-auto gap-2 items-center p-1">
+                        <img src="image/lg.jpeg" id="Fundraiser_image"
+                            class="object-fill object-cover bg-gray-300 rounded-full h-12 w-12" alt="logo">
+                        <div>
+                            <p id="Fundraiser" class="text-gray-500 font-semibold text-sm text-left mt-1">Penggalang
+                                Dana</p> 
+                            <p class="text-blue-600 bg-blue-200 px-2 rounded-full text-xs flex gap-1 items-center">
+                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Akun Terverifikasi
+                            </p>
+                        </div>
+                    </div>
 
                     <!-- Donation Button -->
                     <!-- Donation Button -->
@@ -237,7 +253,8 @@
             </div>
         </div>
         <div class="mt-8 bg-gray-100 p-4">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi <span class="text-orange-500">Campaign</span>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi <span
+                    class="text-orange-500">Campaign</span>
             </h1>
             <!-- Swiper Container for Campaign Cards -->
             <div class="swiper-container overflow-x-hidden p-2">
@@ -648,6 +665,10 @@
                     `Rp ${campaign.target_amount.toLocaleString()}`;
                 document.getElementById("Date").textContent =
                     `Date: ${new Date(campaign.start_date).toLocaleDateString()}`;
+                document.getElementById("Fundraiser").textContent =
+                    `${campaign.fundraiser}`;
+                document.getElementById("Fundraiser_image").src =
+                    `${campaign.fundraiser_image||"image/lg.jpeg"}`;
 
 
                 const progress = (campaign.current_amount / campaign.target_amount) * 100;

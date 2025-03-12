@@ -18,7 +18,7 @@
         content="Platfrom Crowdfunding Lazismu DIY untuk menyalurkan berbagai kebaikan secara online dengan berbagai progam pemberdayaan dan pendayagunaan.">
     <meta name="keywords"
         content="Jalan Kebaikan, Donasi, Donasi Online, Program Sosial, Program Keagamaan, Jalan Kebaikan, Lazismu, Lazismu DIY, Campaign, Filantropi, Filantropi Digital,">
-    <meta name="author" content="Akbar">
+    <meta name="author" content="Fatwa Akbar Jiwani">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lazismu Jogja - Jalan Kebaikan</title>

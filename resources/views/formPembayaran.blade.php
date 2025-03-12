@@ -86,7 +86,7 @@
                 <div>
                     <label class="block text-sm md:text-gray-700">Nomor Handphone</label>
                     <input id="noHp" name="noHp" class="w-full px-3 py-2 border rounded-lg text-sm md:text-base"
-                        placeholder="Nomor Handphone" type="text" />
+                        placeholder="Nomor Handphone" type="number" />
                 </div>
                 <div class="flex items-center">
                     <input class="mr-2" id="anonymous" name="anonymous" type="checkbox" onclick="toggleAnonymous()" />
