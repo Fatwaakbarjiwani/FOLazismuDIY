@@ -253,8 +253,8 @@
             </div>
         </div>
         <div class="mt-8 bg-gray-100 p-4">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Rekomendasi <span
-                    class="text-orange-500">Campaign</span>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Program <span
+                    class="text-orange-500">Sedekah Ramadhan</span>
             </h1>
             <!-- Swiper Container for Campaign Cards -->
             <div class="swiper-container overflow-x-hidden p-2">

@@ -98,8 +98,8 @@
                 </div>
             </div>
             <div class="p-2 sm:p-4">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 sm:mb-4">Rekomendasi <span
-                        class="text-orange-500">Campaign</span></h1>
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 sm:mb-4">Program <span
+                        class="text-orange-500">Sedekah Ramadhan</span></h1>
                 <!-- Swiper Container for Campaign Cards -->
                 <div class="swiper-container overflow-x-hidden p-2">
                     <div class="swiper-wrapper" id="campaignList">

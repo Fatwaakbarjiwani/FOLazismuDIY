@@ -18,7 +18,7 @@ class ApiController extends Controller
         }
 
         // URL API dengan ID campaign
-        $url = "https://ws.jalankebaikan.id/public/api/campaigns/{$campaignId}";
+        $url = "http://103.23.103.43/lazismuDIY/backendLazismuDIY/public/api/campaigns/{$campaignId}";
 
         // Mengambil data dari API
         $response = Http::get($url);
