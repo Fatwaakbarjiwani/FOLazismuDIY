@@ -139,18 +139,7 @@
                 // Simpan data ke localStorage
                 localStorage.setItem('campaignId', campaignId);
                 localStorage.setItem('nominal', nominal);
-
-                // Tampilkan notifikasi berhasil
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil',
-                    text: 'Nominal telah disimpan. Anda akan dialihkan ke halaman pembayaran.',
-                    timer: 2000,
-                    showConfirmButton: false,
-                }).then(() => {
-                    // Alihkan ke halaman pembayaran setelah notifikasi selesai
-                    window.location.href = 'formPembayaran';
-                });
+                window.location.href = 'formPembayaran';
             } catch (error) {
                 console.error('Error saving nominal:', error);
                 Swal.fire({
