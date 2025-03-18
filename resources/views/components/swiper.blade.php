@@ -57,7 +57,7 @@
 </body>
 <script>
     fetch(
-            `${apiUrl}/campaign/get-recomendation`
+            `${apiUrl}/zakats`
         )
         .then((response) => response.json())
         .then((data) => {
@@ -65,19 +65,41 @@
             const sliderHomePage = document.getElementById("sliderHomePage");
             sliderHomePage.innerHTML = "";
 
-            data.slice(0, 3).forEach((campaign) => {
+            data.filter(data => data.id == 2 || data.id == 4).forEach((campaign) => {
                 const campaignItem = `
-                       <div onclick="window.location.href='detailCampaign?id=${
+                       <div onclick="window.location.href='pembayaran_ziska?id=${
                 campaign.id
             }'" class="swiper-slide">
                     <img alt="Dashboard view" class="image" src="${
-                        campaign.campaign_thumbnail
+                        campaign.thumbnail
                     }" />
                 </div>
         `;
                 sliderHomePage.innerHTML += campaignItem;
             });
         })
+    // fetch(
+    //         `${apiUrl}/campaign/get-recomendation`
+    //     )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+
+    //         const sliderHomePage = document.getElementById("sliderHomePage");
+    //         sliderHomePage.innerHTML = "";
+
+    //         data.slice(0, 3).forEach((campaign) => {
+    //             const campaignItem = `
+    //                    <div onclick="window.location.href='detailCampaign?id=${
+    //             campaign.id
+    //         }'" class="swiper-slide">
+    //                 <img alt="Dashboard view" class="image" src="${
+    //                     campaign.campaign_thumbnail
+    //                 }" />
+    //             </div>
+    //     `;
+    //             sliderHomePage.innerHTML += campaignItem;
+    //         });
+    //     })
 </script>
 
 </html>
