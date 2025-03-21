@@ -187,11 +187,11 @@
                         </button>
                     </div>
                     <h1 class="text-gray-600 mt-2 mb-2">Info Penggalang Dana :</h1>
-                    <div class="flex w-auto gap-2 items-center p-1">
+                    <div class="flex w-auto gap-3 items-start">
                         <img src="image/lg.jpeg" id="Fundraiser_image"
                             class="object-fill object-cover bg-gray-300 rounded-full h-12 w-12" alt="logo">
                         <div>
-                            <p id="Fundraiser" class="text-gray-500 font-semibold text-sm text-left mt-1">Penggalang
+                            <p id="Fundraiser" class="text-gray-500 font-semibold text-md text-left ">Penggalang
                                 Dana</p> 
                             <p class="text-blue-600 bg-blue-200 px-2 rounded-full text-xs flex gap-1 items-center">
                                 <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" stroke-width="2"

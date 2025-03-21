@@ -18,7 +18,8 @@ class ApiController extends Controller
         }
 
         // URL API dengan ID campaign
-        $url = "http://localhost/lazismuDIY/backendLazismuDIY/public/api/campaigns/{$campaignId}";
+        // $url = "http://localhost/lazismuDIY/backendLazismuDIY/public/api/campaigns/{$campaignId}";
+        $url = "https://ws.jalankebaikan.id/api/campaigns/{$campaignId}";
 
         
 
