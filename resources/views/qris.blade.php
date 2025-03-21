@@ -68,9 +68,9 @@
 
         <!-- Tombol aksi -->
         <div class="mt-6 flex flex-wrap justify-center gap-4">
-            <a href="formPembayaran" class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition duration-300 text-sm md:text-base">
+            {{-- <a href="formPembayaran" class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition duration-300 text-sm md:text-base">
                 Kembali
-            </a>
+            </a> --}}
             <!-- Tombol Download dengan background gradasi orange -->
             <button id="downloadQrCodeWithDetails" class="px-6 py-2 bg-blue-500 text-white rounded-lg shadow-xl hover:from-orange-300 hover:to-orange-500 transition duration-300 text-sm md:text-base transform hover:scale-105">
                 Download QR Code
