@@ -86,7 +86,7 @@
         </div>
 
         <!-- Informasi tambahan -->
-        <div class="mt-6 text-center space-y-4">
+        {{-- <div class="mt-6 text-center space-y-4">
             <p class="text-sm md:text-base text-gray-500">
                 Silakan gunakan aplikasi pembayaran seperti <span class="text-blue-500 font-semibold">OVO</span>,
                 <span class="text-blue-500 font-semibold">Gopay</span>, atau <span
@@ -96,7 +96,7 @@
                 Pastikan jumlah yang Anda masukkan sesuai dengan <span class="text-orange-500 font-semibold">Nominal
                     Donasi</span>.
             </p>
-        </div>
+        </div> --}}
 
         <!-- Tombol aksi -->
         <div class="mt-6 flex flex-wrap justify-center gap-4">

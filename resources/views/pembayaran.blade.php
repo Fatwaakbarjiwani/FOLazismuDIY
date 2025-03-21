@@ -65,12 +65,12 @@
             <h3 class="text-lg font-semibold">Nominal</h3>
             <p class="text-gray-500">Pilih Nominal Donasi Anda Sebesar</p>
             <div class="grid grid-cols-2 gap-4 mt-2">
-                <button class="bg-gray-100 py-2 rounded-lg" onclick="setNominal(5000)">Rp 5.000</button>
-                <button class="bg-gray-100 py-2 rounded-lg" onclick="setNominal(10000)">Rp 10.000</button>
-                <button class="bg-gray-100 py-2 rounded-lg" onclick="setNominal(50000)">Rp 50.000</button>
-                <button class="bg-gray-100 py-2 rounded-lg" onclick="setNominal(100000)">Rp 100.000</button>
-                <button class="bg-gray-100 py-2 rounded-lg" onclick="setNominal(500000)">Rp 500.000</button>
-                <button class="bg-gray-100 py-2 rounded-lg" onclick="setNominal(1000000)">Rp 1.000.000</button>
+                <button class="bg-gray-100 py-2 rounded-lg focus:bg-orange-400 focus:text-white" onclick="setNominal(5000)">Rp 5.000</button>
+                <button class="bg-gray-100 py-2 rounded-lg focus:bg-orange-400 focus:text-white" onclick="setNominal(10000)">Rp 10.000</button>
+                <button class="bg-gray-100 py-2 rounded-lg focus:bg-orange-400 focus:text-white" onclick="setNominal(50000)">Rp 50.000</button>
+                <button class="bg-gray-100 py-2 rounded-lg focus:bg-orange-400 focus:text-white" onclick="setNominal(100000)">Rp 100.000</button>
+                <button class="bg-gray-100 py-2 rounded-lg focus:bg-orange-400 focus:text-white" onclick="setNominal(500000)">Rp 500.000</button>
+                <button class="bg-gray-100 py-2 rounded-lg focus:bg-orange-400 focus:text-white" onclick="setNominal(1000000)">Rp 1.000.000</button>
             </div>
         </div>
 
