@@ -2,6 +2,22 @@
 <html lang="en">
 
 <head>
+    <style>
+        ol {
+            counter-reset: list-counter;
+        }
+
+        li {
+            counter-increment: list-counter;
+        }
+
+        li::before {
+            content: counter(list-counter) ". ";
+            font-weight: bold;
+            color: #374151;
+            /* Warna Tailwind text-gray-700 */
+        }
+    </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWQ5Z1NW94"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -95,7 +111,7 @@
         </div>
         <div class="bg-white shadow-lg rounded-lg p-6 mt-4 max-w-lg w-full">
             <h2 class="text-lg font-semibold mb-4">📌 Tutorial Pembayaran :</h2>
-            <ul class="space-y-4">
+            <ol class="space-y-4">
                 <li class="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                     <span class="text-blue-500 text-xl"><i class="fas fa-download"></i></span>
                     <p class="text-gray-700">Unduh QRIS di halaman Pembayaran</p>
@@ -112,7 +128,8 @@
                     <span class="text-blue-500 text-xl"><i class="fas fa-check-circle"></i></span>
                     <p class="text-gray-700">Selesai! Sobat akan menerima notifikasi pembayaran melalui WhatsApp</p>
                 </li>
-            </ul>
+            </ol>
+
         </div>
         {{-- <p class="mt-4 text-sm md:text-base text-gray-500 text-center">
             Jika pembayaran telah selesai, klik tombol <span class="text-green-500 font-semibold">Konfirmasi Pembayaran</span> untuk melanjutkan.
